@@ -1,7 +1,8 @@
-package com.homework.homeworkkuritsyn
+package com.homework.homeworkkuritsyn.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.homework.homeworkkuritsyn.R
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
