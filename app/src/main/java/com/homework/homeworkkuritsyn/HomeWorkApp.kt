@@ -1,6 +1,7 @@
 package com.homework.homeworkkuritsyn
 
 import android.app.Application
+import android.content.Context
 import com.homework.homeworkkuritsyn.di.AppComponent
 import com.homework.homeworkkuritsyn.di.DaggerAppComponent
 import timber.log.Timber.*
@@ -11,6 +12,7 @@ class HomeWorkApp : Application() {
     val appComponent: AppComponent by lazy {
         DaggerAppComponent.factory().create(applicationContext)
     }
+
     override fun onCreate() {
         super.onCreate()
 
@@ -19,3 +21,9 @@ class HomeWorkApp : Application() {
         }
     }
 }
+
+val Context.appComponent: AppComponent
+    get() = when (this) {
+        is HomeWorkApp -> appComponent
+        else -> this.applicationContext.appComponent
+    }
