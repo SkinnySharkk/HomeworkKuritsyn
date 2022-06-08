@@ -1,10 +1,12 @@
 package com.homework.homeworkkuritsyn.domain.authorized
 
+import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
+
 interface AuthorizedRepository {
     fun isAuthorized() : Boolean
     fun setAuthorized()
     fun getToken() : String
     fun setToken(token: String)
-    fun signIn(name: String, password: String)
-    fun signUp(name: String, password: String)
+    suspend fun signIn(authEntity: AuthEntity)
+    suspend fun signUp(authEntity: AuthEntity)
 }

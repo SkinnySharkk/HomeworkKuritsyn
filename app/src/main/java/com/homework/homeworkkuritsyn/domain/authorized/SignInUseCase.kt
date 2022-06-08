@@ -1,9 +1,10 @@
 package com.homework.homeworkkuritsyn.domain.authorized
 
+import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
 import javax.inject.Inject
 
 class SignInUseCase @Inject constructor(private val authorizedRepository: AuthorizedRepository) {
-    fun execute(name: String, password: String) {
-        authorizedRepository.signIn(name, password)
+    suspend fun execute(authEntity: AuthEntity) {
+        authorizedRepository.signIn(authEntity)
     }
 }

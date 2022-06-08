@@ -1,6 +1,7 @@
 package com.homework.homeworkkuritsyn.domain.entity
 
-data class UserEntity(
+data class AuthEntity(
     val name: String,
-    val role: UserRoleEntity
+    val password: String
+
 )

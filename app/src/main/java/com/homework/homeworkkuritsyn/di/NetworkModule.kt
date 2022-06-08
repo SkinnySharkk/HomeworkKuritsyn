@@ -10,7 +10,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.moshi.MoshiConverterFactory
 
 @Module
-interface NetworkModule {
+class NetworkModule {
     @Provides
     fun provideMoshi(): Moshi = Moshi.Builder().build()
     @Provides
@@ -19,9 +19,16 @@ interface NetworkModule {
             this.level = HttpLoggingInterceptor.Level.BODY
         }
     @Provides
+    fun provideHttpClient(
+        httpLoggingInterceptor: HttpLoggingInterceptor,
+    ): OkHttpClient =
+        OkHttpClient.Builder()
+            .addNetworkInterceptor(httpLoggingInterceptor)
+            .build()
+    @Provides
     fun provideRetrofit(moshi: Moshi, okHttpClient: OkHttpClient): Retrofit =
         Retrofit.Builder()
-            .baseUrl("shiftlab.cft.ru:7777/")
+            .baseUrl("https://shiftlab.cft.ru:7777/")
             .client(okHttpClient)
             .addConverterFactory(MoshiConverterFactory.create(moshi))
             .build()
