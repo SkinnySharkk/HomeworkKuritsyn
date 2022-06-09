@@ -47,6 +47,7 @@ dependencies {
     implementation 'androidx.fragment:fragment-ktx:1.4.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     // Dagger 2
     def daggerVersion = "2.42"
@@ -56,12 +57,18 @@ dependencies {
     // Moshi
     def moshiVersion = "1.13.0"
     implementation("com.squareup.moshi:moshi:$moshiVersion")
+    implementation("com.squareup.moshi:moshi-kotlin:$moshiVersion")
     kapt("com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion")
 
     // Retrofit
     def retrofitVersion = "2.9.0"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    // https://mvnrepository.com/artifact/com.squareup.retrofit2/converter-scalars
+    implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
+
 
     // Logs
     implementation "com.squareup.okhttp3:logging-interceptor:4.9.1"

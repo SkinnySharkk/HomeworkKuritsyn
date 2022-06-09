@@ -35,9 +35,10 @@ class AuthorizedRepositoryImpl @Inject constructor(
         val auth = AuthConverter(authEntity).asModel()
         withContext(Dispatchers.IO) {
             try {
-                networkShiftDataStore.signIn(auth = auth)
+                val token = networkShiftDataStore.signIn(auth = auth)
+                setToken(token)
             } catch (e: Exception) {
-                Timber.v(e.localizedMessage)
+                Timber.v(e.stackTraceToString())
             }
         }
     }
@@ -46,10 +47,10 @@ class AuthorizedRepositoryImpl @Inject constructor(
         val auth = AuthConverter(authEntity).asModel()
         withContext(Dispatchers.IO) {
             try {
-               val userModel = networkShiftDataStore.signUp(auth = auth)
+                val userModel = networkShiftDataStore.signUp(auth = auth)
                 Timber.v(userModel.toString())
             } catch (e: Exception) {
-                Timber.v(e.localizedMessage)
+                Timber.v(e.stackTraceToString())
             }
         }
     }

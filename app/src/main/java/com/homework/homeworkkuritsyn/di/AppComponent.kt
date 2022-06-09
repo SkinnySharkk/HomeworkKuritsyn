@@ -2,7 +2,6 @@ package com.homework.homeworkkuritsyn.di
 
 import android.content.Context
 import com.homework.homeworkkuritsyn.di.authorized.AuthorizedComponent
-import com.homework.homeworkkuritsyn.ui.LoginFragment
 import dagger.BindsInstance
 import dagger.Component
 

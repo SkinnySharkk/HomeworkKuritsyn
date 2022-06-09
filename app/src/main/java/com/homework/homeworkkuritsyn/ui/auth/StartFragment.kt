@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.ui
+package com.homework.homeworkkuritsyn.ui.auth
 
 import android.os.Bundle
 import android.view.LayoutInflater

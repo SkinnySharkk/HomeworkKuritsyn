@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.homework.homeworkkuritsyn.ui.StartFragment"
+        android:name="com.homework.homeworkkuritsyn.ui.auth.StartFragment"
         android:label="fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
@@ -19,12 +19,21 @@
     </fragment>
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.homework.homeworkkuritsyn.ui.LoginFragment"
+        android:name="com.homework.homeworkkuritsyn.ui.auth.LoginFragment"
         android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/registerFragment"
-        android:name="com.homework.homeworkkuritsyn.ui.RegisterFragment"
+        android:name="com.homework.homeworkkuritsyn.ui.auth.RegisterFragment"
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.homework.homeworkkuritsyn.ui.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" />
 </navigation>

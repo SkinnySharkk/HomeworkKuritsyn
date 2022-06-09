@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.ui
+package com.homework.homeworkkuritsyn.ui.auth
 
 import android.content.Context
 import android.os.Bundle
@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoginBinding
 import com.homework.homeworkkuritsyn.presenters.LoginViewModel
@@ -40,6 +41,7 @@ class LoginFragment : Fragment() {
             val name = binding.loginTextFieldUserName.editText?.text.toString()
             val password = binding.loginTextFieldUserPassword.editText?.text.toString()
             viewModel.login(name, password)
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
         }
 
     }

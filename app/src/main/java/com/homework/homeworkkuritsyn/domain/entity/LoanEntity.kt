@@ -3,7 +3,7 @@ package com.homework.homeworkkuritsyn.domain.entity
 import java.math.BigDecimal
 import java.math.BigInteger
 
-data class Loan(
+data class LoanEntity(
     val amount: BigInteger,
     val date: String,
     val firstName: String,

@@ -1,22 +1,18 @@
 package com.homework.homeworkkuritsyn.data.network
 
-import com.homework.homeworkkuritsyn.data.network.models.Auth
-import com.homework.homeworkkuritsyn.data.network.models.Loan
-import com.homework.homeworkkuritsyn.data.network.models.LoanConditions
-import com.homework.homeworkkuritsyn.data.network.models.UserModel
+import com.homework.homeworkkuritsyn.data.network.models.*
 import okhttp3.MultipartBody
+import retrofit2.Response
 import retrofit2.http.*
 
 interface ShiftService {
-    @Multipart
-    @POST("login/")
-    suspend fun login(@Part auth: MultipartBody.Part): String
+    @POST("login")
+    suspend fun login(@Body auth: Auth): String
 
-    @Multipart
-    @POST("registration/")
-    suspend fun registration(@Part auth: MultipartBody.Part): UserModel
+    @POST("registration")
+    suspend fun registration(@Body auth: Auth): UserModel
 
-    @POST("loans/")
+    @POST("loans")
     suspend fun createLoans(): Loan
 
     @GET("loans/{id}")

@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.ui
+package com.homework.homeworkkuritsyn.ui.auth
 
 import android.content.Context
 import android.os.Bundle
@@ -10,7 +10,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentRegisterBinding
-import com.homework.homeworkkuritsyn.presenters.LoginViewModel
 import com.homework.homeworkkuritsyn.presenters.RegisterViewModel
 import javax.inject.Inject
 
