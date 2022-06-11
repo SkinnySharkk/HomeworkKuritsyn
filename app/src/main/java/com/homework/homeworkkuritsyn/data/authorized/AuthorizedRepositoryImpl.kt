@@ -4,10 +4,12 @@ import com.homework.homeworkkuritsyn.data.converters.AuthConverter
 import com.homework.homeworkkuritsyn.data.converters.asModel
 import com.homework.homeworkkuritsyn.data.network.NetworkShiftDataStore
 import com.homework.homeworkkuritsyn.data.sharedpreferences.SystemLocalSharedPreferencesDataStore
+import com.homework.homeworkkuritsyn.domain.authorized.AuthResult
 import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
 import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import retrofit2.HttpException
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -31,16 +33,38 @@ class AuthorizedRepositoryImpl @Inject constructor(
         systemLocalSharedPreferencesDataStore.putToken(token)
     }
 
-    override suspend fun signIn(authEntity: AuthEntity) {
+    override suspend fun signIn(authEntity: AuthEntity): AuthResult {
         val auth = AuthConverter(authEntity).asModel()
-        withContext(Dispatchers.IO) {
+        return withContext(Dispatchers.IO) {
             try {
                 val token = networkShiftDataStore.signIn(auth = auth)
                 setToken(token)
+                AuthResult.Success
+            } catch (httpException: HttpException) {
+                when (httpException.code()) {
+                    401 -> {
+                        Timber.v(httpException.localizedMessage)
+                        AuthResult.HttpError("Unauthorized")
+                    }
+                    403 -> {
+                        Timber.v(httpException.localizedMessage)
+                        AuthResult.HttpError("Forbidden")
+                    }
+                    404 -> {
+                        Timber.v(httpException.localizedMessage)
+                        AuthResult.HttpError("Not Found")
+                    }
+                    else -> {
+                        Timber.v(httpException.localizedMessage)
+                        AuthResult.HttpError("Another http error")
+                    }
+                }
             } catch (e: Exception) {
                 Timber.v(e.stackTraceToString())
+                AuthResult.OtherError("Another error")
             }
         }
+
     }
 
     override suspend fun signUp(authEntity: AuthEntity) {

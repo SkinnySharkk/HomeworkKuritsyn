@@ -4,7 +4,7 @@ import java.math.BigDecimal
 import java.math.BigInteger
 
 data class Loan(
-    val amount: BigInteger,
+    val amount: BigDecimal,
     val date: String,
     val firstName: String,
     val id: Int,

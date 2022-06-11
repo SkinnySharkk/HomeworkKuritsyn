@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoginBinding
+import com.homework.homeworkkuritsyn.presenters.auth.LoginUiState
 import com.homework.homeworkkuritsyn.presenters.auth.LoginViewModel
 import javax.inject.Inject
 
@@ -43,9 +44,19 @@ class LoginFragment : Fragment() {
             val password = binding.loginTextFieldUserPassword.editText?.text.toString()
             if (validData(name = name, password = password)) {
                 viewModel.login(name, password)
-                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
             } else {
                 Toast.makeText(context, "Empty fields", Toast.LENGTH_LONG).show()
+            }
+        }
+        viewModel.loginUiState.observe(viewLifecycleOwner) { loginUiState ->
+            when(loginUiState) {
+                is LoginUiState.Idle -> {}
+                is LoginUiState.Success -> {
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+                }
+                is LoginUiState.Error -> {
+                    Toast.makeText(context, loginUiState.reason, Toast.LENGTH_LONG).show()
+                }
             }
         }
 

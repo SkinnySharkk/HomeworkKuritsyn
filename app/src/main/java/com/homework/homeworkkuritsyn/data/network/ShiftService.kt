@@ -16,10 +16,10 @@ interface ShiftService {
     suspend fun createLoans(): Loan
 
     @GET("loans/{id}")
-    suspend fun getLoan(@Path("id") id: Int): List<Loan>
+    suspend fun getLoan(@Path("id") id: Int): Loan
 
     @GET("loans/all")
-    suspend fun getAllLoans(): Loan
+    suspend fun getAllLoans(): List<Loan>
 
     @GET("loans/conditions")
     suspend fun getConditions(): LoanConditions

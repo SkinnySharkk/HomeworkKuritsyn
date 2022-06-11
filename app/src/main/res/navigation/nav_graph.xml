@@ -33,7 +33,7 @@
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.homework.homeworkkuritsyn.ui.HomeFragment"
+        android:name="com.homework.homeworkkuritsyn.ui.loans.LoansFragment"
         android:label="fragment_home"
         tools:layout="@layout/fragment_home" />
 </navigation>

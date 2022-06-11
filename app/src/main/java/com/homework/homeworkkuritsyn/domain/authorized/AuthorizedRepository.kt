@@ -7,6 +7,6 @@ interface AuthorizedRepository {
     fun setAuthorized()
     fun getToken() : String
     fun setToken(token: String)
-    suspend fun signIn(authEntity: AuthEntity)
+    suspend fun signIn(authEntity: AuthEntity) : AuthResult
     suspend fun signUp(authEntity: AuthEntity)
 }
