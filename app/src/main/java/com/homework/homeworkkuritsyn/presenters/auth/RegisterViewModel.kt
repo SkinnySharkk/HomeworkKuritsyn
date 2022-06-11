@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.presenters
+package com.homework.homeworkkuritsyn.presenters.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -16,5 +16,8 @@ class RegisterViewModel @Inject constructor(
         viewModelScope.launch {
             signUpUseCase.execute(authEntity)
         }
+    }
+    fun validData(name: String, password: String): Boolean {
+        return name.isNotEmpty() && password.isNotEmpty()
     }
 }

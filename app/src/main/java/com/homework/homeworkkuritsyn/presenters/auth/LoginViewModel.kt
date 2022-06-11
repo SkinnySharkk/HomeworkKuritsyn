@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.presenters
+package com.homework.homeworkkuritsyn.presenters.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -15,5 +15,8 @@ class LoginViewModel @Inject constructor(
       viewModelScope.launch {
          signInUseCase.execute(authEntity)
       }
+   }
+   fun validData(name: String, password: String): Boolean {
+      return name.isNotEmpty() && password.isNotEmpty()
    }
 }

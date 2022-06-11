@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.presenters
+package com.homework.homeworkkuritsyn.presenters.auth
 
 import androidx.lifecycle.ViewModel
 

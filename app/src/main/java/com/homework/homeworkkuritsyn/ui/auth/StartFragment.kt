@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.homework.homeworkkuritsyn.databinding.FragmentStartBinding
-import com.homework.homeworkkuritsyn.presenters.StartViewModel
+import com.homework.homeworkkuritsyn.presenters.auth.StartViewModel
 
 class StartFragment : Fragment() {
     private val viewModel: StartViewModel by viewModels()

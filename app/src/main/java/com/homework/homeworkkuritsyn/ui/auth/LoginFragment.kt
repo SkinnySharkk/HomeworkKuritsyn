@@ -5,13 +5,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoginBinding
-import com.homework.homeworkkuritsyn.presenters.LoginViewModel
+import com.homework.homeworkkuritsyn.presenters.auth.LoginViewModel
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {
@@ -40,12 +41,18 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener {
             val name = binding.loginTextFieldUserName.editText?.text.toString()
             val password = binding.loginTextFieldUserPassword.editText?.text.toString()
-            viewModel.login(name, password)
-            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+            if (validData(name = name, password = password)) {
+                viewModel.login(name, password)
+                findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+            } else {
+                Toast.makeText(context, "Empty fields", Toast.LENGTH_LONG).show()
+            }
         }
 
     }
-
+    private fun validData(name: String, password: String): Boolean {
+        return viewModel.validData(name = name, password = password)
+    }
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
