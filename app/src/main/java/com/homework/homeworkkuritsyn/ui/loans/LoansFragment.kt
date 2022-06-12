@@ -2,26 +2,23 @@ package com.homework.homeworkkuritsyn.ui.loans
 
 import android.content.Context
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import com.homework.homeworkkuritsyn.appComponent
-import com.homework.homeworkkuritsyn.databinding.FragmentHomeBinding
-import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
-import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
+import com.homework.homeworkkuritsyn.databinding.FragmentLoansBinding
 import com.homework.homeworkkuritsyn.presenters.loans.LoansViewModel
 import com.homework.homeworkkuritsyn.ui.LoanAdapter
 import timber.log.Timber
-import java.math.BigDecimal
-import java.math.BigInteger
 import javax.inject.Inject
 
 class LoansFragment : Fragment() {
     private val binding get() = _binding!!
-    private var _binding: FragmentHomeBinding? = null
+    private var _binding: FragmentLoansBinding? = null
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
@@ -31,7 +28,7 @@ class LoansFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentLoansBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -43,22 +40,10 @@ class LoansFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.loans.observe(viewLifecycleOwner) { loans ->
             binding.loanList.apply {
-                val loanAdapter = LoanAdapter(onClickLoan = {
-
+                val loanAdapter = LoanAdapter(onClickLoan = { id->
+                    Timber.v("id = $id")
+                    findNavController().navigate(LoansFragmentDirections.actionLoansFragmentToLoanFragment(id))
                 })
-//            loanAdapter.loans = listOf(
-//                LoanEntity(
-//                    BigInteger.TEN,
-//                    "fdf434",
-//                    "Bob",
-//                    1,
-//                    "Marley",
-//                    BigDecimal.ONE,
-//                    30,
-//                    "48445",
-//                    EnumStateEntity.REGISTERED
-//                )
-//            )
                 Timber.v("loans.toString()")
                 Timber.v(loans.toString())
                 loanAdapter.loans = loans
@@ -67,6 +52,7 @@ class LoansFragment : Fragment() {
         }
 
     }
+
 
     override fun onDestroyView() {
         super.onDestroyView()

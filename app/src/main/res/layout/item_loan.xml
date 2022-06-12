@@ -6,12 +6,93 @@
     android:layout_height="200dp">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/amountItemTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="8dp"
+        app:layout_constraintStart_toEndOf="@+id/titleItemBarrier"
+        app:layout_constraintTop_toTopOf="@+id/TOP_MARGIN"
+        tools:text="15000.00" />
+
+    <TextView
+        android:id="@+id/amountItemTxtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Сумма займа:"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toTopOf="@+id/TOP_MARGIN" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/START_MARGIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/END_MARGIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/TOP_MARGIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/BOTTOM_MARGIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="20dp" />
+
+    <TextView
+        android:id="@+id/dateItemTxtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Дата займа:"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/amountItemTxtTitle" />
+
+    <TextView
+        android:id="@+id/dateItemTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="22.01.21"
+        app:layout_constraintStart_toEndOf="@+id/titleItemBarrier"
+        app:layout_constraintTop_toBottomOf="@+id/amountItemTxt" />
+
+    <TextView
+        android:id="@+id/statusItemTxtTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Статус займа:"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/dateItemTxtTitle" />
+
+    <TextView
+        android:id="@+id/statusItemTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Зарегистрировано"
+        app:layout_constraintStart_toEndOf="@+id/titleItemBarrier"
+        app:layout_constraintTop_toBottomOf="@+id/dateItemTxt" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/titleItemBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="statusItemTxtTitle,
+amountItemTxtTitle, dateItemTxtTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

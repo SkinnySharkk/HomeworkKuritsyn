@@ -2,9 +2,7 @@ package com.homework.homeworkkuritsyn.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.fragment.findNavController
 import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.ActivityMainBinding
@@ -31,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         if(checkFirstStartUseCase.execute()) {
             graph.setStartDestination(R.id.startFragment)
         } else {
-            graph.setStartDestination(R.id.homeFragment)
+            graph.setStartDestination(R.id.loansFragment)
         }
         val navController = navHostFragment.navController
         navController.setGraph(graph, intent.extras)

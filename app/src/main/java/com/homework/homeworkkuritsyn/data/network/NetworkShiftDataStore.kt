@@ -17,4 +17,7 @@ class NetworkShiftDataStore @Inject constructor(
     suspend fun getAllLoans(): List<Loan> {
         return shiftService.getAllLoans()
     }
+    suspend fun getLoan(id: Int): Loan {
+        return shiftService.getLoan(id = id)
+    }
 }

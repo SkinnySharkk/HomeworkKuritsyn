@@ -1,5 +1,6 @@
 package com.homework.homeworkkuritsyn.di.loans
 
+import com.homework.homeworkkuritsyn.ui.loans.LoanFragment
 import com.homework.homeworkkuritsyn.ui.loans.LoansFragment
 import dagger.Subcomponent
 
@@ -10,4 +11,5 @@ interface LoansComponent {
         fun create(): LoansComponent
     }
     fun inject(fragment: LoansFragment)
+    fun inject(fragment: LoanFragment)
 }

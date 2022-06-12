@@ -8,9 +8,14 @@ import com.homework.homeworkkuritsyn.domain.loans.LoansRepository
 import javax.inject.Inject
 
 class LoansRepositoryImpl @Inject constructor(
-    private val networkShiftDataStore: NetworkShiftDataStore) :
+    private val networkShiftDataStore: NetworkShiftDataStore
+) :
     LoansRepository {
     override suspend fun getAllLoans(): List<LoanEntity> {
         return LoanConverter(networkShiftDataStore.getAllLoans()).asModel()
+    }
+
+    override suspend fun getLoan(id: Int): LoanEntity {
+        return LoanConverter(listOf(networkShiftDataStore.getLoan(id = id))).asModel()[0]
     }
 }

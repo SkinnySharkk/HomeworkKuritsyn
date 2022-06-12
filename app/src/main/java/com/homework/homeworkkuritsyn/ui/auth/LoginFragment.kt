@@ -52,7 +52,7 @@ class LoginFragment : Fragment() {
             when(loginUiState) {
                 is LoginUiState.Idle -> {}
                 is LoginUiState.Success -> {
-                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToHomeFragment())
+                    findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToLoansFragment())
                 }
                 is LoginUiState.Error -> {
                     Toast.makeText(context, loginUiState.reason, Toast.LENGTH_LONG).show()

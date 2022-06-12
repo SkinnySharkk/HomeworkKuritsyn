@@ -1,17 +1,14 @@
 package com.homework.homeworkkuritsyn.data.converters
 
-import com.homework.homeworkkuritsyn.data.network.models.Auth
 import com.homework.homeworkkuritsyn.data.network.models.EnumState
 import com.homework.homeworkkuritsyn.data.network.models.Loan
-import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
-import java.math.BigDecimal
 
 data class LoanConverter(val loans: List<Loan>)
 
 fun LoanConverter.asModel(): List<LoanEntity> {
-    return loans.map {  loan ->
+    return loans.map { loan ->
         val state = when (loan.state) {
             EnumState.APPROVED -> {
                 EnumStateEntity.APPROVED

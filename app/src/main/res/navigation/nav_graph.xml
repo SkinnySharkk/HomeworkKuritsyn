@@ -23,8 +23,8 @@
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_homeFragment"
-            app:destination="@id/homeFragment" />
+            android:id="@+id/action_loginFragment_to_loansFragment"
+            app:destination="@id/loansFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -32,8 +32,21 @@
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/loansFragment"
         android:name="com.homework.homeworkkuritsyn.ui.loans.LoansFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        android:label="fragment_loans"
+        tools:layout="@layout/fragment_loans" >
+        <action
+            android:id="@+id/action_loansFragment_to_loanFragment"
+            app:destination="@id/loanFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loanFragment"
+        android:name="com.homework.homeworkkuritsyn.ui.loans.LoanFragment"
+        android:label="fragment_loan"
+        tools:layout="@layout/fragment_loan" >
+        <argument
+            android:name="idLoan"
+            app:argType="integer" />
+    </fragment>
 </navigation>
