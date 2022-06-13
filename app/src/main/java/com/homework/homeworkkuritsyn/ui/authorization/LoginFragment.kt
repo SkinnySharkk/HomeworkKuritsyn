@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.ui.auth
+package com.homework.homeworkkuritsyn.ui.authorization
 
 import android.content.Context
 import android.os.Bundle

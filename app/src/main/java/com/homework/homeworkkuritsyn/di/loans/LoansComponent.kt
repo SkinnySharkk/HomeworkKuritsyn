@@ -1,7 +1,7 @@
 package com.homework.homeworkkuritsyn.di.loans
 
-import com.homework.homeworkkuritsyn.ui.loans.LoanFragment
-import com.homework.homeworkkuritsyn.ui.loans.LoansFragment
+import com.homework.homeworkkuritsyn.ui.historyloans.LoanFragment
+import com.homework.homeworkkuritsyn.ui.historyloans.LoansFragment
 import dagger.Subcomponent
 
 @Subcomponent(modules = [LoansModule::class])

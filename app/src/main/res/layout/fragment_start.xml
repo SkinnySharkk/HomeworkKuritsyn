@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".ui.auth.StartFragment">
+    tools:context=".ui.authorization.StartFragment">
 
     <Button
         android:id="@+id/startLoginButton"

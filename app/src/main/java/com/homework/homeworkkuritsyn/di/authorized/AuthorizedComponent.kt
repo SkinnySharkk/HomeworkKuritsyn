@@ -1,7 +1,7 @@
 package com.homework.homeworkkuritsyn.di.authorized
 
-import com.homework.homeworkkuritsyn.ui.auth.LoginFragment
-import com.homework.homeworkkuritsyn.ui.auth.RegisterFragment
+import com.homework.homeworkkuritsyn.ui.authorization.LoginFragment
+import com.homework.homeworkkuritsyn.ui.authorization.RegisterFragment
 import dagger.Subcomponent
 
 @Subcomponent(modules = [AuthorizedModule::class])

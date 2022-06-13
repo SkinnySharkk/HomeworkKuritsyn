@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.ui.auth
+package com.homework.homeworkkuritsyn.ui.authorization
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.homework.homeworkkuritsyn.databinding.FragmentStartBinding
 import com.homework.homeworkkuritsyn.presenters.auth.StartViewModel
+import com.homework.homeworkkuritsyn.ui.MainActivity
 
 class StartFragment : Fragment() {
     private val viewModel: StartViewModel by viewModels()
@@ -20,6 +21,7 @@ class StartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentStartBinding.inflate(inflater, container, false)
+        (activity as MainActivity).lockDrawer()
         return binding.root
     }
 

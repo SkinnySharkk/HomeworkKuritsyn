@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.ui.auth
+package com.homework.homeworkkuritsyn.ui.authorization
 
 import android.content.Context
 import android.os.Bundle
@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentRegisterBinding
 import com.homework.homeworkkuritsyn.presenters.auth.RegisterViewModel

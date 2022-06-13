@@ -6,4 +6,11 @@
     <string name="login_user_password">Password</string>
     <string name="login_button">Login</string>
     <string name="register_button">Register</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="page_title">Loans</string>
+
 </resources>

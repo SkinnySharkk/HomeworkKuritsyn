@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.ui.loans
+package com.homework.homeworkkuritsyn.ui.historyloans
 
 import android.content.Context
 import androidx.lifecycle.ViewModelProvider
@@ -9,10 +9,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
-import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoanBinding
-import com.homework.homeworkkuritsyn.presenters.MultiViewModelFactory
 import com.homework.homeworkkuritsyn.presenters.loans.LoanViewModel
 import timber.log.Timber
 import javax.inject.Inject

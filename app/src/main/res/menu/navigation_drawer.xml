@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@id/loansFragment"
+        android:title="История займов"
+        />
+    <item
+        android:id="@id/applyFragment"
+        android:title="Оформить займ" />
+    <item
+        android:id="@id/manualFragment"
+        android:title="Как получить?" />
+    <item android:title="Выйти" />
+</menu>

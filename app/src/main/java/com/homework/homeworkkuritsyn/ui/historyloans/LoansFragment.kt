@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.ui.loans
+package com.homework.homeworkkuritsyn.ui.historyloans
 
 import android.content.Context
 import android.os.Bundle
@@ -13,6 +13,7 @@ import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoansBinding
 import com.homework.homeworkkuritsyn.presenters.loans.LoansViewModel
 import com.homework.homeworkkuritsyn.ui.LoanAdapter
+import com.homework.homeworkkuritsyn.ui.MainActivity
 import timber.log.Timber
 import javax.inject.Inject
 
@@ -29,6 +30,7 @@ class LoansFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoansBinding.inflate(inflater, container, false)
+        (activity as MainActivity).unLockDrawer()
         return binding.root
     }
 
