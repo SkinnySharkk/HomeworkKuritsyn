@@ -1,19 +1,14 @@
-package com.homework.homeworkkuritsyn.ui
+package com.homework.homeworkkuritsyn.ui.manualgetloan
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.homework.homeworkkuritsyn.R
+import com.homework.homeworkkuritsyn.presenters.manualgetloan.ManualViewModel
 
 class ManualFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = ManualFragment()
-    }
-
     private lateinit var viewModel: ManualViewModel
 
     override fun onCreateView(
@@ -22,11 +17,4 @@ class ManualFragment : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_manual, container, false)
     }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(ManualViewModel::class.java)
-        // TODO: Use the ViewModel
-    }
-
 }

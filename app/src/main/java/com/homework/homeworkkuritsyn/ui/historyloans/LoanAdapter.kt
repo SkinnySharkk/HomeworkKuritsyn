@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.ui
+package com.homework.homeworkkuritsyn.ui.historyloans
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
