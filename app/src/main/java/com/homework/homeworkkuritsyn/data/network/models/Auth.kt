@@ -7,5 +7,5 @@ data class Auth(
     @SerializedName("name")
     val name: String,
     @SerializedName("password")
-    val password: String
+    val password: String,
 )

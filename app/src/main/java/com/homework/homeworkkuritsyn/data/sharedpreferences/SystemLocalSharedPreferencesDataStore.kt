@@ -1,5 +1,6 @@
 package com.homework.homeworkkuritsyn.data.sharedpreferences
 
+import com.homework.homeworkkuritsyn.data.network.models.UserDataModel
 import javax.inject.Inject
 
 class SystemLocalSharedPreferencesDataStore @Inject constructor(
@@ -16,7 +17,17 @@ class SystemLocalSharedPreferencesDataStore @Inject constructor(
     fun isAuthorized(): Boolean {
         return sharedPreferencesManager.isAuthorized()
     }
+
     fun setAuthorized() {
         sharedPreferencesManager.setAuthorized()
+    }
+
+    fun setUserData(userDataModel: UserDataModel) {
+        sharedPreferencesManager.setUserData(
+            userDataModel
+        )
+    }
+    fun getUserData(): UserDataModel {
+        return sharedPreferencesManager.getUserData()
     }
 }

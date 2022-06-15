@@ -4,7 +4,7 @@ import com.homework.homeworkkuritsyn.data.network.models.Auth
 import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
 
 data class AuthConverter(val authEntity: AuthEntity)
-fun AuthConverter.asModel(): Auth {
+fun AuthConverter.asEntities(): Auth {
     return Auth(
         name = authEntity.name,
         password = authEntity.password

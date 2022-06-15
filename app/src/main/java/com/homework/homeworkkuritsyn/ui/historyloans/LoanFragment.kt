@@ -1,13 +1,13 @@
 package com.homework.homeworkkuritsyn.ui.historyloans
 
 import android.content.Context
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoanBinding
@@ -39,9 +39,19 @@ class LoanFragment : Fragment() {
         viewModel.loan.observe(viewLifecycleOwner) { loan ->
             Timber.v(loan.toString())
             Timber.v(args.toString())
-            binding.loanTxt.text = loan.toString()
+            with(binding) {
+                loanFirstNameValue.text = loan.firstName
+                loanLastNameValue.text = loan.lastName
+                loanDataValue.text = loan.date
+                loanPhoneValue.text = loan.phoneNumber
+                loanSumValue.text = loan.amount.toString()
+                loanPercentValue.text = loan.percent.toString()
+                loanPeriodValue.text = loan.period.toString()
+                loanStateValue.text = loan.state.toString()
+            }
         }
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         context.appComponent.loansComponent().create().inject(this)

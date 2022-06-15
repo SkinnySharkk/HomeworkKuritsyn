@@ -1,13 +1,215 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.historyloans.ApplyFragment">
+    tools:context=".ui.applyloan.ApplyLoanFragment">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:id="@+id/loanDataTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Одобренный период:"
+        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@id/loanLastNameTitle" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/periodConditionsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
+        app:layout_constraintTop_toBottomOf="@+id/percentConditionsValue"
+        tools:text="42" />
+
+    <TextView
+        android:id="@+id/loanLastNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Одобренный процент:"
+        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@id/loanFirstNameTitle" />
+
+    <TextView
+        android:id="@+id/percentConditionsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
+        app:layout_constraintTop_toBottomOf="@+id/amountConditionsValue"
+        tools:text="13.5%" />
+
+    <TextView
+        android:id="@+id/TitleConditions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Вам одобрены следующие условия:"
+        app:layout_constraintEnd_toStartOf="@id/END_MARGIN"
+        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/loanFirstNameTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Максимальная сумма:"
+        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@id/TitleConditions" />
+
+    <TextView
+        android:id="@+id/amountConditionsValue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
+        app:layout_constraintTop_toBottomOf="@+id/TitleConditions"
+        tools:text="15000.00" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/applyConditionsBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="loanFirstNameTitle,
+loanLastNameTitle, loanDataTitle"
+        tools:layout_editor_absoluteX="168dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/START_MARGIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/END_MARGIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="20dp" />
+
+    <Button
+        android:id="@+id/applyLoanBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Оформить"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/cancelLoanBtn"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN" />
+
+    <Button
+        android:id="@+id/cancelLoanBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:text="Отказаться"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintStart_toEndOf="@+id/applyLoanBtn"
+        app:layout_constraintTop_toTopOf="@+id/applyLoanBtn" />
+
+    <Button
+        android:id="@+id/getNewConditionsBtn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Запросить новые условия"
+        android:visibility="gone"
+        app:layout_constrainedWidth="true"
+        tools:layout_editor_absoluteY="607dp"
+        tools:visibility="gone" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/firstNameLoanTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:hint="FirstName"
+        app:layout_constraintBottom_toTopOf="@+id/lastNameLoanTextField"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/loanDataTitle">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/lastNameLoanTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:hint="LastName"
+
+        app:layout_constraintBottom_toTopOf="@+id/phoneLoanTextField"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/firstNameLoanTextField">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/phoneLoanTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:hint="Phone"
+
+        app:layout_constraintBottom_toTopOf="@+id/sumLoanTextField"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/lastNameLoanTextField">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/sumLoanTextField"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:hint="Сумма"
+
+        app:layout_constraintBottom_toTopOf="@+id/seekBarSum"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/phoneLoanTextField">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="number" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <SeekBar
+        android:id="@+id/seekBarSum"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:max="100"
+        android:progress="50"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintBottom_toTopOf="@+id/applyLoanBtn"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/sumLoanTextField" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

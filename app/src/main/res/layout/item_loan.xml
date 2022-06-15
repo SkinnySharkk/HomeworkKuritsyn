@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="200dp">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/amountItemTxt"
@@ -43,13 +43,6 @@
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="20dp" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/BOTTOM_MARGIN"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_end="20dp" />
-
     <TextView
         android:id="@+id/dateItemTxtTitle"
         android:layout_width="wrap_content"
@@ -75,8 +68,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="Статус займа:"
-        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
-        app:layout_constraintTop_toBottomOf="@+id/dateItemTxtTitle" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@id/dateItemTxtTitle" />
 
     <TextView
         android:id="@+id/statusItemTxt"
@@ -84,9 +78,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
         android:text="Зарегистрировано"
-        app:layout_constraintStart_toEndOf="@+id/titleItemBarrier"
-        app:layout_constraintTop_toBottomOf="@+id/dateItemTxt" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/titleItemBarrier"
+        app:layout_constraintTop_toBottomOf="@id/dateItemTxt" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/titleItemBarrier"
@@ -95,4 +91,11 @@
         app:barrierDirection="right"
         app:constraint_referenced_ids="statusItemTxtTitle,
 amountItemTxtTitle, dateItemTxtTitle" />
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/materialDivider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintTop_toBottomOf="@id/statusItemTxtTitle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

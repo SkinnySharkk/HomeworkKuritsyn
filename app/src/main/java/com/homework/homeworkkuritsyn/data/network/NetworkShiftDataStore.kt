@@ -1,8 +1,7 @@
 package com.homework.homeworkkuritsyn.data.network
 
-import com.homework.homeworkkuritsyn.data.network.models.Auth
-import com.homework.homeworkkuritsyn.data.network.models.Loan
-import com.homework.homeworkkuritsyn.data.network.models.UserModel
+import com.homework.homeworkkuritsyn.data.network.models.*
+import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
 import javax.inject.Inject
 
 class NetworkShiftDataStore @Inject constructor(
@@ -19,5 +18,11 @@ class NetworkShiftDataStore @Inject constructor(
     }
     suspend fun getLoan(id: Int): Loan {
         return shiftService.getLoan(id = id)
+    }
+    suspend fun getLoanConditions(): LoanConditions {
+        return shiftService.getConditions()
+    }
+    suspend fun applyLoan(loanRequestModel: LoanRequest): Loan {
+        return shiftService.createLoans(loanRequestModel)
     }
 }

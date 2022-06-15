@@ -1,12 +1,12 @@
 package com.homework.homeworkkuritsyn.data.authorized
 
-import com.homework.homeworkkuritsyn.data.converters.AuthConverter
-import com.homework.homeworkkuritsyn.data.converters.asModel
+import com.homework.homeworkkuritsyn.data.converters.*
 import com.homework.homeworkkuritsyn.data.network.NetworkShiftDataStore
 import com.homework.homeworkkuritsyn.data.sharedpreferences.SystemLocalSharedPreferencesDataStore
 import com.homework.homeworkkuritsyn.domain.authorized.AuthResult
 import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
 import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
+import com.homework.homeworkkuritsyn.domain.entity.UserDataEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -17,24 +17,36 @@ class AuthorizedRepositoryImpl @Inject constructor(
     private val systemLocalSharedPreferencesDataStore: SystemLocalSharedPreferencesDataStore,
     private val networkShiftDataStore: NetworkShiftDataStore
 ) : AuthorizedRepository {
-    override fun isAuthorized(): Boolean {
-        return systemLocalSharedPreferencesDataStore.isAuthorized()
+    override suspend fun isAuthorized(): Boolean = withContext(Dispatchers.IO) {
+        systemLocalSharedPreferencesDataStore.isAuthorized()
     }
 
-    override fun setAuthorized() {
+    override suspend fun setAuthorized() = withContext(Dispatchers.IO) {
         systemLocalSharedPreferencesDataStore.setAuthorized()
     }
 
-    override fun getToken(): String {
-        return systemLocalSharedPreferencesDataStore.getToken()
+    override fun getToken(): String =
+        systemLocalSharedPreferencesDataStore.getToken()
+
+    override suspend fun setUserData(userDataEntity: UserDataEntity) =
+        withContext(Dispatchers.IO) {
+            val userDataModel = UserDataEntityConverterToUserDataModel(userDataEntity).asModel()
+            systemLocalSharedPreferencesDataStore.setUserData(
+                userDataModel
+            )
+        }
+
+    override suspend fun getUserData() = withContext(Dispatchers.IO) {
+        val userDataModel = systemLocalSharedPreferencesDataStore.getUserData()
+        return@withContext UserDataModelConverterToEntity(userDataModel).asEntity()
     }
 
-    override fun setToken(token: String) {
+    override suspend fun setToken(token: String) = withContext(Dispatchers.IO) {
         systemLocalSharedPreferencesDataStore.putToken(token)
     }
 
     override suspend fun signIn(authEntity: AuthEntity): AuthResult {
-        val auth = AuthConverter(authEntity).asModel()
+        val auth = AuthConverter(authEntity).asEntities()
         return withContext(Dispatchers.IO) {
             try {
                 val token = networkShiftDataStore.signIn(auth = auth)
@@ -68,11 +80,13 @@ class AuthorizedRepositoryImpl @Inject constructor(
     }
 
     override suspend fun signUp(authEntity: AuthEntity) {
-        val auth = AuthConverter(authEntity).asModel()
         withContext(Dispatchers.IO) {
             try {
+                val auth = AuthConverter(authEntity).asEntities()
                 val userModel = networkShiftDataStore.signUp(auth = auth)
                 Timber.v(userModel.toString())
+            } catch (httpException: HttpException) {
+                Timber.v(httpException.stackTraceToString())
             } catch (e: Exception) {
                 Timber.v(e.stackTraceToString())
             }

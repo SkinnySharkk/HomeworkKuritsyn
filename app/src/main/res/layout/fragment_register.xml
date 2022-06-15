@@ -6,20 +6,23 @@
     android:layout_height="match_parent"
     tools:context=".ui.authorization.RegisterFragment">
 
+
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/registerTextFieldUserName"
+        android:id="@+id/registerTextFieldLogin"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:hint="@string/login_user_name"
+        android:hint="Login"
         app:layout_constraintBottom_toTopOf="@+id/registerTextFieldUserPassword"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -29,14 +32,17 @@
         android:layout_width="240dp"
         android:layout_height="wrap_content"
         android:hint="@string/login_user_password"
+        app:endIconMode="password_toggle"
         app:layout_constraintBottom_toTopOf="@+id/registerButton"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/registerTextFieldUserName">
+        app:layout_constraintTop_toBottomOf="@+id/registerTextFieldLogin">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -47,6 +53,7 @@
         android:text="@string/register_button"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/registerTextFieldUserPassword" />
 

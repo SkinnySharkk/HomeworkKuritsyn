@@ -52,7 +52,7 @@
 
     <fragment
         android:id="@+id/applyFragment"
-        android:name="com.homework.homeworkkuritsyn.ui.historyloans.ApplyFragment"
+        android:name="com.homework.homeworkkuritsyn.ui.applyloan.ApplyLoanFragment"
         android:label="fragment_apply"
         tools:layout="@layout/fragment_apply" />
     <fragment

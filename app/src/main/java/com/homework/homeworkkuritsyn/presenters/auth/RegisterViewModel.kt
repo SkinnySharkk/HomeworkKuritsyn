@@ -2,22 +2,32 @@ package com.homework.homeworkkuritsyn.presenters.auth
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.homework.homeworkkuritsyn.domain.authorized.SignInUseCase
 import com.homework.homeworkkuritsyn.domain.authorized.SignUpUseCase
 import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
+import com.homework.homeworkkuritsyn.domain.entity.UserDataEntity
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class RegisterViewModel @Inject constructor(
     private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
-    fun register(name: String, password: String) {
-        val authEntity = AuthEntity(name, password)
+    fun register(
+        login: String,
+        password: String
+    ) {
+        val authEntity = AuthEntity(
+            name = login,
+            password = password
+        )
         viewModelScope.launch {
             signUpUseCase.execute(authEntity)
         }
     }
-    fun validData(name: String, password: String): Boolean {
-        return name.isNotEmpty() && password.isNotEmpty()
+
+    fun validData(
+        login: String,
+        password: String
+    ): Boolean {
+        return login.isNotEmpty() && password.isNotEmpty()
     }
 }

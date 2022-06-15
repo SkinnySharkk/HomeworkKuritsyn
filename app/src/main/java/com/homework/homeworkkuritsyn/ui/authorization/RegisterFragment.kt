@@ -25,6 +25,7 @@ class RegisterFragment : Fragment() {
         super.onAttach(context)
         context.appComponent.authorizedComponent().create().inject(this)
     }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -35,21 +36,36 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.registerButton.setOnClickListener{
-            val name = binding.registerTextFieldUserName.editText?.text.toString()
+        binding.registerButton.setOnClickListener {
+            val login = binding.registerTextFieldLogin.editText?.text.toString()
             val password = binding.registerTextFieldUserPassword.editText?.text.toString()
-            if (validData(name = name, password = password)) {
-                viewModel.register(name, password)
+            if (validData(
+                    login = login,
+                    password = password
+                )
+            ) {
+                viewModel.register(
+                    login = login,
+                    password = password
+                )
             } else {
                 Toast.makeText(context, "Empty fields", Toast.LENGTH_LONG).show()
             }
         }
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
     }
-    private fun validData(name: String, password: String): Boolean {
-        return viewModel.validData(name = name, password = password)
+
+    private fun validData(
+        login: String,
+        password: String
+    ): Boolean {
+        return viewModel.validData(
+            login = login,
+            password = password
+        )
     }
 }
