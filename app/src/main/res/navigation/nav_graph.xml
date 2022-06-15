@@ -59,5 +59,22 @@
         android:id="@+id/manualFragment"
         android:name="com.homework.homeworkkuritsyn.ui.manualgetloan.ManualFragment"
         android:label="fragment_manual"
-        tools:layout="@layout/fragment_manual" />
+        tools:layout="@layout/fragment_manual" >
+        <action
+            android:id="@+id/action_manualFragment_to_manualBankFragment"
+            app:destination="@id/manualBankFragment" />
+        <action
+            android:id="@+id/action_manualFragment_to_manualCardFragment"
+            app:destination="@id/manualCardFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/manualBankFragment"
+        android:name="com.homework.homeworkkuritsyn.ui.manualgetloan.ManualBankFragment"
+        android:label="fragment_manual_bank"
+        tools:layout="@layout/fragment_manual_bank" />
+    <fragment
+        android:id="@+id/manualCardFragment"
+        android:name="com.homework.homeworkkuritsyn.ui.manualgetloan.ManualCardFragment"
+        android:label="fragment_manual_card"
+        tools:layout="@layout/fragment_manual_card" />
 </navigation>

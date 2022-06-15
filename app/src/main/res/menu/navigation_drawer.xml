@@ -10,5 +10,8 @@
     <item
         android:id="@id/manualFragment"
         android:title="Как получить?" />
-    <item android:title="Выйти" />
+
+    <item
+        android:id="@+id/logoutButton"
+        android:title="Выйти" />
 </menu>
