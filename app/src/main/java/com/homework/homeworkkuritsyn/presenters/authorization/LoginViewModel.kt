@@ -19,6 +19,7 @@ class LoginViewModel @Inject constructor(
     fun login(name: String, password: String) {
         val authEntity = AuthEntity(name, password)
         viewModelScope.launch {
+            _loginUiState.value = LoginUiState.Loading
             when (val authResult = signInUseCase.execute(authEntity)) {
                 is AuthResult.Success -> {
                     _loginUiState.value = LoginUiState.Success
@@ -36,10 +37,14 @@ class LoginViewModel @Inject constructor(
     fun validData(name: String, password: String): Boolean {
         return name.isNotEmpty() && password.isNotEmpty()
     }
+    fun dropError() {
+        _loginUiState.value = LoginUiState.Idle
+    }
 }
 
 sealed interface LoginUiState {
     object Idle : LoginUiState
     object Success : LoginUiState
+    object Loading : LoginUiState
     data class Error(val reason: String) : LoginUiState
 }
