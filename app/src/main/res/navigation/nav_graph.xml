@@ -9,7 +9,7 @@
         android:id="@+id/startFragment"
         android:name="com.homework.homeworkkuritsyn.ui.authorization.StartFragment"
         android:label="@string/fragment_start"
-        tools:layout="@layout/fragment_start" >
+        tools:layout="@layout/fragment_start">
         <action
             android:id="@+id/action_startFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -21,7 +21,7 @@
         android:id="@+id/loginFragment"
         android:name="com.homework.homeworkkuritsyn.ui.authorization.LoginFragment"
         android:label="@string/fragment_login"
-        tools:layout="@layout/fragment_login" >
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_loansFragment"
             app:destination="@id/loansFragment" />
@@ -35,7 +35,7 @@
         android:id="@+id/loansFragment"
         android:name="com.homework.homeworkkuritsyn.ui.historyloans.LoansFragment"
         android:label="@string/fragment_loans"
-        tools:layout="@layout/fragment_loans" >
+        tools:layout="@layout/fragment_loans">
         <action
             android:id="@+id/action_loansFragment_to_loanFragment"
             app:destination="@id/loanFragment" />
@@ -44,7 +44,7 @@
         android:id="@+id/loanFragment"
         android:name="com.homework.homeworkkuritsyn.ui.historyloans.LoanFragment"
         android:label="@string/fragment_loan"
-        tools:layout="@layout/fragment_loan" >
+        tools:layout="@layout/fragment_loan">
         <argument
             android:name="idLoan"
             app:argType="integer" />
@@ -54,9 +54,7 @@
         android:id="@+id/applyFragment"
         android:name="com.homework.homeworkkuritsyn.ui.applyloan.ApplyLoanFragment"
         android:label="@string/fragment_apply"
-        tools:layout="@layout/fragment_apply" />
-        android:label="fragment_apply"
-        tools:layout="@layout/fragment_apply" >
+        tools:layout="@layout/fragment_apply">
         <action
             android:id="@+id/action_applyFragment_to_loansFragment"
             app:destination="@id/loansFragment" />
@@ -64,8 +62,8 @@
     <fragment
         android:id="@+id/manualFragment"
         android:name="com.homework.homeworkkuritsyn.ui.manualgetloan.ManualFragment"
-        android:label="fragment_manual"
-        tools:layout="@layout/fragment_manual" >
+        android:label="@string/fragment_manual"
+        tools:layout="@layout/fragment_manual">
         <action
             android:id="@+id/action_manualFragment_to_manualBankFragment"
             app:destination="@id/manualBankFragment" />
@@ -76,13 +74,11 @@
     <fragment
         android:id="@+id/manualBankFragment"
         android:name="com.homework.homeworkkuritsyn.ui.manualgetloan.ManualBankFragment"
-        android:label="fragment_manual_bank"
+        android:label="@string/fragment_manual_bank"
         tools:layout="@layout/fragment_manual_bank" />
     <fragment
         android:id="@+id/manualCardFragment"
         android:name="com.homework.homeworkkuritsyn.ui.manualgetloan.ManualCardFragment"
-        android:label="fragment_manual_card"
+        android:label="@string/fragment_manual_card"
         tools:layout="@layout/fragment_manual_card" />
-        android:label="@string/fragment_manual"
-        tools:layout="@layout/fragment_manual" />
 </navigation>

@@ -11,8 +11,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoanBinding
-import com.homework.homeworkkuritsyn.presenters.loans.LoanViewModel
+import com.homework.homeworkkuritsyn.presenters.historyloans.LoanViewModel
 import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 class LoanFragment : Fragment() {
@@ -44,8 +45,8 @@ class LoanFragment : Fragment() {
                 loanLastNameValue.text = loan.lastName
                 loanDataValue.text = loan.date
                 loanPhoneValue.text = loan.phoneNumber
-                loanSumValue.text = loan.amount.toString()
-                loanPercentValue.text = loan.percent.toString()
+                loanSumValue.text = String.format(Locale.getDefault(), loan.amount.toString())
+                loanPercentValue.text = String.format(Locale.getDefault(), loan.percent.toString())
                 loanPeriodValue.text = loan.period.toString()
                 loanStateValue.text = loan.state.toString()
             }

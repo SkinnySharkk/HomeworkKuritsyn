@@ -11,7 +11,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoansBinding
-import com.homework.homeworkkuritsyn.presenters.loans.LoansViewModel
+import com.homework.homeworkkuritsyn.presenters.historyloans.LoansViewModel
 import com.homework.homeworkkuritsyn.ui.MainActivity
 import timber.log.Timber
 import javax.inject.Inject

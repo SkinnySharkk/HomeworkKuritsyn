@@ -11,7 +11,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Одобренный период:"
+        android:text="@string/apply_period"
         app:layout_constraintStart_toStartOf="@id/START_MARGIN"
         app:layout_constraintTop_toBottomOf="@id/loanLastNameTitle" />
 
@@ -30,7 +30,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Одобренный процент:"
+        android:text="@string/apply_percent"
         app:layout_constraintStart_toStartOf="@id/START_MARGIN"
         app:layout_constraintTop_toBottomOf="@id/loanFirstNameTitle" />
 
@@ -49,7 +49,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Вам одобрены следующие условия:"
+        android:text="@string/apply_title"
         app:layout_constraintEnd_toStartOf="@id/END_MARGIN"
         app:layout_constraintStart_toStartOf="@id/START_MARGIN"
         app:layout_constraintTop_toTopOf="parent" />
@@ -59,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Максимальная сумма:"
+        android:text="@string/max_amount"
         app:layout_constraintStart_toStartOf="@id/START_MARGIN"
         app:layout_constraintTop_toBottomOf="@id/TitleConditions" />
 
@@ -101,7 +101,7 @@ loanLastNameTitle, loanDataTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Оформить"
+        android:text="@string/apply"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/cancelLoanBtn"
         app:layout_constraintStart_toStartOf="@+id/START_MARGIN" />
@@ -111,21 +111,12 @@ loanLastNameTitle, loanDataTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="Отказаться"
+        android:text="@string/cancel"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
         app:layout_constraintStart_toEndOf="@+id/applyLoanBtn"
         app:layout_constraintTop_toTopOf="@+id/applyLoanBtn" />
 
-    <Button
-        android:id="@+id/getNewConditionsBtn"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Запросить новые условия"
-        android:visibility="gone"
-        app:layout_constrainedWidth="true"
-        tools:layout_editor_absoluteY="607dp"
-        tools:visibility="gone" />
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -133,7 +124,7 @@ loanLastNameTitle, loanDataTitle"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:hint="FirstName"
+        android:hint="@string/first_name"
         app:layout_constraintBottom_toTopOf="@+id/lastNameLoanTextField"
         app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
         app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
@@ -150,7 +141,7 @@ loanLastNameTitle, loanDataTitle"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:hint="LastName"
+        android:hint="@string/last_name"
 
         app:layout_constraintBottom_toTopOf="@+id/phoneLoanTextField"
         app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
@@ -168,7 +159,7 @@ loanLastNameTitle, loanDataTitle"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:hint="Phone"
+        android:hint="@string/apply_phone"
 
         app:layout_constraintBottom_toTopOf="@+id/sumLoanTextField"
         app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
@@ -186,7 +177,7 @@ loanLastNameTitle, loanDataTitle"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="240dp"
         android:layout_height="wrap_content"
-        android:hint="Сумма"
+        android:hint="@string/sum"
 
         app:layout_constraintBottom_toTopOf="@+id/seekBarSum"
         app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"

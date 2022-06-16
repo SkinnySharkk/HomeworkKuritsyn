@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.presenters.loans
+package com.homework.homeworkkuritsyn.presenters.historyloans
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

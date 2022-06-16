@@ -1,17 +1,11 @@
 <resources>
-    <string name="app_name">Homework Kuritsyn</string>
-    <string name="start_login_button">Login</string>
-    <string name="start_register_button">Register</string>
-    <string name="login_user_name">name</string>
-    <string name="login_user_password">Password</string>
-    <string name="login_button">Login</string>
-    <string name="register_button">Register</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="page_title">Loans</string>
+    <string name="app_name">Займы онлайн</string>
+    <string name="start_login_button">Войти</string>
+    <string name="start_register_button">Зарегестрироваться</string>
+    <string name="login_user">Логин</string>
+    <string name="password_user">Пароль</string>
+    <string name="login_button">Войти</string>
+    <string name="register_button">Зарегестрироваться</string>
     <string name="manual_to_bank">Для получения вашего вклада в банке вам необходимо:\n
     Обратиться в ближайшее отделение банка;\n
     Заполнить заявление на получения вклада;\n
@@ -34,8 +28,6 @@
         • Реквизиты карты\n\n
     После заполнения заявления, на карту по указанным реквезитам в течении 24ч будет
         переведен вклад;</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="warning_authorization">Не заполнены логин и пароль</string>
     <string name="fragment_start">Займы онлайн</string>
     <string name="fragment_login">Авторизация</string>
@@ -44,5 +36,28 @@
     <string name="fragment_manual">Инструкция</string>
     <string name="fragment_loans">История займов</string>
     <string name="fragment_loan">Займ</string>
-
+    <string name="fragment_manual_bank">Получить в банке</string>
+    <string name="fragment_manual_card">Получить на карту</string>
+    <string name="loans">Займы</string>
+    <string name="apply_period">Одобренный период:</string>
+    <string name="apply_percent">Одобренный процент:</string>
+    <string name="max_amount">Максимальная сумма:</string>
+    <string name="apply_title">Вам одобрены следующие условия:</string>
+    <string name="last_name">Фамилия</string>
+    <string name="first_name">Имя</string>
+    <string name="apply_phone">Номер телефона</string>
+    <string name="sum">Сумма</string>
+    <string name="apply">Оформить</string>
+    <string name="cancel">Отказаться</string>
+    <string name="first_name_title">Имя:</string>
+    <string name="last_name_title">Фамилия:</string>
+    <string name="data_title">Дата:</string>
+    <string name="phone_title">Номер телефона:</string>
+    <string name="sum_title">Сумма:</string>
+    <string name="period_title">Период:</string>
+    <string name="percent_title">Процент:</string>
+    <string name="apply_conditions_title">Вам одобрены следующие условия:</string>
+    <string name="status_title">Статус:</string>
+    <string name="manual_to_bank_btn">Как получить в банке?</string>
+    <string name="manual_to_card_btn">Как оформить на карту?</string>
 </resources>
