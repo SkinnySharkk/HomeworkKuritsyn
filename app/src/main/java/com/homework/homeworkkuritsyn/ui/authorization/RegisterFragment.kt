@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentRegisterBinding
-import com.homework.homeworkkuritsyn.presenters.auth.RegisterViewModel
+import com.homework.homeworkkuritsyn.presenters.authorization.RegisterViewModel
 import javax.inject.Inject
 
 class RegisterFragment : Fragment() {

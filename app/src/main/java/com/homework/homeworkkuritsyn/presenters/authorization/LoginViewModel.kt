@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.presenters.auth
+package com.homework.homeworkkuritsyn.presenters.authorization
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

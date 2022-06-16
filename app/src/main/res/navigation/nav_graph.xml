@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/startFragment"
         android:name="com.homework.homeworkkuritsyn.ui.authorization.StartFragment"
-        android:label="fragment_start"
+        android:label="@string/fragment_start"
         tools:layout="@layout/fragment_start" >
         <action
             android:id="@+id/action_startFragment_to_loginFragment"
@@ -20,7 +20,7 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.homework.homeworkkuritsyn.ui.authorization.LoginFragment"
-        android:label="fragment_login"
+        android:label="@string/fragment_login"
         tools:layout="@layout/fragment_login" >
         <action
             android:id="@+id/action_loginFragment_to_loansFragment"
@@ -29,12 +29,12 @@
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.homework.homeworkkuritsyn.ui.authorization.RegisterFragment"
-        android:label="fragment_register"
+        android:label="@string/fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/loansFragment"
         android:name="com.homework.homeworkkuritsyn.ui.historyloans.LoansFragment"
-        android:label="fragment_loans"
+        android:label="@string/fragment_loans"
         tools:layout="@layout/fragment_loans" >
         <action
             android:id="@+id/action_loansFragment_to_loanFragment"
@@ -43,7 +43,7 @@
     <fragment
         android:id="@+id/loanFragment"
         android:name="com.homework.homeworkkuritsyn.ui.historyloans.LoanFragment"
-        android:label="fragment_loan"
+        android:label="@string/fragment_loan"
         tools:layout="@layout/fragment_loan" >
         <argument
             android:name="idLoan"
@@ -53,11 +53,11 @@
     <fragment
         android:id="@+id/applyFragment"
         android:name="com.homework.homeworkkuritsyn.ui.applyloan.ApplyLoanFragment"
-        android:label="fragment_apply"
+        android:label="@string/fragment_apply"
         tools:layout="@layout/fragment_apply" />
     <fragment
         android:id="@+id/manualFragment"
         android:name="com.homework.homeworkkuritsyn.ui.manualgetloan.ManualFragment"
-        android:label="fragment_manual"
+        android:label="@string/fragment_manual"
         tools:layout="@layout/fragment_manual" />
 </navigation>

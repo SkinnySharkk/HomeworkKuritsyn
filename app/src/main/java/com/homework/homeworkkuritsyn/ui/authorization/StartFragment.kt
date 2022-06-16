@@ -5,14 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.homework.homeworkkuritsyn.databinding.FragmentStartBinding
-import com.homework.homeworkkuritsyn.presenters.auth.StartViewModel
 import com.homework.homeworkkuritsyn.ui.MainActivity
 
 class StartFragment : Fragment() {
-    private val viewModel: StartViewModel by viewModels()
     private val binding get() = _binding!!
     private var _binding: FragmentStartBinding? = null
 

@@ -1,10 +1,9 @@
-package com.homework.homeworkkuritsyn.presenters.auth
+package com.homework.homeworkkuritsyn.presenters.authorization
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.homework.homeworkkuritsyn.domain.authorized.SignUpUseCase
 import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
-import com.homework.homeworkkuritsyn.domain.entity.UserDataEntity
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

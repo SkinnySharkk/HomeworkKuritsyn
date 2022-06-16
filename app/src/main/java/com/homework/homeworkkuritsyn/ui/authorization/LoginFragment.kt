@@ -10,10 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoginBinding
-import com.homework.homeworkkuritsyn.presenters.auth.LoginUiState
-import com.homework.homeworkkuritsyn.presenters.auth.LoginViewModel
+import com.homework.homeworkkuritsyn.presenters.authorization.LoginUiState
+import com.homework.homeworkkuritsyn.presenters.authorization.LoginViewModel
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {
@@ -45,11 +46,15 @@ class LoginFragment : Fragment() {
             if (validData(name = name, password = password)) {
                 viewModel.login(name, password)
             } else {
-                Toast.makeText(context, "Empty fields", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.warning_authorization),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
         viewModel.loginUiState.observe(viewLifecycleOwner) { loginUiState ->
-            when(loginUiState) {
+            when (loginUiState) {
                 is LoginUiState.Idle -> {}
                 is LoginUiState.Success -> {
                     findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToLoansFragment())
@@ -61,9 +66,11 @@ class LoginFragment : Fragment() {
         }
 
     }
+
     private fun validData(name: String, password: String): Boolean {
         return viewModel.validData(name = name, password = password)
     }
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null

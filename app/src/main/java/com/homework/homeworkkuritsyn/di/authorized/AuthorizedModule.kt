@@ -1,8 +1,8 @@
 package com.homework.homeworkkuritsyn.di.authorized
 
 import androidx.lifecycle.ViewModel
-import com.homework.homeworkkuritsyn.presenters.auth.LoginViewModel
-import com.homework.homeworkkuritsyn.presenters.auth.RegisterViewModel
+import com.homework.homeworkkuritsyn.presenters.authorization.LoginViewModel
+import com.homework.homeworkkuritsyn.presenters.authorization.RegisterViewModel
 import com.homework.homeworkkuritsyn.presenters.ViewModelKey
 import dagger.Binds
 import dagger.Module
