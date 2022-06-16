@@ -9,7 +9,7 @@ class SignUpUseCase @Inject constructor(
 ) {
     suspend fun execute(
         authEntity: AuthEntity
-    ) {
-        authorizedRepository.signUp(authEntity)
+    ): RegisterResult {
+       return authorizedRepository.signUp(authEntity)
     }
 }

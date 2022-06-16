@@ -10,8 +10,8 @@ class NetworkShiftDataStore @Inject constructor(
     suspend fun signIn(auth: Auth): String {
         return shiftService.login(auth)
     }
-    suspend fun signUp(auth: Auth): UserModel {
-       return shiftService.registration(auth)
+    suspend fun signUp(auth: Auth){
+        shiftService.registration(auth)
     }
     suspend fun getAllLoans(): List<Loan> {
         return shiftService.getAllLoans()

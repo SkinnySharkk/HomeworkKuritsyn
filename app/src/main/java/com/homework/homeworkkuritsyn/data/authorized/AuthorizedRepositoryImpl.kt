@@ -5,6 +5,7 @@ import com.homework.homeworkkuritsyn.data.network.NetworkShiftDataStore
 import com.homework.homeworkkuritsyn.data.sharedpreferences.SystemLocalSharedPreferencesDataStore
 import com.homework.homeworkkuritsyn.domain.authorized.AuthResult
 import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
+import com.homework.homeworkkuritsyn.domain.authorized.RegisterResult
 import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
 import com.homework.homeworkkuritsyn.domain.entity.UserDataEntity
 import kotlinx.coroutines.Dispatchers
@@ -49,41 +50,50 @@ class AuthorizedRepositoryImpl @Inject constructor(
                 when (httpException.code()) {
                     401 -> {
                         Timber.v(httpException.localizedMessage)
-                        AuthResult.HttpError("Unauthorized")
+                        AuthResult.HttpError("Не авторизован")
                     }
                     403 -> {
                         Timber.v(httpException.localizedMessage)
-                        AuthResult.HttpError("Forbidden")
+                        AuthResult.HttpError("Запрещено")
                     }
                     404 -> {
                         Timber.v(httpException.localizedMessage)
-                        AuthResult.HttpError("Not Found")
+                        AuthResult.HttpError("Логин или пароль не найдены")
                     }
                     else -> {
                         Timber.v(httpException.localizedMessage)
-                        AuthResult.HttpError("Another http error")
+                        AuthResult.HttpError("Ошибка")
                     }
                 }
             } catch (e: Exception) {
                 Timber.v(e.stackTraceToString())
-                AuthResult.OtherError("Another error")
+                AuthResult.OtherError("Ошибка")
             }
         }
-
     }
 
-    override suspend fun signUp(authEntity: AuthEntity) {
+    override suspend fun signUp(authEntity: AuthEntity) : RegisterResult =
         withContext(Dispatchers.IO) {
             try {
                 val auth = AuthConverter(authEntity).asEntities()
-                val userModel = networkShiftDataStore.signUp(auth = auth)
-                Timber.v(userModel.toString())
+                networkShiftDataStore.signUp(auth = auth)
+                RegisterResult.Success
             } catch (httpException: HttpException) {
-                Timber.v(httpException.stackTraceToString())
+                when (httpException.code()) {
+                    400 -> {
+                        Timber.v(httpException.localizedMessage)
+                        RegisterResult.HttpError("Пользователь уже существует")
+                    }
+                    else -> {
+                        Timber.v(httpException.localizedMessage)
+                        RegisterResult.HttpError("Ошибка")
+                    }
+                }
             } catch (e: Exception) {
                 Timber.v(e.stackTraceToString())
+                RegisterResult.HttpError("Ошибка")
             }
         }
-    }
+
 
 }

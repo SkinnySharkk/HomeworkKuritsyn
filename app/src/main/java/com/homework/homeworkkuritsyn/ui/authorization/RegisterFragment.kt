@@ -6,11 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentRegisterBinding
+import com.homework.homeworkkuritsyn.presenters.authorization.LoginUiState
 import com.homework.homeworkkuritsyn.presenters.authorization.RegisterViewModel
 import javax.inject.Inject
 
@@ -49,9 +53,51 @@ class RegisterFragment : Fragment() {
                     password = password
                 )
             } else {
-                Toast.makeText(context, "Empty fields", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    resources.getString(R.string.warning_authorization),
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
+
+        viewModel.loginUiState.observe(viewLifecycleOwner) { loginUiState ->
+            when (loginUiState) {
+                is LoginUiState.Idle -> {
+                    binding.registerProgressBar.visibility = View.GONE
+                    binding.registerTextFieldLogin.isErrorEnabled = false
+                    binding.registerTextFieldUserPassword.isErrorEnabled = false
+                }
+                is LoginUiState.Success -> {
+                    binding.registerProgressBar.visibility = View.GONE
+                    Toast.makeText(context, getString(R.string.success_register), Toast.LENGTH_LONG)
+                        .show()
+                    findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                }
+                is LoginUiState.Loading -> {
+                    binding.registerProgressBar.visibility = View.VISIBLE
+                }
+                is LoginUiState.Error -> {
+                    binding.registerProgressBar.visibility = View.GONE
+                    binding.registerTextFieldLogin.isErrorEnabled = true
+                    binding.registerTextFieldLogin.error = loginUiState.reason
+                    binding.registerTextFieldUserPassword.isErrorEnabled = true
+                    binding.registerTextFieldUserPassword.error = loginUiState.reason
+                }
+            }
+        }
+
+        binding.registerTextFieldLogin.editText?.doOnTextChanged { inputText, _, _, _ ->
+            if (inputText.isNullOrEmpty()) {
+                viewModel.dropError()
+            }
+        }
+        binding.registerTextFieldUserPassword.editText?.doOnTextChanged { inputText, _, _, _ ->
+            if (inputText.isNullOrEmpty()) {
+                viewModel.dropError()
+            }
+        }
+
     }
 
     override fun onDestroyView() {

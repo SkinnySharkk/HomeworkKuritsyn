@@ -60,4 +60,5 @@
     <string name="status_title">Статус:</string>
     <string name="manual_to_bank_btn">Как получить в банке?</string>
     <string name="manual_to_card_btn">Как оформить на карту?</string>
+    <string name="success_register">Регистрация прошла успешно</string>
 </resources>

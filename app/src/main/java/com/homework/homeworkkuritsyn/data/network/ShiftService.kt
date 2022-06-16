@@ -10,7 +10,7 @@ interface ShiftService {
     suspend fun login(@Body auth: Auth): String
 
     @POST("registration")
-    suspend fun registration(@Body auth: Auth): UserModel
+    suspend fun registration(@Body auth: Auth)
 
     @POST("loans")
     suspend fun createLoans(@Body loanRequest: LoanRequest): Loan

@@ -42,9 +42,3 @@ class LoginViewModel @Inject constructor(
     }
 }
 
-sealed interface LoginUiState {
-    object Idle : LoginUiState
-    object Success : LoginUiState
-    object Loading : LoginUiState
-    data class Error(val reason: String) : LoginUiState
-}

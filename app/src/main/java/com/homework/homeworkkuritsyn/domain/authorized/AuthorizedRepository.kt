@@ -8,6 +8,6 @@ interface AuthorizedRepository {
     fun getToken(): String
     suspend fun setToken(token: String)
     suspend fun signIn(authEntity: AuthEntity): AuthResult
-    suspend fun signUp(authEntity: AuthEntity)
+    suspend fun signUp(authEntity: AuthEntity): RegisterResult
     suspend fun deleteUserData()
 }
