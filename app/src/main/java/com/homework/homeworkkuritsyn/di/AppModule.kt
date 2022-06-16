@@ -17,14 +17,17 @@ import javax.inject.Singleton
 @Module
 interface AppModule {
     @Binds
+    @Singleton
     fun bindAuthorizedRepository(
         authorizedRepositoryImpl: AuthorizedRepositoryImpl
     ): AuthorizedRepository
     @Binds
+    @Singleton
     fun bindLoansRepository(
         LoansRepositoryImpl: LoansRepositoryImpl
     ): LoansRepository
     @Binds
+    @Singleton
     fun bindApplyLoansRepository(
         applyLoanRepositoryImpl: ApplyLoanRepositoryImpl
     ): ApplyLoanRepository

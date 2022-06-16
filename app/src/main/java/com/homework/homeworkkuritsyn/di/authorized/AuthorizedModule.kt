@@ -1,6 +1,8 @@
 package com.homework.homeworkkuritsyn.di.authorized
 
 import androidx.lifecycle.ViewModel
+import com.homework.homeworkkuritsyn.data.authorized.AuthorizedRepositoryImpl
+import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
 import com.homework.homeworkkuritsyn.presenters.authorization.LoginViewModel
 import com.homework.homeworkkuritsyn.presenters.authorization.RegisterViewModel
 import com.homework.homeworkkuritsyn.presenters.ViewModelKey

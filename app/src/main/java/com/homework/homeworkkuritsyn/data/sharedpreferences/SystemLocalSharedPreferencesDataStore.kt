@@ -1,6 +1,5 @@
 package com.homework.homeworkkuritsyn.data.sharedpreferences
 
-import com.homework.homeworkkuritsyn.data.network.models.UserDataModel
 import javax.inject.Inject
 
 class SystemLocalSharedPreferencesDataStore @Inject constructor(
