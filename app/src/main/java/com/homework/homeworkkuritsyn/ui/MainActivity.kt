@@ -1,9 +1,10 @@
 package com.homework.homeworkkuritsyn.ui
 
 import android.os.Bundle
-import android.widget.TextView
+import android.view.MenuItem
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
@@ -20,7 +21,8 @@ import com.homework.homeworkkuritsyn.presenters.MainViewModel
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
-class MainActivity : AppCompatActivity() {
+
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     private lateinit var binding: ActivityMainBinding
 
     @Inject
@@ -63,6 +65,7 @@ class MainActivity : AppCompatActivity() {
 
         navView.setupWithNavController(navController)
         setupActionBarWithNavController(navController, appBarConfiguration)
+        navView.setNavigationItemSelectedListener(this)
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -79,5 +82,25 @@ class MainActivity : AppCompatActivity() {
     fun unLockDrawer() {
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onNavigationItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.logoutButton -> {
+                viewModel.deleteUserData()
+                findNavController(R.id.navHostFragment).navigate(R.id.startFragment)
+            }
+            R.id.loansFragment -> {
+                findNavController(R.id.navHostFragment).navigate(R.id.loansFragment)
+            }
+            R.id.applyFragment -> {
+                findNavController(R.id.navHostFragment).navigate(R.id.applyFragment)
+            }
+            R.id.manualFragment -> {
+                findNavController(R.id.navHostFragment).navigate(R.id.manualFragment)
+            }
+        }
+        binding.drawerLayout.closeDrawer(GravityCompat.START)
+        return false
     }
 }

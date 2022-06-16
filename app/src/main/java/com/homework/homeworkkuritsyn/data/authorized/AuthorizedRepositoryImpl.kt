@@ -28,17 +28,10 @@ class AuthorizedRepositoryImpl @Inject constructor(
     override fun getToken(): String =
         systemLocalSharedPreferencesDataStore.getToken()
 
-    override suspend fun setUserData(userDataEntity: UserDataEntity) =
+    override suspend fun deleteUserData() {
         withContext(Dispatchers.IO) {
-            val userDataModel = UserDataEntityConverterToUserDataModel(userDataEntity).asModel()
-            systemLocalSharedPreferencesDataStore.setUserData(
-                userDataModel
-            )
+            systemLocalSharedPreferencesDataStore.deleteUserData()
         }
-
-    override suspend fun getUserData() = withContext(Dispatchers.IO) {
-        val userDataModel = systemLocalSharedPreferencesDataStore.getUserData()
-        return@withContext UserDataModelConverterToEntity(userDataModel).asEntity()
     }
 
     override suspend fun setToken(token: String) = withContext(Dispatchers.IO) {

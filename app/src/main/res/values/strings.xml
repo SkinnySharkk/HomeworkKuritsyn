@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Займ онлайн</string>
+    <string name="app_name">Homework Kuritsyn</string>
     <string name="start_login_button">Login</string>
     <string name="start_register_button">Register</string>
     <string name="login_user_name">name</string>
@@ -12,6 +12,30 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="page_title">Loans</string>
+    <string name="manual_to_bank">Для получения вашего вклада в банке вам необходимо:\n
+    Обратиться в ближайшее отделение банка;\n
+    Заполнить заявление на получения вклада;\n
+    При заполнении заявления вам необходимо сообщить сотруднику ваши данные:\n
+        • Имя;\n
+        • Фамилию;\n
+        • Номер телефона;\n
+        • Дата;\n\n
+    После заполнения заявления обратиться в кассу вашего отделения банка для получения
+    денежных средств;
+    </string>
+    <string name="manual_to_card">Для оформления займа на карту вам необходимо:\n
+    Обратиться в ближайшее отделение банка;\n
+    Заполнить заявление на получения вклада;\n
+    При заполнении заявления вам необходимо сообщить сотруднику ваши данные:\n
+        • Имя;\n
+        • Фамилию;\n
+        • Номер телефона;\n
+        • Дата;\n
+        • Реквизиты карты\n\n
+    После заполнения заявления, на карту по указанным реквезитам в течении 24ч будет
+        переведен вклад;</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="warning_authorization">Не заполнены логин и пароль</string>
     <string name="fragment_start">Займы онлайн</string>
     <string name="fragment_login">Авторизация</string>

@@ -1,7 +1,6 @@
 package com.homework.homeworkkuritsyn.data.sharedpreferences
 
 import android.content.Context
-import com.homework.homeworkkuritsyn.data.network.models.UserDataModel
 import javax.inject.Inject
 
 class SharedPreferencesManager @Inject constructor(private val context: Context) {
@@ -10,12 +9,6 @@ class SharedPreferencesManager @Inject constructor(private val context: Context)
         private const val AUTHORIZED_SHARED_PREFERENCES_KEY = "Authorized_key"
         private const val TOKEN_SHARED_PREFERENCES = "AuthorizedSharedPreferences"
         private const val TOKEN_SHARED_PREFERENCES_KEY = "Authorized_key"
-        private const val USER_DATA_SHARED_PREFERENCES = "UserDataPreferences"
-        private const val USER_FIRST_NAME_SHARED_PREFERENCES_KEY = "UserFirstName_key"
-        private const val USER_LAST_NAME_SHARED_PREFERENCES_KEY = "UserLastName_key"
-        private const val USER_PHONE_SHARED_PREFERENCES_KEY = "UserPhone_key"
-        private const val USER_LOGIN_SHARED_PREFERENCES_KEY = "UserLogin_key"
-        private const val USER_PASSWORD_SHARED_PREFERENCES_KEY = "UserPassword_key"
     }
 
     fun putToken(token: String) {
@@ -54,46 +47,22 @@ class SharedPreferencesManager @Inject constructor(private val context: Context)
             .apply()
     }
 
-    fun setUserData(userDataModel: UserDataModel) {
+    fun deleteUserData() {
         context.getSharedPreferences(
-            USER_DATA_SHARED_PREFERENCES,
+            AUTHORIZED_SHARED_PREFERENCES,
             Context.MODE_PRIVATE
         )
             .edit()
-            .putString(USER_FIRST_NAME_SHARED_PREFERENCES_KEY, userDataModel.firstName)
-            .putString(USER_LAST_NAME_SHARED_PREFERENCES_KEY, userDataModel.lastName)
-            .putString(USER_PHONE_SHARED_PREFERENCES_KEY, userDataModel.phone)
+            .clear()
             .apply()
-    }
-
-    fun getUserData(): UserDataModel {
-        val userDataSharedPreferences = context.getSharedPreferences(
-            USER_DATA_SHARED_PREFERENCES,
+        context.getSharedPreferences(
+            TOKEN_SHARED_PREFERENCES,
             Context.MODE_PRIVATE
         )
-        val firstName =
-            userDataSharedPreferences.getString(USER_FIRST_NAME_SHARED_PREFERENCES_KEY, "")
-                .orEmpty()
-        val lastName =
-            userDataSharedPreferences.getString(USER_LAST_NAME_SHARED_PREFERENCES_KEY, "")
-                .orEmpty()
-        val phone =
-            userDataSharedPreferences.getString(USER_PHONE_SHARED_PREFERENCES_KEY, "")
-                .orEmpty()
-        val login =
-            userDataSharedPreferences.getString(USER_LOGIN_SHARED_PREFERENCES_KEY, "")
-                .orEmpty()
-        val password =
-            userDataSharedPreferences.getString(USER_PASSWORD_SHARED_PREFERENCES_KEY, "")
-                .orEmpty()
+            .edit()
+            .clear()
+            .apply()
 
-        return UserDataModel(
-            firstName = firstName,
-            lastName = lastName,
-            phone = phone,
-            login = login,
-            password = password
-        )
     }
 
 }

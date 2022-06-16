@@ -22,12 +22,7 @@ class SystemLocalSharedPreferencesDataStore @Inject constructor(
         sharedPreferencesManager.setAuthorized()
     }
 
-    fun setUserData(userDataModel: UserDataModel) {
-        sharedPreferencesManager.setUserData(
-            userDataModel
-        )
-    }
-    fun getUserData(): UserDataModel {
-        return sharedPreferencesManager.getUserData()
+    fun deleteUserData() {
+        sharedPreferencesManager.deleteUserData()
     }
 }

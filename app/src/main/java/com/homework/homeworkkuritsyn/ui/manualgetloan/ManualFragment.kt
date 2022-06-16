@@ -5,16 +5,37 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.homework.homeworkkuritsyn.R
-import com.homework.homeworkkuritsyn.presenters.manualgetloan.ManualViewModel
+import androidx.navigation.fragment.findNavController
+import com.homework.homeworkkuritsyn.databinding.FragmentManualBinding
 
 class ManualFragment : Fragment() {
-    private lateinit var viewModel: ManualViewModel
+    private var _binding: FragmentManualBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_manual, container, false)
+    ): View {
+        _binding = FragmentManualBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.toBankBtn.setOnClickListener {
+            findNavController().navigate(
+                ManualFragmentDirections.actionManualFragmentToManualBankFragment()
+            )
+        }
+        binding.toCardBtn.setOnClickListener {
+            findNavController().navigate(
+                ManualFragmentDirections.actionManualFragmentToManualCardFragment()
+            )
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

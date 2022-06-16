@@ -12,6 +12,7 @@ import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentApplyBinding
 import com.homework.homeworkkuritsyn.presenters.applyloan.ApplyLoanViewModel
@@ -100,6 +101,9 @@ class ApplyLoanFragment : Fragment() {
                     Toast.makeText(context, "Empty fields", Toast.LENGTH_LONG).show()
                 }
             }
+        }
+        binding.cancelLoanBtn.setOnClickListener {
+            findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
         }
     }
 
