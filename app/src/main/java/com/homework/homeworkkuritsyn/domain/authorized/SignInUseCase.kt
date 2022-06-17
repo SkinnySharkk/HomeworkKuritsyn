@@ -3,10 +3,15 @@ package com.homework.homeworkkuritsyn.domain.authorized
 import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
 import javax.inject.Inject
 
-class SignInUseCase @Inject constructor(
+interface SignInUseCase {
+    suspend fun execute(login: String, password: String): AuthResult
+}
+
+class SignInUseCaseImpl @Inject constructor(
     private val authorizedRepository: AuthorizedRepository
-) {
-    suspend fun execute(authEntity: AuthEntity) : AuthResult {
-       return authorizedRepository.signIn(authEntity)
+) : SignInUseCase {
+    override suspend fun execute(login: String, password: String): AuthResult {
+        val authEntity = AuthEntity(login, password)
+        return authorizedRepository.signIn(authEntity)
     }
 }

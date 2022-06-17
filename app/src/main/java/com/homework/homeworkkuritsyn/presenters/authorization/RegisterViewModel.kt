@@ -14,8 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class RegisterViewModel @Inject constructor(
-    private val signUpUseCase: SignUpUseCase,
-    @DefaultDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.Default
+    private val signUpUseCase: SignUpUseCase
 ) : ViewModel() {
     private val _loginUiState = MutableLiveData<LoginUiState>(LoginUiState.Idle)
     val loginUiState: LiveData<LoginUiState> get() = _loginUiState
@@ -23,21 +22,17 @@ class RegisterViewModel @Inject constructor(
         login: String,
         password: String
     ) {
-        val authEntity = AuthEntity(
-            name = login,
-            password = password
-        )
-        viewModelScope.launch(dispatcher) {
-            _loginUiState.postValue(LoginUiState.Loading)
-            when(val registerResult = signUpUseCase.execute(authEntity)) {
+        viewModelScope.launch {
+            _loginUiState.value = LoginUiState.Loading
+            when(val registerResult = signUpUseCase.execute(login = login, password = password)) {
                 is RegisterResult.Success -> {
-                    _loginUiState.postValue(LoginUiState.Success)
+                    _loginUiState.value = LoginUiState.Success
                 }
                 is RegisterResult.HttpError -> {
-                    _loginUiState.postValue(LoginUiState.Error(reason = registerResult.reason))
+                    _loginUiState.value = LoginUiState.Error(reason = registerResult.reason)
                 }
                 is RegisterResult.OtherError -> {
-                    _loginUiState.postValue(LoginUiState.Error(reason = registerResult.reason))
+                    _loginUiState.value = LoginUiState.Error(reason = registerResult.reason)
                 }
             }
         }

@@ -6,7 +6,7 @@ import javax.inject.Inject
 class DeleteUserDataUseCase @Inject constructor(
     private val authorizedRepository: AuthorizedRepository
 ) {
-    suspend fun execute() {
+    fun execute() {
         authorizedRepository.deleteUserData()
     }
 }

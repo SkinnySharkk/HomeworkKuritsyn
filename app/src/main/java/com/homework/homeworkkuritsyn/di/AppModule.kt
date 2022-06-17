@@ -6,6 +6,8 @@ import com.homework.homeworkkuritsyn.data.authorized.AuthorizedRepositoryImpl
 import com.homework.homeworkkuritsyn.data.loans.LoansRepositoryImpl
 import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanRepository
 import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
+import com.homework.homeworkkuritsyn.domain.authorized.SignInUseCase
+import com.homework.homeworkkuritsyn.domain.authorized.SignInUseCaseImpl
 import com.homework.homeworkkuritsyn.domain.loans.LoansRepository
 import com.homework.homeworkkuritsyn.presenters.MainViewModel
 import com.homework.homeworkkuritsyn.presenters.ViewModelKey

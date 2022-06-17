@@ -16,24 +16,22 @@ import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val signInUseCase: SignInUseCase,
-    @DefaultDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.Default
 ) : ViewModel() {
     private val _loginUiState = MutableLiveData<LoginUiState>(LoginUiState.Idle)
     val loginUiState: LiveData<LoginUiState> get() = _loginUiState
 
     fun login(name: String, password: String) {
-        val authEntity = AuthEntity(name, password)
-        viewModelScope.launch(dispatcher) {
-            _loginUiState.postValue(LoginUiState.Loading)
-            when (val authResult = signInUseCase.execute(authEntity)) {
+        viewModelScope.launch {
+            _loginUiState.value = LoginUiState.Loading
+            when (val authResult = signInUseCase.execute(login = name, password = password)) {
                 is AuthResult.Success -> {
-                    _loginUiState.postValue(LoginUiState.Success)
+                    _loginUiState.value = LoginUiState.Success
                 }
                 is AuthResult.HttpError -> {
-                    _loginUiState.postValue(LoginUiState.Error(reason = authResult.reason))
+                    _loginUiState.value = LoginUiState.Error(reason = authResult.reason)
                 }
                 is AuthResult.OtherError -> {
-                    _loginUiState.postValue(LoginUiState.Error(reason = authResult.reason))
+                    _loginUiState.value = LoginUiState.Error(reason = authResult.reason)
                 }
             }
         }

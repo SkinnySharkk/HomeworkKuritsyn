@@ -2,7 +2,7 @@ package com.homework.homeworkkuritsyn.di.authorized
 
 import androidx.lifecycle.ViewModel
 import com.homework.homeworkkuritsyn.data.authorized.AuthorizedRepositoryImpl
-import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
+import com.homework.homeworkkuritsyn.domain.authorized.*
 import com.homework.homeworkkuritsyn.presenters.authorization.LoginViewModel
 import com.homework.homeworkkuritsyn.presenters.authorization.RegisterViewModel
 import com.homework.homeworkkuritsyn.presenters.ViewModelKey
@@ -18,4 +18,8 @@ interface AuthorizedModule {
     @Binds
     @[IntoMap ViewModelKey(RegisterViewModel::class)]
     fun bindRegisterViewModel(viewModel: RegisterViewModel): ViewModel
+    @Binds
+    fun bindSignInUseCase(signInUseCaseImpl: SignInUseCaseImpl): SignInUseCase
+    @Binds
+    fun bindSignUpUseCase(signUpUseCaseImpl: SignUpUseCaseImpl): SignUpUseCase
 }
