@@ -1,13 +1,15 @@
 package com.homework.homeworkkuritsyn.data.authorized
 
-import com.homework.homeworkkuritsyn.data.converters.*
+import com.homework.homeworkkuritsyn.data.converters.AuthConverter
+import com.homework.homeworkkuritsyn.data.converters.asEntities
 import com.homework.homeworkkuritsyn.data.network.NetworkShiftDataStore
 import com.homework.homeworkkuritsyn.data.sharedpreferences.SystemLocalSharedPreferencesDataStore
+import com.homework.homeworkkuritsyn.di.IoDispatcher
 import com.homework.homeworkkuritsyn.domain.authorized.AuthResult
 import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
 import com.homework.homeworkkuritsyn.domain.authorized.RegisterResult
 import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
-import com.homework.homeworkkuritsyn.domain.entity.UserDataEntity
+import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import retrofit2.HttpException
@@ -16,32 +18,24 @@ import javax.inject.Inject
 
 class AuthorizedRepositoryImpl @Inject constructor(
     private val systemLocalSharedPreferencesDataStore: SystemLocalSharedPreferencesDataStore,
-    private val networkShiftDataStore: NetworkShiftDataStore
+    private val networkShiftDataStore: NetworkShiftDataStore,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) : AuthorizedRepository {
-    override suspend fun isAuthorized(): Boolean = withContext(Dispatchers.IO) {
+    override fun isAuthorized(): Boolean =
         systemLocalSharedPreferencesDataStore.isAuthorized()
-    }
 
-    override suspend fun setAuthorized() = withContext(Dispatchers.IO) {
+    override fun setAuthorized() =
         systemLocalSharedPreferencesDataStore.setAuthorized()
-    }
 
     override fun getToken(): String =
         systemLocalSharedPreferencesDataStore.getToken()
 
-    override suspend fun deleteUserData() {
-        withContext(Dispatchers.IO) {
-            systemLocalSharedPreferencesDataStore.deleteUserData()
-        }
-    }
-
-    override suspend fun setToken(token: String) = withContext(Dispatchers.IO) {
+    override fun setToken(token: String) =
         systemLocalSharedPreferencesDataStore.putToken(token)
-    }
 
     override suspend fun signIn(authEntity: AuthEntity): AuthResult {
         val auth = AuthConverter(authEntity).asEntities()
-        return withContext(Dispatchers.IO) {
+        return withContext(dispatcher) {
             try {
                 val token = networkShiftDataStore.signIn(auth = auth)
                 setToken(token)
@@ -72,8 +66,8 @@ class AuthorizedRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun signUp(authEntity: AuthEntity) : RegisterResult =
-        withContext(Dispatchers.IO) {
+    override suspend fun signUp(authEntity: AuthEntity): RegisterResult =
+        withContext(dispatcher) {
             try {
                 val auth = AuthConverter(authEntity).asEntities()
                 networkShiftDataStore.signUp(auth = auth)
@@ -94,6 +88,10 @@ class AuthorizedRepositoryImpl @Inject constructor(
                 RegisterResult.HttpError("Ошибка")
             }
         }
+
+    override fun deleteUserData() {
+        systemLocalSharedPreferencesDataStore.deleteUserData()
+    }
 
 
 }

@@ -61,4 +61,23 @@
     <string name="manual_to_bank_btn">Как получить в банке?</string>
     <string name="manual_to_card_btn">Как оформить на карту?</string>
     <string name="success_register">Регистрация прошла успешно</string>
+    <string name="empty_fields">Данные не заполнены</string>
+    <string name="update_history">Обновить список</string>
+    <string name="apply_help">Помощь</string>
+    <string name="applyHelpInfo">Заполните ваши личные данные в соответствующие поля</string>
+    <string name="title_activity_main2">MainActivity2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="history_loans">История займов</string>
+    <string name="apply_loan">Оформить займ</string>
+    <string name="how_get">Как получить?</string>
+    <string name="logout">Выйти</string>
 </resources>

@@ -2,9 +2,7 @@ package com.homework.homeworkkuritsyn.ui.applyloan
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
 import android.widget.Toast
@@ -13,10 +11,12 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentApplyBinding
 import com.homework.homeworkkuritsyn.presenters.applyloan.ApplyLoanViewModel
 import java.math.BigInteger
+import java.util.*
 import javax.inject.Inject
 
 class ApplyLoanFragment : Fragment() {
@@ -46,13 +46,16 @@ class ApplyLoanFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         viewModel.selectSum.observe(viewLifecycleOwner) { selectSum ->
             binding.sumLoanTextField.editText?.setText(selectSum.toString())
         }
         viewModel.loanConditions.observe(viewLifecycleOwner) { conditions ->
             with(binding) {
-                amountConditionsValue.text = conditions.maxAmount.toString()
-                percentConditionsValue.text = conditions.percent.toString()
+                amountConditionsValue.text =
+                    String.format(Locale.getDefault(), conditions.maxAmount.toString())
+                percentConditionsValue.text =
+                    String.format(Locale.getDefault(), conditions.percent.toString())
                 periodConditionsValue.text = conditions.period.toString()
                 viewModel.setSum(START_PERCENT_SUM)
             }
@@ -98,7 +101,8 @@ class ApplyLoanFragment : Fragment() {
                         phone = phone
                     )
                 } else {
-                    Toast.makeText(context, "Empty fields", Toast.LENGTH_LONG).show()
+                    Toast.makeText(context, getString(R.string.empty_fields), Toast.LENGTH_LONG)
+                        .show()
                 }
             }
         }
@@ -121,4 +125,26 @@ class ApplyLoanFragment : Fragment() {
         _binding = null
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.apply_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun showHelp() {
+        Toast.makeText(
+            context,
+            getString(R.string.applyHelpInfo),
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+       return when (item.itemId) {
+            R.id.applyHelpItem -> {
+                showHelp()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
 }

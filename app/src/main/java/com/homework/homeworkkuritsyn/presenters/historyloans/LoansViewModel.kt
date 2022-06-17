@@ -10,15 +10,22 @@ import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject
 
-class LoansViewModel @Inject constructor(private val getLoansUseCase: GetLoansUseCase) : ViewModel() {
+class LoansViewModel @Inject constructor(private val getLoansUseCase: GetLoansUseCase) :
+    ViewModel() {
+
     private val _loans = MutableLiveData<List<LoanEntity>>()
     val loans: LiveData<List<LoanEntity>> get() = _loans
 
     init {
         viewModelScope.launch {
             _loans.value = getLoansUseCase.execute()
-            Timber.v("_loans.value.toString()")
             Timber.v(_loans.value.toString())
         }
     }
-}
+
+    fun updateLoans() {
+        viewModelScope.launch {
+            _loans.value = getLoansUseCase.execute()
+            Timber.v(_loans.value.toString())
+        }
+    }}

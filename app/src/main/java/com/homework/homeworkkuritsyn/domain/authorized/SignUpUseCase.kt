@@ -1,7 +1,6 @@
 package com.homework.homeworkkuritsyn.domain.authorized
 
 import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
-import com.homework.homeworkkuritsyn.domain.entity.UserDataEntity
 import javax.inject.Inject
 
 class SignUpUseCase @Inject constructor(

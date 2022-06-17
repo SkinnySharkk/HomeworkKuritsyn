@@ -2,13 +2,12 @@ package com.homework.homeworkkuritsyn.ui.historyloans
 
 import android.content.Context
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoansBinding
 import com.homework.homeworkkuritsyn.presenters.historyloans.LoansViewModel
@@ -37,13 +36,19 @@ class LoansFragment : Fragment() {
         super.onAttach(context)
         context.appComponent.loansComponent().create().inject(this)
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setHasOptionsMenu(true)
         viewModel.loans.observe(viewLifecycleOwner) { loans ->
             binding.loanList.apply {
-                val loanAdapter = LoanAdapter(onClickLoan = { id->
+                val loanAdapter = LoanAdapter(onClickLoan = { id ->
                     Timber.v("id = $id")
-                    findNavController().navigate(LoansFragmentDirections.actionLoansFragmentToLoanFragment(id))
+                    findNavController().navigate(
+                        LoansFragmentDirections.actionLoansFragmentToLoanFragment(
+                            id
+                        )
+                    )
                 })
                 Timber.v("loans.toString()")
                 Timber.v(loans.toString())
@@ -58,6 +63,21 @@ class LoansFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.history_menu, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.updateItem -> {
+                viewModel.updateLoans()
+                return true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 }

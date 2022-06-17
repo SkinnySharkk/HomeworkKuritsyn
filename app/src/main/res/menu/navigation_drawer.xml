@@ -2,16 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@id/loansFragment"
-        android:title="История займов"
-        />
+        android:title="@string/history_loans" />
     <item
         android:id="@id/applyFragment"
-        android:title="Оформить займ" />
+        android:title="@string/apply_loan" />
     <item
         android:id="@id/manualFragment"
-        android:title="Как получить?" />
+        android:title="@string/how_get" />
 
     <item
         android:id="@+id/logoutButton"
-        android:title="Выйти" />
+        android:title="@string/logout" />
 </menu>

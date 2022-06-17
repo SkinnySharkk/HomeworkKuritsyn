@@ -3,6 +3,7 @@
     package="com.homework.homeworkkuritsyn">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name=".HomeWorkApp"
         android:allowBackup="true"

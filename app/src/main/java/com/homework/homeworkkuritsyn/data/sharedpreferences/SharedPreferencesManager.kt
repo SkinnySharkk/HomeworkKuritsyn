@@ -3,7 +3,9 @@ package com.homework.homeworkkuritsyn.data.sharedpreferences
 import android.content.Context
 import javax.inject.Inject
 
-class SharedPreferencesManager @Inject constructor(private val context: Context) {
+class SharedPreferencesManager @Inject constructor(
+    private val context: Context
+) {
     companion object {
         private const val AUTHORIZED_SHARED_PREFERENCES = "AuthorizedSharedPreferences"
         private const val AUTHORIZED_SHARED_PREFERENCES_KEY = "Authorized_key"
@@ -21,21 +23,20 @@ class SharedPreferencesManager @Inject constructor(private val context: Context)
             .apply()
     }
 
-    fun getToken(): String {
-        return context.getSharedPreferences(
+    fun getToken(): String =
+        context.getSharedPreferences(
             TOKEN_SHARED_PREFERENCES,
             Context.MODE_PRIVATE
         )
             .getString(TOKEN_SHARED_PREFERENCES_KEY, "").orEmpty()
-    }
 
-    fun isAuthorized(): Boolean {
-        return context.getSharedPreferences(
+    fun isAuthorized(): Boolean =
+        context.getSharedPreferences(
             AUTHORIZED_SHARED_PREFERENCES,
             Context.MODE_PRIVATE
         )
             .getBoolean(AUTHORIZED_SHARED_PREFERENCES_KEY, false)
-    }
+
 
     fun setAuthorized() {
         context.getSharedPreferences(
@@ -62,7 +63,6 @@ class SharedPreferencesManager @Inject constructor(private val context: Context)
             .edit()
             .clear()
             .apply()
-
     }
 
 }
