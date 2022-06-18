@@ -13,7 +13,7 @@
         • Имя;\n
         • Фамилию;\n
         • Номер телефона;\n
-        • Дата;\n\n
+        • Дату;\n\n
     После заполнения заявления обратиться в кассу вашего отделения банка для получения
     денежных средств;
     </string>
@@ -24,7 +24,7 @@
         • Имя;\n
         • Фамилию;\n
         • Номер телефона;\n
-        • Дата;\n
+        • Дату;\n
         • Реквизиты карты\n\n
     После заполнения заявления, на карту по указанным реквезитам в течении 24ч будет
         переведен вклад;</string>
@@ -65,19 +65,11 @@
     <string name="update_history">Обновить список</string>
     <string name="apply_help">Помощь</string>
     <string name="applyHelpInfo">Заполните ваши личные данные в соответствующие поля</string>
-    <string name="title_activity_main2">MainActivity2</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="nav_header_title">Android Studio</string>
-    <string name="nav_header_subtitle">android.studio@android.com</string>
-    <string name="nav_header_desc">Navigation header</string>
-    <string name="action_settings">Settings</string>
-
-    <string name="menu_home">Home</string>
-    <string name="menu_gallery">Gallery</string>
-    <string name="menu_slideshow">Slideshow</string>
     <string name="history_loans">История займов</string>
     <string name="apply_loan">Оформить займ</string>
     <string name="how_get">Как получить?</string>
     <string name="logout">Выйти</string>
+    <string name="item_sum_loan">Сумма займа:</string>
+    <string name="item_date_loan">Дата займа:</string>
+    <string name="item_status_loan">Статус займа:</string>
 </resources>

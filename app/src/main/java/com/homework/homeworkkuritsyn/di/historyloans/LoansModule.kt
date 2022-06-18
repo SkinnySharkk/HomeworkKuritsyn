@@ -1,14 +1,14 @@
-package com.homework.homeworkkuritsyn.di.loans
+package com.homework.homeworkkuritsyn.di.historyloans
 
 import androidx.lifecycle.ViewModel
 import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanUseCase
 import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanUseCaseImpl
 import com.homework.homeworkkuritsyn.domain.applyloan.GetLoanConditionsUseCase
 import com.homework.homeworkkuritsyn.domain.applyloan.GetLoanConditionsUseCaseImpl
-import com.homework.homeworkkuritsyn.domain.loans.GetLoanUseCase
-import com.homework.homeworkkuritsyn.domain.loans.GetLoanUseCaseImpl
-import com.homework.homeworkkuritsyn.domain.loans.GetLoansUseCase
-import com.homework.homeworkkuritsyn.domain.loans.GetLoansUseCaseImpl
+import com.homework.homeworkkuritsyn.domain.historyloans.GetLoanUseCase
+import com.homework.homeworkkuritsyn.domain.historyloans.GetLoanUseCaseImpl
+import com.homework.homeworkkuritsyn.domain.historyloans.GetLoansUseCase
+import com.homework.homeworkkuritsyn.domain.historyloans.GetLoansUseCaseImpl
 import com.homework.homeworkkuritsyn.presenters.ViewModelKey
 import com.homework.homeworkkuritsyn.presenters.applyloan.ApplyLoanViewModel
 import com.homework.homeworkkuritsyn.presenters.historyloans.LoanViewModel

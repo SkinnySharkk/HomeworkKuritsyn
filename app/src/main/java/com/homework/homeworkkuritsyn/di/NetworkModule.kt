@@ -20,22 +20,15 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 @Module
 class NetworkModule {
     @Provides
-    fun provideHttpLoggingInterceptor(): HttpLoggingInterceptor =
-        HttpLoggingInterceptor().apply {
-            this.level = HttpLoggingInterceptor.Level.BODY
-        }
-    @Provides
     fun provideGson(): Gson =GsonBuilder()
         .setLenient()
         .create()
 
     @Provides
     fun provideHttpClient(
-        httpLoggingInterceptor: HttpLoggingInterceptor,
         authorizedRepository: Lazy<AuthorizedRepository>
     ): OkHttpClient =
         OkHttpClient.Builder()
-            .addNetworkInterceptor(httpLoggingInterceptor)
             .addNetworkInterceptor(Interceptor { chain ->
                 val original: Request = chain.request()
                 val token = authorizedRepository.get().getToken()

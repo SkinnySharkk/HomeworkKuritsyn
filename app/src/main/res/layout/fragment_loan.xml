@@ -192,4 +192,27 @@ loanPeriodTitle, loanStateTitle, loanSumTitle"
         android:orientation="vertical"
         app:layout_constraintGuide_end="20dp" />
 
+
+    <Button
+        android:id="@+id/loanToBankBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/manual_to_bank_btn"
+        app:layout_constraintBottom_toTopOf="@+id/loanToCardBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loanStateTitle" />
+
+    <Button
+        android:id="@+id/loanToCardBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/manual_to_card_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/loanToBankBtn" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

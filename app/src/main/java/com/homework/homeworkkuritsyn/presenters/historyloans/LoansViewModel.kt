@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
-import com.homework.homeworkkuritsyn.domain.loans.GetLoansUseCase
+import com.homework.homeworkkuritsyn.domain.historyloans.GetLoansUseCase
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import javax.inject.Inject

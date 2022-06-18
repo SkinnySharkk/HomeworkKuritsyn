@@ -52,6 +52,12 @@
         <argument
             android:name="idLoan"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_loanFragment_to_manualBankFragment"
+            app:destination="@id/manualBankFragment" />
+        <action
+            android:id="@+id/action_loanFragment_to_manualCardFragment"
+            app:destination="@id/manualCardFragment" />
     </fragment>
 
     <fragment

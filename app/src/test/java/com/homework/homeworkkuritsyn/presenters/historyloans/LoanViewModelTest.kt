@@ -3,9 +3,7 @@ package com.homework.homeworkkuritsyn.presenters.historyloans
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
-import com.homework.homeworkkuritsyn.domain.loans.GetLoanUseCase
-import com.homework.homeworkkuritsyn.domain.loans.GetLoansUseCase
-import com.homework.homeworkkuritsyn.domain.loans.LoansRepository
+import com.homework.homeworkkuritsyn.domain.historyloans.GetLoanUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher

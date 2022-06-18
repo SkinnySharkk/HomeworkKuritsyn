@@ -1,7 +1,7 @@
 package com.homework.homeworkkuritsyn.di
 
 import com.homework.homeworkkuritsyn.di.authorized.AuthorizedComponent
-import com.homework.homeworkkuritsyn.di.loans.LoansComponent
+import com.homework.homeworkkuritsyn.di.historyloans.LoansComponent
 import dagger.Module
 
 @Module(

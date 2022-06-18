@@ -18,7 +18,7 @@
         android:id="@+id/amountItemTxtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Сумма займа:"
+        android:text="@string/item_sum_loan"
         app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
         app:layout_constraintTop_toTopOf="@+id/TOP_MARGIN" />
 
@@ -48,7 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Дата займа:"
+        android:text="@string/item_date_loan"
         app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
         app:layout_constraintTop_toBottomOf="@+id/amountItemTxtTitle" />
 
@@ -57,17 +57,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:text="22.01.21"
+        tools:text="22.01.21"
         app:layout_constraintStart_toEndOf="@+id/titleItemBarrier"
-        app:layout_constraintTop_toBottomOf="@+id/amountItemTxt" />
+        app:layout_constraintTop_toTopOf="@+id/dateItemTxtTitle" />
 
     <TextView
         android:id="@+id/statusItemTxtTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Статус займа:"
+        android:text="@string/item_status_loan"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@id/START_MARGIN"
         app:layout_constraintTop_toBottomOf="@id/dateItemTxtTitle" />
@@ -77,12 +76,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        android:text="Зарегистрировано"
+        tools:text="Зарегистрировано"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@id/titleItemBarrier"
-        app:layout_constraintTop_toBottomOf="@id/dateItemTxt" />
+        app:layout_constraintTop_toTopOf="@+id/statusItemTxtTitle" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/titleItemBarrier"

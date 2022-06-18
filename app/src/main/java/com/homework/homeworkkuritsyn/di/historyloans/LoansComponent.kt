@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.di.loans
+package com.homework.homeworkkuritsyn.di.historyloans
 
 import com.homework.homeworkkuritsyn.ui.applyloan.ApplyLoanFragment
 import com.homework.homeworkkuritsyn.ui.historyloans.LoanFragment

@@ -43,15 +43,12 @@ class LoansFragment : Fragment() {
         viewModel.loans.observe(viewLifecycleOwner) { loans ->
             binding.loanList.apply {
                 val loanAdapter = LoanAdapter(onClickLoan = { id ->
-                    Timber.v("id = $id")
                     findNavController().navigate(
                         LoansFragmentDirections.actionLoansFragmentToLoanFragment(
                             id
                         )
                     )
                 })
-                Timber.v("loans.toString()")
-                Timber.v(loans.toString())
                 loanAdapter.loans = loans
                 adapter = loanAdapter
             }

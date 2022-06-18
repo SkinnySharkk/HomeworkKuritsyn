@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.domain.loans
+package com.homework.homeworkkuritsyn.domain.historyloans
 
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
 

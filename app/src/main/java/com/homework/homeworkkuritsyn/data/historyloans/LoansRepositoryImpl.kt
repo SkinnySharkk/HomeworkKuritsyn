@@ -1,10 +1,10 @@
-package com.homework.homeworkkuritsyn.data.loans
+package com.homework.homeworkkuritsyn.data.historyloans
 
 import com.homework.homeworkkuritsyn.data.converters.LoanListConverterToLoanEntityList
 import com.homework.homeworkkuritsyn.data.converters.asEntities
 import com.homework.homeworkkuritsyn.data.network.NetworkShiftDataStore
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
-import com.homework.homeworkkuritsyn.domain.loans.LoansRepository
+import com.homework.homeworkkuritsyn.domain.historyloans.LoansRepository
 import javax.inject.Inject
 
 class LoansRepositoryImpl @Inject constructor(

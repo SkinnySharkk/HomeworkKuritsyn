@@ -2,7 +2,7 @@ package com.homework.homeworkkuritsyn.di
 
 import android.content.Context
 import com.homework.homeworkkuritsyn.di.authorized.AuthorizedComponent
-import com.homework.homeworkkuritsyn.di.loans.LoansComponent
+import com.homework.homeworkkuritsyn.di.historyloans.LoansComponent
 import com.homework.homeworkkuritsyn.ui.MainActivity
 import dagger.BindsInstance
 import dagger.Component

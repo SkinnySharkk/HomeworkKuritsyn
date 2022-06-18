@@ -1,4 +1,4 @@
-package com.homework.homeworkkuritsyn.domain.loans
+package com.homework.homeworkkuritsyn.domain.historyloans
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.homework.homeworkkuritsyn.domain.authorized.AuthResult

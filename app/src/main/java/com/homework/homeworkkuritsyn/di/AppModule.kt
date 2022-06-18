@@ -3,14 +3,14 @@ package com.homework.homeworkkuritsyn.di
 import androidx.lifecycle.ViewModel
 import com.homework.homeworkkuritsyn.data.applyloan.ApplyLoanRepositoryImpl
 import com.homework.homeworkkuritsyn.data.authorized.AuthorizedRepositoryImpl
-import com.homework.homeworkkuritsyn.data.loans.LoansRepositoryImpl
+import com.homework.homeworkkuritsyn.data.historyloans.LoansRepositoryImpl
 import com.homework.homeworkkuritsyn.domain.DeleteUserDataUseCase
 import com.homework.homeworkkuritsyn.domain.DeleteUserDataUseCaseImpl
 import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanRepository
 import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
 import com.homework.homeworkkuritsyn.domain.authorized.CheckFirstStartUseCase
 import com.homework.homeworkkuritsyn.domain.authorized.CheckFirstStartUseCaseImpl
-import com.homework.homeworkkuritsyn.domain.loans.LoansRepository
+import com.homework.homeworkkuritsyn.domain.historyloans.LoansRepository
 import com.homework.homeworkkuritsyn.presenters.MainViewModel
 import com.homework.homeworkkuritsyn.presenters.ViewModelKey
 import dagger.Binds
