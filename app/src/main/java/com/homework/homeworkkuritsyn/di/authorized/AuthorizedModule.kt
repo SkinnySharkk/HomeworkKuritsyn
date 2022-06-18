@@ -9,8 +9,10 @@ import com.homework.homeworkkuritsyn.presenters.ViewModelKey
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
+import javax.inject.Singleton
 
 @Module
+
 interface AuthorizedModule {
     @Binds
     @[IntoMap ViewModelKey(LoginViewModel::class)]

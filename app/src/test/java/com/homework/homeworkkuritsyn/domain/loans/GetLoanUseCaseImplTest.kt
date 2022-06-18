@@ -1,11 +1,8 @@
-package com.homework.homeworkkuritsyn.presenters.historyloans
+package com.homework.homeworkkuritsyn.domain.loans
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
-import com.homework.homeworkkuritsyn.domain.loans.GetLoanUseCase
-import com.homework.homeworkkuritsyn.domain.loans.GetLoansUseCase
-import com.homework.homeworkkuritsyn.domain.loans.LoansRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -20,7 +17,7 @@ import org.mockito.kotlin.whenever
 import java.math.BigDecimal
 
 @ExperimentalCoroutinesApi
-class LoanViewModelTest {
+class GetLoanUseCaseImplTest{
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
@@ -59,12 +56,11 @@ class LoanViewModelTest {
 
     @Test
     fun `WHEN LoansViewModel getLoan EXPECT LoanEntity with id 1`() = runTest {
-        val useCase: GetLoanUseCase = mock()
-        whenever(useCase.execute(1)).thenReturn(loan)
+        val repository: LoansRepository = mock()
+        whenever(repository.getLoan(1)).thenReturn(loan)
 
-        val loanViewModel = LoanViewModel(useCase)
-        loanViewModel.getLoan(1)
-        val actual = loanViewModel.loan.value
+        val useCase = GetLoanUseCaseImpl(repository)
+        val actual = useCase.execute(1)
 
         assertEquals(expected, actual)
     }

@@ -1,6 +1,7 @@
 package com.homework.homeworkkuritsyn.data.sharedpreferences
 
 import android.content.Context
+import timber.log.Timber
 import javax.inject.Inject
 
 class SharedPreferencesManager @Inject constructor(
@@ -9,8 +10,8 @@ class SharedPreferencesManager @Inject constructor(
     companion object {
         private const val AUTHORIZED_SHARED_PREFERENCES = "AuthorizedSharedPreferences"
         private const val AUTHORIZED_SHARED_PREFERENCES_KEY = "Authorized_key"
-        private const val TOKEN_SHARED_PREFERENCES = "AuthorizedSharedPreferences"
-        private const val TOKEN_SHARED_PREFERENCES_KEY = "Authorized_key"
+        private const val TOKEN_SHARED_PREFERENCES = "TokenSharedPreferences"
+        private const val TOKEN_SHARED_PREFERENCES_KEY = "Token_key"
     }
 
     fun putToken(token: String) {
@@ -39,6 +40,7 @@ class SharedPreferencesManager @Inject constructor(
 
 
     fun setAuthorized() {
+        Timber.v("SharedPreferencesManager setAuthorized")
         context.getSharedPreferences(
             AUTHORIZED_SHARED_PREFERENCES,
             Context.MODE_PRIVATE

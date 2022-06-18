@@ -4,10 +4,12 @@ import androidx.lifecycle.ViewModel
 import com.homework.homeworkkuritsyn.data.applyloan.ApplyLoanRepositoryImpl
 import com.homework.homeworkkuritsyn.data.authorized.AuthorizedRepositoryImpl
 import com.homework.homeworkkuritsyn.data.loans.LoansRepositoryImpl
+import com.homework.homeworkkuritsyn.domain.DeleteUserDataUseCase
+import com.homework.homeworkkuritsyn.domain.DeleteUserDataUseCaseImpl
 import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanRepository
 import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
-import com.homework.homeworkkuritsyn.domain.authorized.SignInUseCase
-import com.homework.homeworkkuritsyn.domain.authorized.SignInUseCaseImpl
+import com.homework.homeworkkuritsyn.domain.authorized.CheckFirstStartUseCase
+import com.homework.homeworkkuritsyn.domain.authorized.CheckFirstStartUseCaseImpl
 import com.homework.homeworkkuritsyn.domain.loans.LoansRepository
 import com.homework.homeworkkuritsyn.presenters.MainViewModel
 import com.homework.homeworkkuritsyn.presenters.ViewModelKey
@@ -20,19 +22,31 @@ import javax.inject.Singleton
 interface AppModule {
     @Binds
     @Singleton
-    fun bindAuthorizedRepository(
-        authorizedRepositoryImpl: AuthorizedRepositoryImpl
-    ): AuthorizedRepository
-    @Binds
-    @Singleton
     fun bindLoansRepository(
         LoansRepositoryImpl: LoansRepositoryImpl
     ): LoansRepository
+
     @Binds
     @Singleton
     fun bindApplyLoansRepository(
         applyLoanRepositoryImpl: ApplyLoanRepositoryImpl
     ): ApplyLoanRepository
+
+    @Binds
+    fun bindCheckFirstStartUseCase(
+        checkFirstStartUseCaseImpl: CheckFirstStartUseCaseImpl
+    ): CheckFirstStartUseCase
+
+    @Binds
+    fun bindAuthorizedRepository(
+        authorizedRepositoryImpl: AuthorizedRepositoryImpl
+    ): AuthorizedRepository
+
+    @Binds
+    fun bindDeleteUserDataUseCase(
+        deleteUserDataUseCaseImpl: DeleteUserDataUseCaseImpl
+    ): DeleteUserDataUseCase
+
     @Binds
     @[IntoMap ViewModelKey(MainViewModel::class)]
     fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel

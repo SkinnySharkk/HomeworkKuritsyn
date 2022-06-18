@@ -51,7 +51,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         val graph = inflater.inflate(R.navigation.nav_graph)
         graph.addInDefaultArgs(intent.extras)
 
-        if (!viewModel.checkIsFirstStart()) {
+        if (viewModel.checkIsFirstStart()) {
             graph.setStartDestination(R.id.loansFragment)
         }
 

@@ -1,10 +1,12 @@
-package com.homework.homeworkkuritsyn.presenters.historyloans
+package com.homework.homeworkkuritsyn.domain.loans
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.homework.homeworkkuritsyn.domain.authorized.AuthResult
+import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
+import com.homework.homeworkkuritsyn.domain.authorized.SignInUseCaseImpl
+import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
-import com.homework.homeworkkuritsyn.domain.loans.GetLoansUseCase
-import com.homework.homeworkkuritsyn.domain.loans.LoansRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -19,7 +21,7 @@ import org.mockito.kotlin.whenever
 import java.math.BigDecimal
 
 @ExperimentalCoroutinesApi
-class LoansViewModelTest {
+class GetLoansUseCaseImplTest {
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
 
@@ -84,28 +86,27 @@ class LoansViewModelTest {
     }
 
     @Test
-    fun `WHEN created LoansViewModel not null`() = runTest {
-        val useCase: GetLoansUseCase = mock()
-        whenever(useCase.execute()).thenReturn(loans)
+    fun `WHEN execute EXPECTED List LoanEntity `() = runTest {
+        val repository: LoansRepository = mock()
+        whenever(repository.getAllLoans()).thenReturn(loans)
 
-        val loansViewModel = LoansViewModel(useCase)
-        val actual = loansViewModel.loans.value
+        val useCase = GetLoansUseCaseImpl(repository)
 
+        val actual = useCase.execute()
+        val expected = expected
         assertEquals(expected, actual)
     }
-
 
     @Test
-    fun `WHEN LoansViewModel updateLoans EXPECT not null`() = runTest {
-        val useCase: GetLoansUseCase = mock()
-        whenever(useCase.execute()).thenReturn(loans)
+    fun `WHEN execute EXPECTED AuthResult_Error`() = runTest {
+        val repository: AuthorizedRepository = mock()
+        val authEntity = AuthEntity(name = "4r", password = "r")
+        whenever(repository.signIn(authEntity)).thenReturn(AuthResult.HttpError("Не верный логин или пароль"))
 
-        val loansViewModel = LoansViewModel(useCase)
-        loansViewModel.updateLoans()
-        val actual = loansViewModel.loans.value
+        val useCase = SignInUseCaseImpl(repository)
 
+        val actual = useCase.execute("4r", "r")
+        val expected = AuthResult.HttpError("Не верный логин или пароль")
         assertEquals(expected, actual)
     }
-
-
 }

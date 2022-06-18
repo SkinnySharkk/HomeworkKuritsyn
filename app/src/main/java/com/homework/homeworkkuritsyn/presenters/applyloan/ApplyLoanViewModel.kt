@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanUseCase
 import com.homework.homeworkkuritsyn.domain.applyloan.GetLoanConditionsUseCase
 import com.homework.homeworkkuritsyn.domain.entity.LoanConditionsEntity
+import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanRequestEntity
 import kotlinx.coroutines.launch
 import java.math.BigInteger
@@ -20,6 +21,8 @@ class ApplyLoanViewModel @Inject constructor(
     val selectSum: LiveData<Int> get() = _selectSum
     private val _loanConditions = MutableLiveData<LoanConditionsEntity>()
     val loanConditions: LiveData<LoanConditionsEntity> get() = _loanConditions
+    private val _loanEntity = MutableLiveData<LoanEntity>()
+    val loanEntity:LiveData<LoanEntity> = _loanEntity
 
     init {
         viewModelScope.launch {
@@ -53,7 +56,7 @@ class ApplyLoanViewModel @Inject constructor(
                 firstName = firstName,
                 lastName = lastName
             )
-            applyLoanUseCase.execute(loan)
+            _loanEntity.value = applyLoanUseCase.execute(loan)
         }
     }
 

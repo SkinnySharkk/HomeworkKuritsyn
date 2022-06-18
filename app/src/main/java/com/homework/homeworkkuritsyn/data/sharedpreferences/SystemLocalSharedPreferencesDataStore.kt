@@ -1,5 +1,6 @@
 package com.homework.homeworkkuritsyn.data.sharedpreferences
 
+import timber.log.Timber
 import javax.inject.Inject
 
 class SystemLocalSharedPreferencesDataStore @Inject constructor(
@@ -17,7 +18,8 @@ class SystemLocalSharedPreferencesDataStore @Inject constructor(
         return sharedPreferencesManager.isAuthorized()
     }
 
-    fun setAuthorized() {
+    fun setAuthorizedIsTrue() {
+        Timber.v("SystemLocalSharedPreferencesDataStore setAuthorizedIsTrue")
         sharedPreferencesManager.setAuthorized()
     }
 

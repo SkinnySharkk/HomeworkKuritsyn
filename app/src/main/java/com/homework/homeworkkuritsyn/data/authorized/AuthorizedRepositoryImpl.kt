@@ -25,7 +25,7 @@ class AuthorizedRepositoryImpl @Inject constructor(
         systemLocalSharedPreferencesDataStore.isAuthorized()
 
     override fun setAuthorized() =
-        systemLocalSharedPreferencesDataStore.setAuthorized()
+        systemLocalSharedPreferencesDataStore.setAuthorizedIsTrue()
 
     override fun getToken(): String =
         systemLocalSharedPreferencesDataStore.getToken()

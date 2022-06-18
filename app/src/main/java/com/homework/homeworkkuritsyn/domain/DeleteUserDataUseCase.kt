@@ -3,10 +3,13 @@ package com.homework.homeworkkuritsyn.domain
 import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
 import javax.inject.Inject
 
-class DeleteUserDataUseCase @Inject constructor(
+interface DeleteUserDataUseCase {
+    fun execute()
+}
+class DeleteUserDataUseCaseImpl @Inject constructor(
     private val authorizedRepository: AuthorizedRepository
-) {
-    fun execute() {
+) : DeleteUserDataUseCase{
+    override fun execute() {
         authorizedRepository.deleteUserData()
     }
 }

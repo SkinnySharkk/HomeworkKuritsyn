@@ -12,6 +12,10 @@ class SignInUseCaseImpl @Inject constructor(
 ) : SignInUseCase {
     override suspend fun execute(login: String, password: String): AuthResult {
         val authEntity = AuthEntity(login, password)
-        return authorizedRepository.signIn(authEntity)
+        val result = authorizedRepository.signIn(authEntity)
+        if (result is AuthResult.Success) {
+            authorizedRepository.setAuthorized()
+        }
+        return result
     }
 }
