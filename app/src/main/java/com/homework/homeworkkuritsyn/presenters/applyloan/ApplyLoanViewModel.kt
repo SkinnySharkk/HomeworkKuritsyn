@@ -22,7 +22,7 @@ class ApplyLoanViewModel @Inject constructor(
     private val _loanConditions = MutableLiveData<LoanConditionsEntity>()
     val loanConditions: LiveData<LoanConditionsEntity> get() = _loanConditions
     private val _loanEntity = MutableLiveData<LoanEntity>()
-    val loanEntity:LiveData<LoanEntity> = _loanEntity
+    val loanEntity: LiveData<LoanEntity> = _loanEntity
 
     init {
         viewModelScope.launch {

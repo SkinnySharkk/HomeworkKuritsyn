@@ -1,9 +1,13 @@
 package com.homework.homeworkkuritsyn.data.network
 
-import com.homework.homeworkkuritsyn.data.network.models.*
-import okhttp3.MultipartBody
-import retrofit2.Response
-import retrofit2.http.*
+import com.homework.homeworkkuritsyn.data.network.models.Auth
+import com.homework.homeworkkuritsyn.data.network.models.Loan
+import com.homework.homeworkkuritsyn.data.network.models.LoanConditions
+import com.homework.homeworkkuritsyn.data.network.models.LoanRequest
+import retrofit2.http.Body
+import retrofit2.http.GET
+import retrofit2.http.POST
+import retrofit2.http.Path
 
 interface ShiftService {
     @POST("login")

@@ -1,7 +1,6 @@
 package com.homework.homeworkkuritsyn.data.sharedpreferences
 
 import android.content.Context
-import timber.log.Timber
 import javax.inject.Inject
 
 class SharedPreferencesManager @Inject constructor(
@@ -40,7 +39,6 @@ class SharedPreferencesManager @Inject constructor(
 
 
     fun setAuthorized() {
-        Timber.v("SharedPreferencesManager setAuthorized")
         context.getSharedPreferences(
             AUTHORIZED_SHARED_PREFERENCES,
             Context.MODE_PRIVATE

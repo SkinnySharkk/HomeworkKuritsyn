@@ -14,7 +14,6 @@ import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoanBinding
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
 import com.homework.homeworkkuritsyn.presenters.historyloans.LoanViewModel
-import timber.log.Timber
 import java.util.*
 import javax.inject.Inject
 
@@ -40,8 +39,6 @@ class LoanFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getLoan(args.idLoan)
         viewModel.loan.observe(viewLifecycleOwner) { loan ->
-            Timber.v(loan.toString())
-            Timber.v(args.toString())
             with(binding) {
                 loanFirstNameValue.text = loan.firstName
                 loanLastNameValue.text = loan.lastName
@@ -50,10 +47,16 @@ class LoanFragment : Fragment() {
                 loanSumValue.text = String.format(Locale.getDefault(), loan.amount.toString())
                 loanPercentValue.text = String.format(Locale.getDefault(), loan.percent.toString())
                 loanPeriodValue.text = loan.period.toString()
-                loanStateValue.text = when(loan.state) {
-                    EnumStateEntity.REGISTERED -> {"Зарегистрирован"}
-                    EnumStateEntity.REJECTED -> {"Отклоненный"}
-                    EnumStateEntity.APPROVED -> {"Одобренный"}
+                loanStateValue.text = when (loan.state) {
+                    EnumStateEntity.REGISTERED -> {
+                        "Зарегистрирован"
+                    }
+                    EnumStateEntity.REJECTED -> {
+                        "Отклоненный"
+                    }
+                    EnumStateEntity.APPROVED -> {
+                        "Одобренный"
+                    }
                 }
             }
         }

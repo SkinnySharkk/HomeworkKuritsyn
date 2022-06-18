@@ -2,7 +2,6 @@ package com.homework.homeworkkuritsyn.data.converters
 
 import com.homework.homeworkkuritsyn.data.network.models.EnumState
 import com.homework.homeworkkuritsyn.data.network.models.Loan
-import com.homework.homeworkkuritsyn.data.network.models.LoanRequest
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
 

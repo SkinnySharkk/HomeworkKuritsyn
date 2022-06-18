@@ -1,7 +1,6 @@
 package com.homework.homeworkkuritsyn.data.network.models
 
 import java.math.BigDecimal
-import java.math.BigInteger
 
 data class Loan(
     val amount: BigDecimal,

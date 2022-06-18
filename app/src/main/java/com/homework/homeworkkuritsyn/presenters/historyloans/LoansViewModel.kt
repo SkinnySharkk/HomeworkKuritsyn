@@ -28,4 +28,5 @@ class LoansViewModel @Inject constructor(private val getLoansUseCase: GetLoansUs
             _loans.value = getLoansUseCase.execute()
             Timber.v(_loans.value.toString())
         }
-    }}
+    }
+}

@@ -4,12 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.homework.homeworkkuritsyn.di.DefaultDispatcher
 import com.homework.homeworkkuritsyn.domain.authorized.RegisterResult
 import com.homework.homeworkkuritsyn.domain.authorized.SignUpUseCase
-import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -24,7 +20,7 @@ class RegisterViewModel @Inject constructor(
     ) {
         viewModelScope.launch {
             _loginUiState.value = LoginUiState.Loading
-            when(val registerResult = signUpUseCase.execute(login = login, password = password)) {
+            when (val registerResult = signUpUseCase.execute(login = login, password = password)) {
                 is RegisterResult.Success -> {
                     _loginUiState.value = LoginUiState.Success
                 }

@@ -1,7 +1,9 @@
 package com.homework.homeworkkuritsyn.data.network
 
-import com.homework.homeworkkuritsyn.data.network.models.*
-import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
+import com.homework.homeworkkuritsyn.data.network.models.Auth
+import com.homework.homeworkkuritsyn.data.network.models.Loan
+import com.homework.homeworkkuritsyn.data.network.models.LoanConditions
+import com.homework.homeworkkuritsyn.data.network.models.LoanRequest
 import javax.inject.Inject
 
 class NetworkShiftDataStore @Inject constructor(

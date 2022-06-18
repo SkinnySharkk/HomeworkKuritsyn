@@ -4,13 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.homework.homeworkkuritsyn.di.AppModule
-import com.homework.homeworkkuritsyn.di.DefaultDispatcher
 import com.homework.homeworkkuritsyn.domain.authorized.AuthResult
 import com.homework.homeworkkuritsyn.domain.authorized.SignInUseCase
-import com.homework.homeworkkuritsyn.domain.entity.AuthEntity
-import kotlinx.coroutines.CoroutineDispatcher
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

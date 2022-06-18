@@ -63,7 +63,7 @@ class ApplyLoanFragment : Fragment() {
 
         viewModel.loanEntity.observe(viewLifecycleOwner) { loan ->
             if (loan != null) {
-                Toast.makeText(context, "Оформление займа прошло успешно.", Toast.LENGTH_LONG)
+                Toast.makeText(context, getString(R.string.apply_success), Toast.LENGTH_LONG)
                     .show()
                 findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
             }

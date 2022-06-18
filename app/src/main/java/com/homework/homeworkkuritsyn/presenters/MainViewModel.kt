@@ -15,6 +15,7 @@ class MainViewModel @Inject constructor(
     fun checkIsFirstStart(): Boolean {
         return checkFirstStartUseCase.execute()
     }
+
     fun deleteUserData() {
         viewModelScope.launch {
             deleteUserDataUseCase.execute()

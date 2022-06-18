@@ -12,7 +12,7 @@ import javax.inject.Inject
 class LoanViewModel @Inject constructor(
     private val getLoanUseCase: GetLoanUseCase
 
-    ) : ViewModel() {
+) : ViewModel() {
     private val _loan = MutableLiveData<LoanEntity>()
     val loan: LiveData<LoanEntity> get() = _loan
 

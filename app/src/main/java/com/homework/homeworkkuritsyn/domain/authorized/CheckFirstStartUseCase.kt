@@ -10,6 +10,5 @@ class CheckFirstStartUseCaseImpl @Inject constructor(
     ) : CheckFirstStartUseCase {
     override fun execute(): Boolean {
         return authorizedRepository.isAuthorized()
-//        return authorizedRepository.getToken().isEmpty()
     }
 }
