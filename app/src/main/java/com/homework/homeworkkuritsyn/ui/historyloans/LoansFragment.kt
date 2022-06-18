@@ -48,7 +48,7 @@ class LoansFragment : Fragment() {
                         )
                     )
                 })
-                loanAdapter.loans = loans
+                loanAdapter.submitList(loans)
                 adapter = loanAdapter
             }
         }

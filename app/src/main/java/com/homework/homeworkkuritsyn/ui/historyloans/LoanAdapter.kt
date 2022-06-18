@@ -2,6 +2,8 @@ package com.homework.homeworkkuritsyn.ui.historyloans
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.homework.homeworkkuritsyn.databinding.ItemLoanBinding
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
@@ -10,28 +12,28 @@ import java.util.*
 
 class LoanAdapter(
     private val onClickLoan: (id: Int) -> Unit
-) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    var loans: List<LoanEntity> = emptyList()
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+) : ListAdapter<LoanEntity, LoanAdapter.LoanViewHolder>(DiffCallback()) {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): LoanViewHolder {
         val binding = ItemLoanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return LoanViewHolder(binding)
     }
-
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        val loan = loans[position]
-        (holder as LoanViewHolder).bind(loan)
+    override fun onBindViewHolder(holder: LoanViewHolder, position: Int) {
+        val loan = getItem(position)
+        holder.bind(loan)
         holder.itemView.setOnClickListener {
             onClickLoan(loan.id)
         }
     }
 
+    private class DiffCallback : DiffUtil.ItemCallback<LoanEntity>() {
+        override fun areItemsTheSame(oldItem: LoanEntity, newItem: LoanEntity) =
+            oldItem.id == newItem.id
 
-    override fun getItemCount(): Int = loans.size
+        override fun areContentsTheSame(oldItem: LoanEntity, newItem: LoanEntity) =
+            oldItem == newItem
+    }
+
+
 
     class LoanViewHolder(
         private val binding: ItemLoanBinding,
