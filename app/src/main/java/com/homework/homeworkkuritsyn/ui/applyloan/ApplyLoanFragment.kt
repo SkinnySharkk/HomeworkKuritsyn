@@ -61,6 +61,13 @@ class ApplyLoanFragment : Fragment() {
             }
         }
 
+        viewModel.loanEntity.observe(viewLifecycleOwner) { loan ->
+            if (loan != null) {
+                Toast.makeText(context, "Оформление займа прошло успешно.", Toast.LENGTH_LONG)
+                    .show()
+                findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
+            }
+        }
         binding.seekBarSum.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
@@ -139,7 +146,7 @@ class ApplyLoanFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-       return when (item.itemId) {
+        return when (item.itemId) {
             R.id.applyHelpItem -> {
                 showHelp()
                 true

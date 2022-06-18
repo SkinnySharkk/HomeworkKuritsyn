@@ -33,14 +33,15 @@ interface AppModule {
     ): ApplyLoanRepository
 
     @Binds
-    fun bindCheckFirstStartUseCase(
-        checkFirstStartUseCaseImpl: CheckFirstStartUseCaseImpl
-    ): CheckFirstStartUseCase
-
-    @Binds
+    @Singleton
     fun bindAuthorizedRepository(
         authorizedRepositoryImpl: AuthorizedRepositoryImpl
     ): AuthorizedRepository
+
+    @Binds
+    fun bindCheckFirstStartUseCase(
+        checkFirstStartUseCaseImpl: CheckFirstStartUseCaseImpl
+    ): CheckFirstStartUseCase
 
     @Binds
     fun bindDeleteUserDataUseCase(
