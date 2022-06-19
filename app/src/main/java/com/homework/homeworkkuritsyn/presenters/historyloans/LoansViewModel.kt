@@ -11,19 +11,25 @@ import javax.inject.Inject
 
 class LoansViewModel @Inject constructor(private val getLoansUseCase: GetLoansUseCase) :
     ViewModel() {
-
-    private val _loans = MutableLiveData<List<LoanEntity>>()
-    val loans: LiveData<List<LoanEntity>> get() = _loans
+    private val _uiState = MutableLiveData<LoansViewModelUiState>(LoansViewModelUiState.Idle)
+    val uiState: LiveData<LoansViewModelUiState> = _uiState
 
     init {
         viewModelScope.launch {
-            _loans.value = getLoansUseCase.execute()
+            updateLoans()
         }
     }
 
     fun updateLoans() {
+        _uiState.value = LoansViewModelUiState.Loading
         viewModelScope.launch {
-            _loans.value = getLoansUseCase.execute()
+            _uiState.value = LoansViewModelUiState.Success(getLoansUseCase.execute())
         }
     }
+}
+
+sealed interface LoansViewModelUiState {
+    object Idle : LoansViewModelUiState
+    object Loading : LoansViewModelUiState
+    data class Success(val loans: List<LoanEntity>) : LoansViewModelUiState
 }

@@ -11,6 +11,7 @@ import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoansBinding
 import com.homework.homeworkkuritsyn.presenters.historyloans.LoansViewModel
+import com.homework.homeworkkuritsyn.presenters.historyloans.LoansViewModelUiState
 import com.homework.homeworkkuritsyn.ui.MainActivity
 import javax.inject.Inject
 
@@ -39,17 +40,40 @@ class LoansFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setHasOptionsMenu(true)
-        viewModel.loans.observe(viewLifecycleOwner) { loans ->
-            binding.loanList.apply {
-                val loanAdapter = LoanAdapter(onClickLoan = { id ->
-                    findNavController().navigate(
-                        LoansFragmentDirections.actionLoansFragmentToLoanFragment(
-                            id
-                        )
-                    )
-                })
-                loanAdapter.submitList(loans)
-                adapter = loanAdapter
+        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is LoansViewModelUiState.Idle -> {
+                    binding.loanList.visibility = View.VISIBLE
+                    binding.loansProgressBar.visibility = View.GONE
+                    binding.emptyListTxt.visibility = View.GONE
+                }
+                is LoansViewModelUiState.Loading -> {
+                    binding.loanList.visibility = View.GONE
+                    binding.emptyListTxt.visibility = View.GONE
+                    binding.loansProgressBar.visibility = View.VISIBLE
+                }
+                is LoansViewModelUiState.Success -> {
+                    binding.loanList.apply {
+                        val loanAdapter = LoanAdapter(onClickLoan = { id ->
+                            findNavController().navigate(
+                                LoansFragmentDirections.actionLoansFragmentToLoanFragment(
+                                    id
+                                )
+                            )
+                        })
+                        if (state.loans.isNotEmpty()) {
+                            loanAdapter.submitList(state.loans)
+                            binding.loanList.visibility = View.VISIBLE
+                            binding.loansProgressBar.visibility = View.GONE
+                            binding.emptyListTxt.visibility = View.GONE
+                        } else {
+                            binding.loanList.visibility = View.GONE
+                            binding.loansProgressBar.visibility = View.GONE
+                            binding.emptyListTxt.visibility = View.VISIBLE
+                        }
+                        adapter = loanAdapter
+                    }
+                }
             }
         }
 

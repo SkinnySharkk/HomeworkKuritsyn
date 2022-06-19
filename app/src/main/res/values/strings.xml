@@ -73,4 +73,5 @@
     <string name="item_date_loan">Дата займа:</string>
     <string name="item_status_loan">Статус займа:</string>
     <string name="apply_success">Оформление займа прошло успешно.</string>
+    <string name="empty_list">У вас нет оформленных займов</string>
 </resources>
