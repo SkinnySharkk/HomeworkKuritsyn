@@ -13,12 +13,17 @@ class LoanViewModel @Inject constructor(
     private val getLoanUseCase: GetLoanUseCase
 
 ) : ViewModel() {
-    private val _loan = MutableLiveData<LoanEntity>()
-    val loan: LiveData<LoanEntity> get() = _loan
-
+    private val _uiState = MutableLiveData<LoanVieModelUiState>()
+    val uiState: LiveData<LoanVieModelUiState> = _uiState
     fun getLoan(id: Int) {
+        _uiState.value = LoanVieModelUiState.Loading
         viewModelScope.launch {
-            _loan.value = getLoanUseCase.execute(id)
+            _uiState.value = LoanVieModelUiState.Success(getLoanUseCase.execute(id))
         }
     }
+}
+
+sealed interface LoanVieModelUiState {
+    object Loading : LoanVieModelUiState
+    data class Success(val loan: LoanEntity) : LoanVieModelUiState
 }

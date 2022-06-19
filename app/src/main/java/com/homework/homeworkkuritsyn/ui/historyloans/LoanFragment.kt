@@ -13,6 +13,7 @@ import androidx.navigation.fragment.navArgs
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoanBinding
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
+import com.homework.homeworkkuritsyn.presenters.historyloans.LoanVieModelUiState
 import com.homework.homeworkkuritsyn.presenters.historyloans.LoanViewModel
 import java.util.*
 import javax.inject.Inject
@@ -38,24 +39,36 @@ class LoanFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         viewModel.getLoan(args.idLoan)
-        viewModel.loan.observe(viewLifecycleOwner) { loan ->
-            with(binding) {
-                loanFirstNameValue.text = loan.firstName
-                loanLastNameValue.text = loan.lastName
-                loanDataValue.text = loan.date.split("T")[0]
-                loanPhoneValue.text = loan.phoneNumber
-                loanSumValue.text = String.format(Locale.getDefault(), loan.amount.toString())
-                loanPercentValue.text = String.format(Locale.getDefault(), loan.percent.toString())
-                loanPeriodValue.text = loan.period.toString()
-                loanStateValue.text = when (loan.state) {
-                    EnumStateEntity.REGISTERED -> {
-                        "Зарегистрирован"
-                    }
-                    EnumStateEntity.REJECTED -> {
-                        "Отклоненный"
-                    }
-                    EnumStateEntity.APPROVED -> {
-                        "Одобренный"
+        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                is LoanVieModelUiState.Loading -> {
+                    binding.loanGroup.visibility = View.GONE
+                    binding.loanProgressBar.visibility = View.VISIBLE
+                }
+                is LoanVieModelUiState.Success -> {
+                    with(binding) {
+                        loanGroup.visibility = View.VISIBLE
+                        loanProgressBar.visibility = View.GONE
+                        loanFirstNameValue.text = state.loan.firstName
+                        loanLastNameValue.text = state.loan.lastName
+                        loanDataValue.text = state.loan.date.split("T")[0]
+                        loanPhoneValue.text = state.loan.phoneNumber
+                        loanSumValue.text =
+                            String.format(Locale.getDefault(), state.loan.amount.toString())
+                        loanPercentValue.text =
+                            String.format(Locale.getDefault(), state.loan.percent.toString())
+                        loanPeriodValue.text = state.loan.period.toString()
+                        loanStateValue.text = when (state.loan.state) {
+                            EnumStateEntity.REGISTERED -> {
+                                "Зарегистрирован"
+                            }
+                            EnumStateEntity.REJECTED -> {
+                                "Отклоненный"
+                            }
+                            EnumStateEntity.APPROVED -> {
+                                "Одобренный"
+                            }
+                        }
                     }
                 }
             }
