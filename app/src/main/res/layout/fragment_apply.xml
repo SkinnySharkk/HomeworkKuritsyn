@@ -9,8 +9,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-       >
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/loanDataTitle"
@@ -206,5 +205,26 @@ loanLastNameTitle, loanDataTitle"
             app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
             app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
             app:layout_constraintTop_toBottomOf="@+id/sumLoanTextField" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/applyGroup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="amountConditionsValue,applyLoanBtn,
+            firstNameLoanTextField,sumLoanTextField,loanFirstNameTitle,
+            percentConditionsValue,seekBarSum,TitleConditions,loanDataTitle,
+            loanLastNameTitle,periodConditionsValue,cancelLoanBtn,
+            lastNameLoanTextField,phoneLoanTextField" />
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+            app:layout_constraintTop_toTopOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

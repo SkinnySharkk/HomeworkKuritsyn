@@ -15,6 +15,7 @@ import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentApplyBinding
 import com.homework.homeworkkuritsyn.presenters.applyloan.ApplyLoanViewModel
+import com.homework.homeworkkuritsyn.presenters.applyloan.ApplyLoanViewModelUiState
 import java.math.BigInteger
 import java.util.*
 import javax.inject.Inject
@@ -50,14 +51,25 @@ class ApplyLoanFragment : Fragment() {
         viewModel.selectSum.observe(viewLifecycleOwner) { selectSum ->
             binding.sumLoanTextField.editText?.setText(selectSum.toString())
         }
-        viewModel.loanConditions.observe(viewLifecycleOwner) { conditions ->
-            with(binding) {
-                amountConditionsValue.text =
-                    String.format(Locale.getDefault(), conditions.maxAmount.toString())
-                percentConditionsValue.text =
-                    String.format(Locale.getDefault(), conditions.percent.toString())
-                periodConditionsValue.text = conditions.period.toString()
-                viewModel.setSum(START_PERCENT_SUM)
+
+        viewModel.uiState.observe(viewLifecycleOwner) { state ->
+            when(state) {
+                is ApplyLoanViewModelUiState.Loading -> {
+                    binding.applyGroup.visibility = View.GONE
+                    binding.progressBar.visibility = View.VISIBLE
+                }
+                is ApplyLoanViewModelUiState.Success -> {
+                    with(binding) {
+                        applyGroup.visibility = View.VISIBLE
+                        progressBar.visibility = View.GONE
+                        amountConditionsValue.text =
+                            String.format(Locale.getDefault(), state.loanConditions.maxAmount.toString())
+                        percentConditionsValue.text =
+                            String.format(Locale.getDefault(), state.loanConditions.percent.toString())
+                        periodConditionsValue.text = state.loanConditions.period.toString()
+                        viewModel.setSum(START_PERCENT_SUM)
+                    }
+                }
             }
         }
 

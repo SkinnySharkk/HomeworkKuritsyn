@@ -19,14 +19,21 @@ class ApplyLoanViewModel @Inject constructor(
 ) : ViewModel() {
     private val _selectSum = MutableLiveData<Int>()
     val selectSum: LiveData<Int> get() = _selectSum
+
     private val _loanConditions = MutableLiveData<LoanConditionsEntity>()
-    val loanConditions: LiveData<LoanConditionsEntity> get() = _loanConditions
+
+    private val _uiState = MutableLiveData<ApplyLoanViewModelUiState>()
+    val uiState: LiveData<ApplyLoanViewModelUiState> = _uiState
+
     private val _loanEntity = MutableLiveData<LoanEntity>()
     val loanEntity: LiveData<LoanEntity> = _loanEntity
 
     init {
+        _uiState.value = ApplyLoanViewModelUiState.Loading
         viewModelScope.launch {
-            _loanConditions.value = getLoanConditionsUseCase.execute()
+            val conditions = getLoanConditionsUseCase.execute()
+            _loanConditions.value = conditions
+            _uiState.value = ApplyLoanViewModelUiState.Success(conditions)
         }
     }
 
@@ -63,4 +70,9 @@ class ApplyLoanViewModel @Inject constructor(
     fun validData(firstName: String, lastName: String, phone: String, sum: String): Boolean {
         return firstName.isNotEmpty() && lastName.isNotEmpty() && phone.isNotEmpty() && sum.isNotEmpty()
     }
+}
+
+sealed interface ApplyLoanViewModelUiState {
+    object Loading : ApplyLoanViewModelUiState
+    data class Success(val loanConditions: LoanConditionsEntity) : ApplyLoanViewModelUiState
 }

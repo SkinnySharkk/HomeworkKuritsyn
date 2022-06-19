@@ -45,23 +45,13 @@
         tools:text="@tools:sample/last_names" />
 
     <TextView
-        android:id="@+id/TitleConditions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/apply_conditions_title"
-        app:layout_constraintEnd_toStartOf="@id/END_MARGIN"
-        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/loanFirstNameTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/first_name_title"
         app:layout_constraintStart_toStartOf="@id/START_MARGIN"
-        app:layout_constraintTop_toBottomOf="@id/TitleConditions" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/loanFirstNameValue"
@@ -70,7 +60,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
-        app:layout_constraintTop_toBottomOf="@id/TitleConditions"
+        app:layout_constraintTop_toTopOf="parent"
         tools:text="@tools:sample/first_names" />
 
     <TextView
@@ -221,7 +211,7 @@ loanPeriodTitle, loanStateTitle, loanSumTitle"
         android:layout_height="wrap_content"
         app:constraint_referenced_ids="loanDataTitle,
         loanPhoneValue,loanLastNameTitle,loanLastNameValue,
-        TitleConditions,loanFirstNameTitle,loanFirstNameValue,
+        loanFirstNameTitle,loanFirstNameValue,
         loanPercentTitle,loanPeriodTitle,loanPhoneTitle,
         loanSumTitle,loanStateTitle,loanDataValue,
         loanPercentValue,loanPeriodValue,loanSumValue,
