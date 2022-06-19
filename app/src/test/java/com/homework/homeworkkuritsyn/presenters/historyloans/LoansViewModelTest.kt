@@ -88,7 +88,9 @@ class LoansViewModelTest {
         whenever(useCase.execute()).thenReturn(loans)
 
         val loansViewModel = LoansViewModel(useCase)
-        val actual = loansViewModel.loans.value
+
+        val actual =
+            (loansViewModel.uiState.value as LoansViewModelUiState.Success).loans
 
         assertEquals(expected, actual)
     }
@@ -101,7 +103,8 @@ class LoansViewModelTest {
 
         val loansViewModel = LoansViewModel(useCase)
         loansViewModel.updateLoans()
-        val actual = loansViewModel.loans.value
+        val actual =
+            (loansViewModel.uiState.value as LoansViewModelUiState.Success).loans
 
         assertEquals(expected, actual)
     }

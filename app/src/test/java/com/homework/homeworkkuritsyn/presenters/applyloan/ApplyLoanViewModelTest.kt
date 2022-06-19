@@ -90,7 +90,9 @@ class ApplyLoanViewModelTest {
             getLoanConditionsUseCase = getLoanConditionsUseCase
         )
 
-        val actual = applyLoanViewModel.loanConditions.value
+        val actual =
+            (applyLoanViewModel.uiState.value as ApplyLoanViewModelUiState.Success).loanConditions
+
 
         assertEquals(expectedConditions, actual)
     }

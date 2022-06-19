@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
 import com.homework.homeworkkuritsyn.domain.historyloans.GetLoanUseCase
+import com.homework.homeworkkuritsyn.presenters.applyloan.ApplyLoanViewModelUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -62,7 +63,8 @@ class LoanViewModelTest {
 
         val loanViewModel = LoanViewModel(useCase)
         loanViewModel.getLoan(1)
-        val actual = loanViewModel.loan.value
+        val actual =
+            (loanViewModel.uiState.value as LoanVieModelUiState.Success).loan
 
         assertEquals(expected, actual)
     }
