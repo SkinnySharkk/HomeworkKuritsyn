@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanResult
 import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanUseCase
 import com.homework.homeworkkuritsyn.domain.applyloan.GetLoanConditionsUseCase
+import com.homework.homeworkkuritsyn.domain.applyloan.LoanConditionsResult
 import com.homework.homeworkkuritsyn.domain.entity.LoanConditionsEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanRequestEntity
@@ -31,9 +33,15 @@ class ApplyLoanViewModel @Inject constructor(
     init {
         _uiState.value = ApplyLoanViewModelUiState.Loading
         viewModelScope.launch {
-            val conditions = getLoanConditionsUseCase.execute()
-            _loanConditions.value = conditions
-            _uiState.value = ApplyLoanViewModelUiState.Success(conditions)
+            when(val result = getLoanConditionsUseCase.execute()) {
+               is LoanConditionsResult.Success -> {
+                   _loanConditions.value = result.conditions
+                   _uiState.value = ApplyLoanViewModelUiState.SuccessConditions(result.conditions)
+               }
+               is LoanConditionsResult.Error -> {
+                   _uiState.value = ApplyLoanViewModelUiState.Error(result.response)
+               }
+           }
         }
     }
 
@@ -63,7 +71,14 @@ class ApplyLoanViewModel @Inject constructor(
                 firstName = firstName,
                 lastName = lastName
             )
-            _loanEntity.value = applyLoanUseCase.execute(loan)
+            when(val result = applyLoanUseCase.execute(loan)) {
+                is ApplyLoanResult.Success -> {
+                    _uiState.value = ApplyLoanState.SuccessApply
+                }
+                is ApplyLoanResult.Error -> {
+                    _uiState.value = ApplyLoanViewModelUiState.Error(result.response)
+                }
+            }
         }
     }
 
@@ -74,5 +89,9 @@ class ApplyLoanViewModel @Inject constructor(
 
 sealed interface ApplyLoanViewModelUiState {
     object Loading : ApplyLoanViewModelUiState
-    data class Success(val loanConditions: LoanConditionsEntity) : ApplyLoanViewModelUiState
+    data class SuccessConditions(val loanConditions: LoanConditionsEntity) : ApplyLoanViewModelUiState
+    data class Error(val response: String) : ApplyLoanViewModelUiState
+}
+sealed interface ApplyLoanState: ApplyLoanViewModelUiState {
+    object SuccessApply : ApplyLoanViewModelUiState
 }

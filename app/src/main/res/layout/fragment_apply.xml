@@ -226,5 +226,14 @@ loanLastNameTitle, loanDataTitle"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/errorTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+            app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+            app:layout_constraintTop_toTopOf="@+id/TitleConditions" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>

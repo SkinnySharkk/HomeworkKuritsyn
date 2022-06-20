@@ -3,27 +3,49 @@ package com.homework.homeworkkuritsyn.data.applyloan
 import com.homework.homeworkkuritsyn.data.converters.*
 import com.homework.homeworkkuritsyn.data.network.NetworkShiftDataStore
 import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanRepository
+import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanResult
+import com.homework.homeworkkuritsyn.domain.applyloan.LoanConditionsResult
 import com.homework.homeworkkuritsyn.domain.entity.LoanConditionsEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanRequestEntity
+import com.homework.homeworkkuritsyn.domain.historyloans.LoanHistoryResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
+import java.net.UnknownHostException
 import javax.inject.Inject
 
 class ApplyLoanRepositoryImpl @Inject constructor(
     private val networkShiftDataStore: NetworkShiftDataStore
 ) : ApplyLoanRepository {
-    override suspend fun getCondition(): LoanConditionsEntity =
+    override suspend fun getCondition(): LoanConditionsResult =
         withContext(Dispatchers.IO) {
-            LoanConditionsConverter(networkShiftDataStore.getLoanConditions()).asEntity()
+            try {
+                val condition = LoanConditionsConverter(networkShiftDataStore.getLoanConditions()).asEntity()
+                LoanConditionsResult.Success(condition)
+            } catch (e: UnknownHostException) {
+                Timber.v(e.localizedMessage)
+                LoanConditionsResult.Error("Не получилось получить данные, проверьте интренет соединение")
+            } catch (e: Exception) {
+                Timber.v(e.localizedMessage)
+                LoanConditionsResult.Error("Неизвестная ошибка")
+            }
         }
 
-    override suspend fun applyLoan(loanRequestEntity: LoanRequestEntity): LoanEntity =
+    override suspend fun applyLoan(loanRequestEntity: LoanRequestEntity): ApplyLoanResult =
         withContext(Dispatchers.IO) {
-            val loanRequestModel =
-                LoanRequestEntityConverterToLoanRequest(loanRequestEntity).asModel()
-            val loanModel = networkShiftDataStore.applyLoan(loanRequestModel)
-            LoanListConverterToLoanEntityList(listOf(loanModel)).asEntities().first()
+            try {
+                val loanRequestModel =
+                    LoanRequestEntityConverterToLoanRequest(loanRequestEntity).asModel()
+                networkShiftDataStore.applyLoan(loanRequestModel)
+                ApplyLoanResult.Success
+            }  catch (e: UnknownHostException) {
+                Timber.v(e.localizedMessage)
+                ApplyLoanResult.Error("Не удалось оформить займ, проверьте интернет соединение")
+            } catch (e: Exception) {
+                Timber.v(e.localizedMessage)
+                ApplyLoanResult.Error("Неизвестная ошибка")
+            }
         }
 
 }

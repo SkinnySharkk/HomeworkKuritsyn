@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentApplyBinding
+import com.homework.homeworkkuritsyn.presenters.applyloan.ApplyLoanState
 import com.homework.homeworkkuritsyn.presenters.applyloan.ApplyLoanViewModel
 import com.homework.homeworkkuritsyn.presenters.applyloan.ApplyLoanViewModelUiState
 import java.math.BigInteger
@@ -57,8 +58,9 @@ class ApplyLoanFragment : Fragment() {
                 is ApplyLoanViewModelUiState.Loading -> {
                     binding.applyGroup.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
+                    binding.errorTextView.visibility = View.GONE
                 }
-                is ApplyLoanViewModelUiState.Success -> {
+                is ApplyLoanViewModelUiState.SuccessConditions -> {
                     with(binding) {
                         applyGroup.visibility = View.VISIBLE
                         progressBar.visibility = View.GONE
@@ -68,18 +70,30 @@ class ApplyLoanFragment : Fragment() {
                             String.format(Locale.getDefault(), state.loanConditions.percent.toString())
                         periodConditionsValue.text = state.loanConditions.period.toString()
                         viewModel.setSum(START_PERCENT_SUM)
+                        errorTextView.visibility = View.GONE
                     }
+                }
+                is ApplyLoanState.SuccessApply -> {
+                    Toast.makeText(context, getString(R.string.apply_success), Toast.LENGTH_LONG)
+                        .show()
+                    findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
+                }
+                is ApplyLoanViewModelUiState.Error -> {
+                    binding.applyGroup.visibility = View.GONE
+                    binding.progressBar.visibility = View.GONE
+                    binding.errorTextView.text = state.response
+                    binding.errorTextView.visibility = View.VISIBLE
                 }
             }
         }
 
-        viewModel.loanEntity.observe(viewLifecycleOwner) { loan ->
-            if (loan != null) {
-                Toast.makeText(context, getString(R.string.apply_success), Toast.LENGTH_LONG)
-                    .show()
-                findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
-            }
-        }
+//        viewModel.loanEntity.observe(viewLifecycleOwner) { loan ->
+//            if (loan != null) {
+//                Toast.makeText(context, getString(R.string.apply_success), Toast.LENGTH_LONG)
+//                    .show()
+//                findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
+//            }
+//        }
         binding.seekBarSum.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {

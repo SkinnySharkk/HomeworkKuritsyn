@@ -18,8 +18,7 @@ import java.math.BigInteger
 @ExperimentalCoroutinesApi
 class ApplyLoanUseCaseImplTest {
     private lateinit var loanRequest: LoanRequestEntity
-    private lateinit var expected: LoanEntity
-    private lateinit var loan: LoanEntity
+    private lateinit var expected: ApplyLoanResult.Success
 
     @get:Rule
     var instantExecutorRule = InstantTaskExecutorRule()
@@ -34,36 +33,15 @@ class ApplyLoanUseCaseImplTest {
             period = BigInteger.valueOf(48),
             phoneNumber = "89257419586"
         )
-        expected = LoanEntity(
-            amount = BigDecimal.TEN,
-            percent = BigDecimal.TEN,
-            period = 48,
-            date = "01.05.21",
-            state = EnumStateEntity.REJECTED,
-            phoneNumber = "89257419586",
-            lastName = "Mouse",
-            firstName = "Mickey",
-            id = 8
-        )
-        loan = LoanEntity(
-            amount = BigDecimal.TEN,
-            percent = BigDecimal.TEN,
-            period = 48,
-            date = "01.05.21",
-            state = EnumStateEntity.REJECTED,
-            phoneNumber = "89257419586",
-            lastName = "Mouse",
-            firstName = "Mickey",
-            id = 8
-        )
+        expected = ApplyLoanResult.Success
     }
 
     @Test
     fun `WHEN execute EXPECTED LoanConditions`() = runTest {
         val useCase: ApplyLoanUseCase = mock()
-        whenever(useCase.execute(loanRequest)).thenReturn(loan)
+        whenever(useCase.execute(loanRequest)).thenReturn(ApplyLoanResult.Success)
 
-        val actual = useCase.execute(loanRequest)
+        val actual = (useCase.execute(loanRequest) as ApplyLoanResult.Success)
 
         assertEquals(expected, actual)
     }

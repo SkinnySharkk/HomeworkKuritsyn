@@ -1,8 +1,10 @@
 package com.homework.homeworkkuritsyn.presenters.applyloan
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanResult
 import com.homework.homeworkkuritsyn.domain.applyloan.ApplyLoanUseCase
 import com.homework.homeworkkuritsyn.domain.applyloan.GetLoanConditionsUseCase
+import com.homework.homeworkkuritsyn.domain.applyloan.LoanConditionsResult
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanConditionsEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
@@ -81,9 +83,13 @@ class ApplyLoanViewModelTest {
     @Test
     fun `WHEN ApplyLoanViewModelTest create loanConditions not null`() = runTest {
         val applyLoanUseCase: ApplyLoanUseCase = mock()
-        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(loan)
+        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(ApplyLoanResult.Success)
         val getLoanConditionsUseCase: GetLoanConditionsUseCase = mock()
-        whenever(getLoanConditionsUseCase.execute()).thenReturn(expectedConditions)
+        whenever(getLoanConditionsUseCase.execute()).thenReturn(
+            LoanConditionsResult.Success(
+                expectedConditions
+            )
+        )
 
         val applyLoanViewModel = ApplyLoanViewModel(
             applyLoanUseCase = applyLoanUseCase,
@@ -91,7 +97,7 @@ class ApplyLoanViewModelTest {
         )
 
         val actual =
-            (applyLoanViewModel.uiState.value as ApplyLoanViewModelUiState.Success).loanConditions
+            (applyLoanViewModel.uiState.value as ApplyLoanViewModelUiState.SuccessConditions).loanConditions
 
 
         assertEquals(expectedConditions, actual)
@@ -100,9 +106,13 @@ class ApplyLoanViewModelTest {
     @Test
     fun `WHEN setSum(percentSum = 50) EXPECTED 500`() = runTest {
         val applyLoanUseCase: ApplyLoanUseCase = mock()
-        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(loan)
+        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(ApplyLoanResult.Success)
         val getLoanConditionsUseCase: GetLoanConditionsUseCase = mock()
-        whenever(getLoanConditionsUseCase.execute()).thenReturn(expectedConditions)
+        whenever(getLoanConditionsUseCase.execute()).thenReturn(
+            LoanConditionsResult.Success(
+                expectedConditions
+            )
+        )
 
         val applyLoanViewModel = ApplyLoanViewModel(
             applyLoanUseCase = applyLoanUseCase,
@@ -118,9 +128,13 @@ class ApplyLoanViewModelTest {
     @Test
     fun `WHEN getPercentOfAmount(500) EXPECTED 50`() = runTest {
         val applyLoanUseCase: ApplyLoanUseCase = mock()
-        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(loan)
+        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(ApplyLoanResult.Success)
         val getLoanConditionsUseCase: GetLoanConditionsUseCase = mock()
-        whenever(getLoanConditionsUseCase.execute()).thenReturn(expectedConditions)
+        whenever(getLoanConditionsUseCase.execute()).thenReturn(
+            LoanConditionsResult.Success(
+                expectedConditions
+            )
+        )
 
         val applyLoanViewModel = ApplyLoanViewModel(
             applyLoanUseCase = applyLoanUseCase,
@@ -135,9 +149,13 @@ class ApplyLoanViewModelTest {
     @Test
     fun `WHEN validData(Mickey, Mouse, 89789564217, 12000) EXPECTED true`() = runTest {
         val applyLoanUseCase: ApplyLoanUseCase = mock()
-        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(loan)
+        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(ApplyLoanResult.Success)
         val getLoanConditionsUseCase: GetLoanConditionsUseCase = mock()
-        whenever(getLoanConditionsUseCase.execute()).thenReturn(expectedConditions)
+        whenever(getLoanConditionsUseCase.execute()).thenReturn(
+            LoanConditionsResult.Success(
+                expectedConditions
+            )
+        )
 
         val applyLoanViewModel = ApplyLoanViewModel(
             applyLoanUseCase = applyLoanUseCase,
@@ -157,9 +175,13 @@ class ApplyLoanViewModelTest {
     @Test
     fun `WHEN validData(, Mouse, 89789564217, 12000) EXPECTED false`() = runTest {
         val applyLoanUseCase: ApplyLoanUseCase = mock()
-        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(loan)
+        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(ApplyLoanResult.Success)
         val getLoanConditionsUseCase: GetLoanConditionsUseCase = mock()
-        whenever(getLoanConditionsUseCase.execute()).thenReturn(expectedConditions)
+        whenever(getLoanConditionsUseCase.execute()).thenReturn(
+            LoanConditionsResult.Success(
+                expectedConditions
+            )
+        )
 
         val applyLoanViewModel = ApplyLoanViewModel(
             applyLoanUseCase = applyLoanUseCase,
@@ -177,11 +199,15 @@ class ApplyLoanViewModelTest {
     }
 
     @Test
-    fun `WHEN applyLoan EXPECTED loanEntity`() = runTest {
+    fun `WHEN applyLoan EXPECTED ApplyLoanState_SuccessApply`() = runTest {
         val applyLoanUseCase: ApplyLoanUseCase = mock()
-        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(loan)
+        whenever(applyLoanUseCase.execute(loanRequest)).thenReturn(ApplyLoanResult.Success)
         val getLoanConditionsUseCase: GetLoanConditionsUseCase = mock()
-        whenever(getLoanConditionsUseCase.execute()).thenReturn(expectedConditions)
+        whenever(getLoanConditionsUseCase.execute()).thenReturn(
+            LoanConditionsResult.Success(
+                expectedConditions
+            )
+        )
 
         val applyLoanViewModel = ApplyLoanViewModel(
             applyLoanUseCase = applyLoanUseCase,
@@ -194,8 +220,8 @@ class ApplyLoanViewModelTest {
             phone = "89257419586",
             sum = BigInteger.valueOf(1000)
         )
-        val actual = applyLoanViewModel.loanEntity.value
-
-        assertEquals(expectedLoan, actual)
+        val actual = applyLoanViewModel.uiState.value
+        val expected = ApplyLoanState.SuccessApply
+        assertEquals(expected, actual)
     }
 }

@@ -38,9 +38,9 @@ class GetLoanConditionsUseCaseImplTest {
     @Test
     fun `WHEN execute EXPECTED LoanConditions`() = runTest {
         val useCase: GetLoanConditionsUseCase = mock()
-        whenever(useCase.execute()).thenReturn(conditions)
+        whenever(useCase.execute()).thenReturn(LoanConditionsResult.Success(conditions))
 
-        val actual = useCase.execute()
+        val actual = (useCase.execute() as LoanConditionsResult.Success).conditions
 
         assertEquals(expected, actual)
     }
