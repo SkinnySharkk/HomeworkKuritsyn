@@ -55,12 +55,12 @@ class GetLoanUseCaseImplTest{
     }
 
     @Test
-    fun `WHEN LoansViewModel getLoan EXPECT LoanEntity with id 1`() = runTest {
+    fun `WHEN LoanViewModel getLoan EXPECT LoanEntity with id 1`() = runTest {
         val repository: LoansRepository = mock()
-        whenever(repository.getLoan(1)).thenReturn(loan)
+        whenever(repository.getLoan(1)).thenReturn(LoanHistoryResult.Success(loan))
 
         val useCase = GetLoanUseCaseImpl(repository)
-        val actual = useCase.execute(1)
+        val actual = (useCase.execute(1) as LoanHistoryResult.Success).loan
 
         assertEquals(expected, actual)
     }

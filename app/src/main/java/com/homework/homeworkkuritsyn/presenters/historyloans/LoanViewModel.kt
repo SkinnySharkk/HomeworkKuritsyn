@@ -24,7 +24,7 @@ class LoanViewModel @Inject constructor(
             Timber.v(result.toString())
             when (result) {
                 is LoanHistoryResult.Success -> {
-                    _uiState.value = LoanVieModelUiState.Success(result.loans)
+                    _uiState.value = LoanVieModelUiState.Success(result.loan)
                 }
                 is LoanHistoryResult.Error -> {
                     _uiState.value = LoanVieModelUiState.Error(result.response)

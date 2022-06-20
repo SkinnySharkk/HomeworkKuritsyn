@@ -88,11 +88,11 @@ class GetLoansUseCaseImplTest {
     @Test
     fun `WHEN execute EXPECTED List LoanEntity `() = runTest {
         val repository: LoansRepository = mock()
-        whenever(repository.getAllLoans()).thenReturn(loans)
+        whenever(repository.getAllLoans()).thenReturn(LoansHistoryResult.Success(loans))
 
         val useCase = GetLoansUseCaseImpl(repository)
 
-        val actual = useCase.execute()
+        val actual = (useCase.execute() as LoansHistoryResult.Success).loans
         val expected = expected
         assertEquals(expected, actual)
     }

@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
 import com.homework.homeworkkuritsyn.domain.historyloans.GetLoanUseCase
+import com.homework.homeworkkuritsyn.domain.historyloans.LoanHistoryResult
 import com.homework.homeworkkuritsyn.presenters.applyloan.ApplyLoanViewModelUiState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
@@ -59,7 +60,7 @@ class LoanViewModelTest {
     @Test
     fun `WHEN LoansViewModel getLoan EXPECT LoanEntity with id 1`() = runTest {
         val useCase: GetLoanUseCase = mock()
-        whenever(useCase.execute(1)).thenReturn(loan)
+        whenever(useCase.execute(1)).thenReturn(LoanHistoryResult.Success(loan))
 
         val loanViewModel = LoanViewModel(useCase)
         loanViewModel.getLoan(1)

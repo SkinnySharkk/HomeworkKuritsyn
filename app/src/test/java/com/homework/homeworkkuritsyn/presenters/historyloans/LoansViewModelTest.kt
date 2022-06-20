@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
 import com.homework.homeworkkuritsyn.domain.historyloans.GetLoansUseCase
+import com.homework.homeworkkuritsyn.domain.historyloans.LoansHistoryResult
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -85,7 +86,7 @@ class LoansViewModelTest {
     @Test
     fun `WHEN created LoansViewModel not null`() = runTest {
         val useCase: GetLoansUseCase = mock()
-        whenever(useCase.execute()).thenReturn(loans)
+        whenever(useCase.execute()).thenReturn(LoansHistoryResult.Success(loans))
 
         val loansViewModel = LoansViewModel(useCase)
 
@@ -99,7 +100,7 @@ class LoansViewModelTest {
     @Test
     fun `WHEN LoansViewModel updateLoans EXPECT not null`() = runTest {
         val useCase: GetLoansUseCase = mock()
-        whenever(useCase.execute()).thenReturn(loans)
+        whenever(useCase.execute()).thenReturn(LoansHistoryResult.Success(loans))
 
         val loansViewModel = LoansViewModel(useCase)
         loansViewModel.updateLoans()
