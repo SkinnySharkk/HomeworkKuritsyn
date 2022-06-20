@@ -43,6 +43,7 @@ class LoanFragment : Fragment() {
             when (state) {
                 is LoanVieModelUiState.Loading -> {
                     binding.loanGroup.visibility = View.GONE
+                    binding.errorTextView.visibility = View.GONE
                     binding.loanProgressBar.visibility = View.VISIBLE
                 }
                 is LoanVieModelUiState.Success -> {
@@ -69,7 +70,14 @@ class LoanFragment : Fragment() {
                                 "Одобренный"
                             }
                         }
+                        errorTextView.visibility = View.GONE
                     }
+                }
+                is LoanVieModelUiState.Error -> {
+                    binding.loanGroup.visibility = View.GONE
+                    binding.loanProgressBar.visibility = View.GONE
+                    binding.errorTextView.text = state.response
+                    binding.errorTextView.visibility = View.VISIBLE
                 }
             }
         }

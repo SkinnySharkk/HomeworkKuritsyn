@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
 import com.homework.homeworkkuritsyn.domain.historyloans.GetLoanUseCase
+import com.homework.homeworkkuritsyn.domain.historyloans.LoanHistoryResult
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 class LoanViewModel @Inject constructor(
@@ -18,7 +20,16 @@ class LoanViewModel @Inject constructor(
     fun getLoan(id: Int) {
         _uiState.value = LoanVieModelUiState.Loading
         viewModelScope.launch {
-            _uiState.value = LoanVieModelUiState.Success(getLoanUseCase.execute(id))
+            val result = getLoanUseCase.execute(id)
+            Timber.v(result.toString())
+            when (result) {
+                is LoanHistoryResult.Success -> {
+                    _uiState.value = LoanVieModelUiState.Success(result.loans)
+                }
+                is LoanHistoryResult.Error -> {
+                    _uiState.value = LoanVieModelUiState.Error(result.response)
+                }
+            }
         }
     }
 }
@@ -26,4 +37,5 @@ class LoanViewModel @Inject constructor(
 sealed interface LoanVieModelUiState {
     object Loading : LoanVieModelUiState
     data class Success(val loan: LoanEntity) : LoanVieModelUiState
+    data class Error(val response: String) : LoanVieModelUiState
 }

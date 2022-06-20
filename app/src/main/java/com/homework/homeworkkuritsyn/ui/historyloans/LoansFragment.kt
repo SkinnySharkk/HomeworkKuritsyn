@@ -74,6 +74,12 @@ class LoansFragment : Fragment() {
                         adapter = loanAdapter
                     }
                 }
+                is LoansViewModelUiState.Error -> {
+                    binding.loanList.visibility = View.GONE
+                    binding.loansProgressBar.visibility = View.GONE
+                    binding.emptyListTxt.text = state.response
+                    binding.emptyListTxt.visibility = View.VISIBLE
+                }
             }
         }
 
