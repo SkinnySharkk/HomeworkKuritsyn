@@ -3,19 +3,24 @@ package com.homework.homeworkkuritsyn.data.historyloans
 import com.homework.homeworkkuritsyn.data.converters.LoanListConverterToLoanEntityList
 import com.homework.homeworkkuritsyn.data.converters.asEntities
 import com.homework.homeworkkuritsyn.data.network.NetworkShiftDataStore
+import com.homework.homeworkkuritsyn.di.IoDispatcher
 import com.homework.homeworkkuritsyn.domain.historyloans.LoanHistoryResult
 import com.homework.homeworkkuritsyn.domain.historyloans.LoansHistoryResult
 import com.homework.homeworkkuritsyn.domain.historyloans.LoansRepository
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import timber.log.Timber
 import java.net.UnknownHostException
 import javax.inject.Inject
 
 class LoansRepositoryImpl @Inject constructor(
-    private val networkShiftDataStore: NetworkShiftDataStore
+    private val networkShiftDataStore: NetworkShiftDataStore,
+    @IoDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) :
     LoansRepository {
-    override suspend fun getAllLoans(): LoansHistoryResult {
-        return try {
+    override suspend fun getAllLoans(): LoansHistoryResult = withContext(dispatcher) {
+        try {
             val loans =
                 LoanListConverterToLoanEntityList(networkShiftDataStore.getAllLoans()).asEntities()
             LoansHistoryResult.Success(loans)
@@ -28,8 +33,9 @@ class LoansRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getLoan(id: Int): LoanHistoryResult {
-        return try {
+
+    override suspend fun getLoan(id: Int): LoanHistoryResult = withContext(dispatcher) {
+        try {
             val loan =
                 LoanListConverterToLoanEntityList(listOf(networkShiftDataStore.getLoan(id = id))).asEntities()[0]
             LoanHistoryResult.Success(loan)
