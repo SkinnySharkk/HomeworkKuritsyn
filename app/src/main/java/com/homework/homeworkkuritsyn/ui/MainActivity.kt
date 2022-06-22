@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private companion object {
         const val ID_DESTINATION = "ID"
     }
+
     private lateinit var binding: ActivityMainBinding
 
     @Inject
@@ -37,8 +38,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private var appBarConfiguration by Delegates.notNull<AppBarConfiguration>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        this.appComponent.inject(this)
-        applicationContext.appComponent.inject(this)
+        applicationContext.appComponent.mainComponent().create().inject(this)
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
