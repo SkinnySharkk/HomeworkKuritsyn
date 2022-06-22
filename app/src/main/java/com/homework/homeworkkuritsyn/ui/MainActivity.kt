@@ -23,6 +23,9 @@ import kotlin.properties.Delegates
 
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+    private companion object {
+        const val ID_DESTINATION = "ID"
+    }
     private lateinit var binding: ActivityMainBinding
 
     @Inject
@@ -55,7 +58,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             graph.setStartDestination(R.id.loansFragment)
         }
         if (savedInstanceState != null) {
-            graph.setStartDestination(savedInstanceState.getInt("ID"))
+            graph.setStartDestination(savedInstanceState.getInt(ID_DESTINATION))
         }
         navController.setGraph(graph, intent.extras)
 
@@ -109,7 +112,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onSaveInstanceState(outState: Bundle) {
         val currentDestinationId = findNavController(R.id.navHostFragment).currentDestination?.id
         if (currentDestinationId != null) {
-            outState.putInt("ID", currentDestinationId)
+            outState.putInt(ID_DESTINATION, currentDestinationId)
         }
         super.onSaveInstanceState(outState)
     }
