@@ -2,7 +2,7 @@ package com.homework.homeworkkuritsyn.data.sharedpreferences
 
 import javax.inject.Inject
 
-class SystemLocalSharedPreferencesDataStore @Inject constructor(
+class SystemLocalSharedPreferencesDataSource @Inject constructor(
     private val sharedPreferencesManager: SharedPreferencesManager
 ) {
     fun putToken(token: String) {

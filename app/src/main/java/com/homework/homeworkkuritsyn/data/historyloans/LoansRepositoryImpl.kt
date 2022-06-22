@@ -2,7 +2,7 @@ package com.homework.homeworkkuritsyn.data.historyloans
 
 import com.homework.homeworkkuritsyn.data.converters.LoanListConverterToLoanEntityList
 import com.homework.homeworkkuritsyn.data.converters.asEntities
-import com.homework.homeworkkuritsyn.data.network.NetworkShiftDataStore
+import com.homework.homeworkkuritsyn.data.network.NetworkShiftDataSource
 import com.homework.homeworkkuritsyn.di.IoDispatcher
 import com.homework.homeworkkuritsyn.domain.historyloans.LoanHistoryResult
 import com.homework.homeworkkuritsyn.domain.historyloans.LoansHistoryResult
@@ -15,14 +15,14 @@ import java.net.UnknownHostException
 import javax.inject.Inject
 
 class LoansRepositoryImpl @Inject constructor(
-    private val networkShiftDataStore: NetworkShiftDataStore,
+    private val networkShiftDataSource: NetworkShiftDataSource,
     @IoDispatcher private val dispatcher: CoroutineDispatcher = Dispatchers.IO
 ) :
     LoansRepository {
     override suspend fun getAllLoans(): LoansHistoryResult = withContext(dispatcher) {
         try {
             val loans =
-                LoanListConverterToLoanEntityList(networkShiftDataStore.getAllLoans()).asEntities()
+                LoanListConverterToLoanEntityList(networkShiftDataSource.getAllLoans()).asEntities()
             LoansHistoryResult.Success(loans)
         } catch (e: UnknownHostException) {
             Timber.v(e.localizedMessage)
@@ -37,7 +37,7 @@ class LoansRepositoryImpl @Inject constructor(
     override suspend fun getLoan(id: Int): LoanHistoryResult = withContext(dispatcher) {
         try {
             val loan =
-                LoanListConverterToLoanEntityList(listOf(networkShiftDataStore.getLoan(id = id))).asEntities()[0]
+                LoanListConverterToLoanEntityList(listOf(networkShiftDataSource.getLoan(id = id))).asEntities()[0]
             LoanHistoryResult.Success(loan)
         } catch (e: UnknownHostException) {
             Timber.v(e.localizedMessage)

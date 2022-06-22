@@ -32,9 +32,6 @@ class LoanAdapter(
         override fun areContentsTheSame(oldItem: LoanEntity, newItem: LoanEntity) =
             oldItem == newItem
     }
-
-
-
     class LoanViewHolder(
         private val binding: ItemLoanBinding,
     ) :

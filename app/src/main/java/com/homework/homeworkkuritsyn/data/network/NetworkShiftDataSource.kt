@@ -6,7 +6,7 @@ import com.homework.homeworkkuritsyn.data.network.models.LoanConditions
 import com.homework.homeworkkuritsyn.data.network.models.LoanRequest
 import javax.inject.Inject
 
-class NetworkShiftDataStore @Inject constructor(
+class NetworkShiftDataSource @Inject constructor(
     private val shiftService: ShiftService
 ) {
     suspend fun signIn(auth: Auth): String {

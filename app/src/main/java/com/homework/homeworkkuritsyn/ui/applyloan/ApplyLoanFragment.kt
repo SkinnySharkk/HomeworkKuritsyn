@@ -86,14 +86,6 @@ class ApplyLoanFragment : Fragment() {
                 }
             }
         }
-
-//        viewModel.loanEntity.observe(viewLifecycleOwner) { loan ->
-//            if (loan != null) {
-//                Toast.makeText(context, getString(R.string.apply_success), Toast.LENGTH_LONG)
-//                    .show()
-//                findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
-//            }
-//        }
         binding.seekBarSum.setOnSeekBarChangeListener(object : OnSeekBarChangeListener {
             override fun onProgressChanged(seekBar: SeekBar?, progress: Int, fromUser: Boolean) {
                 if (fromUser) {
