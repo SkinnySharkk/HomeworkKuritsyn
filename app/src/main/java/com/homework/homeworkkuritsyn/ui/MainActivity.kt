@@ -54,7 +54,9 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         if (viewModel.checkIsFirstStart()) {
             graph.setStartDestination(R.id.loansFragment)
         }
-
+        if (savedInstanceState != null) {
+            graph.setStartDestination(savedInstanceState.getInt("ID"))
+        }
         navController.setGraph(graph, intent.extras)
 
         appBarConfiguration = AppBarConfiguration(
@@ -102,5 +104,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         binding.drawerLayout.closeDrawer(GravityCompat.START)
         return false
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        val currentDestinationId = findNavController(R.id.navHostFragment).currentDestination?.id
+        if (currentDestinationId != null) {
+            outState.putInt("ID", currentDestinationId)
+        }
+        super.onSaveInstanceState(outState)
     }
 }
