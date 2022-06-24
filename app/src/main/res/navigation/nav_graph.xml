@@ -27,7 +27,10 @@
         tools:layout="@layout/fragment_register" >
         <action
             android:id="@+id/action_registerFragment_to_loansFragment"
-            app:destination="@id/loansFragment" />
+            app:destination="@id/loansFragment"
+            app:popUpTo="@id/loginFragment"
+            app:popUpToInclusive="true"
+            />
     </fragment>
     <fragment
         android:id="@+id/loansFragment"
