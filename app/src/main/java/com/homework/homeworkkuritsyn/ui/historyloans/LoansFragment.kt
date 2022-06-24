@@ -28,7 +28,6 @@ class LoansFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentLoansBinding.inflate(inflater, container, false)
-        (activity as MainActivity).unLockDrawer()
         return binding.root
     }
 

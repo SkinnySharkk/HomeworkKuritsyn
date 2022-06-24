@@ -22,7 +22,7 @@ import javax.inject.Inject
 import kotlin.properties.Delegates
 
 
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
+class MainActivity : AppCompatActivity() {
     private companion object {
         const val ID_DESTINATION = "ID"
     }
@@ -44,8 +44,6 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         setContentView(binding.root)
 
         setSupportActionBar(binding.toolBar)
-        val drawerLayout: DrawerLayout = binding.drawerLayout
-        val navView: NavigationView = binding.navigationView
 
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
@@ -65,48 +63,15 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.loansFragment, R.id.applyFragment, R.id.manualFragment
-            ), drawerLayout
+            )
         )
 
-        navView.setupWithNavController(navController)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        navView.setNavigationItemSelectedListener(this)
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.navHostFragment)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
-    }
-
-    fun lockDrawer() {
-        binding.drawerLayout.close()
-        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
-        supportActionBar?.setDisplayHomeAsUpEnabled(false)
-    }
-
-    fun unLockDrawer() {
-        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNDEFINED)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.logoutButton -> {
-                viewModel.deleteUserData()
-                findNavController(R.id.navHostFragment).navigate(R.id.startFragment)
-            }
-            R.id.loansFragment -> {
-                findNavController(R.id.navHostFragment).navigate(R.id.loansFragment)
-            }
-            R.id.applyFragment -> {
-                findNavController(R.id.navHostFragment).navigate(R.id.applyFragment)
-            }
-            R.id.manualFragment -> {
-                findNavController(R.id.navHostFragment).navigate(R.id.manualFragment)
-            }
-        }
-        binding.drawerLayout.closeDrawer(GravityCompat.START)
-        return false
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

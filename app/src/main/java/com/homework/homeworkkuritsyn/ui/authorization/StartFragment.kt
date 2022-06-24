@@ -18,7 +18,6 @@ class StartFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentStartBinding.inflate(inflater, container, false)
-        (activity as MainActivity).lockDrawer()
         return binding.root
     }
 
