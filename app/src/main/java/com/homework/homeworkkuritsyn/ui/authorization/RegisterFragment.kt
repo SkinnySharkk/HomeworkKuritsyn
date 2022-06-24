@@ -72,7 +72,7 @@ class RegisterFragment : Fragment() {
                     binding.registerProgressBar.visibility = View.GONE
                     Toast.makeText(context, getString(R.string.success_register), Toast.LENGTH_LONG)
                         .show()
-//                    findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoginFragment())
+                    findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoansFragment())
                 }
                 is LoginUiState.Loading -> {
                     binding.registerProgressBar.visibility = View.VISIBLE

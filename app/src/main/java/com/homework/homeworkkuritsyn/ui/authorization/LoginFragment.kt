@@ -63,8 +63,8 @@ class LoginFragment : Fragment() {
                 is LoginUiState.Success -> {
                     binding.loginProgressBar.visibility = View.GONE
 //                    findNavController().navigate(R.id.loansFragment)
-//                    findNavController().popBackStack()
                     findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToLoansFragment())
+//                    findNavController().popBackStack()
                 }
                 is LoginUiState.Loading -> {
                     binding.loginProgressBar.visibility = View.VISIBLE
@@ -77,6 +77,9 @@ class LoginFragment : Fragment() {
                     binding.loginTextFieldUserPassword.error = loginUiState.reason
                 }
             }
+        }
+        binding.toRegisterButton.setOnClickListener {
+            findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
         binding.loginTextFieldUserName.editText?.doOnTextChanged { inputText, _, _, _ ->
             if (inputText.isNullOrEmpty()) {

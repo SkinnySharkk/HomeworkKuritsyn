@@ -15,7 +15,7 @@ import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.ActivityMainBinding
 import com.homework.homeworkkuritsyn.presenters.MainViewModel
-import timber.log.Timber
+import com.homework.homeworkkuritsyn.ui.authorization.LoginFragmentDirections
 import javax.inject.Inject
 import kotlin.properties.Delegates
 
@@ -43,19 +43,24 @@ class MainActivity : AppCompatActivity() {
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
-        if (!viewModel.isAuthorized()) {
-            navController.navigate(R.id.loginFragment)
+        if (viewModel.isAuthorized()) {
+            navController.navigate(LoginFragmentDirections.actionLoginFragmentToLoansFragment())
         }
-        navController.addOnDestinationChangedListener{_, destination, _ ->
-            binding.bottomNavigation.visibility = if (destination.id == R.id.loginFragment) {
-                View.GONE
-            } else {
-                View.VISIBLE
-            }
+        navController.addOnDestinationChangedListener { _, destination, _ ->
+            binding.bottomNavigation.visibility =
+                if (destination.id == R.id.loginFragment || destination.id == R.id.registerFragment) {
+                    View.GONE
+                } else {
+                    View.VISIBLE
+                }
         }
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.loginFragment,R.id.loansFragment, R.id.applyFragment, R.id.manualFragment, R.id.profileFragment
+                R.id.loginFragment,
+                R.id.loansFragment,
+                R.id.applyFragment,
+                R.id.manualFragment,
+                R.id.profileFragment
             )
         )
 
