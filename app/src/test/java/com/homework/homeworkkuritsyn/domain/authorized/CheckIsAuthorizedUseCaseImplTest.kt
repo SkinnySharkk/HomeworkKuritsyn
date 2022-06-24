@@ -5,13 +5,13 @@ import org.junit.Test
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.whenever
 
-class CheckFirstStartUseCaseImplTest {
+class CheckIsAuthorizedUseCaseImplTest {
     @Test
     fun `WHEN execute WHEN is authorized EXPECTED true`() {
         val repository: AuthorizedRepository = mock()
         whenever(repository.isAuthorized()).thenReturn(true)
 
-        val useCase = CheckFirstStartUseCaseImpl(repository)
+        val useCase = CheckIsAuthorizedUseCaseImpl(repository)
 
         val actual = useCase.execute()
         val expected = true
@@ -22,7 +22,7 @@ class CheckFirstStartUseCaseImplTest {
         val repository: AuthorizedRepository = mock()
         whenever(repository.isAuthorized()).thenReturn(false)
 
-        val useCase = CheckFirstStartUseCaseImpl(repository)
+        val useCase = CheckIsAuthorizedUseCaseImpl(repository)
 
         val actual = useCase.execute()
         val expected = false

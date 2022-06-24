@@ -4,7 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.homework.homeworkkuritsyn.domain.DeleteUserDataUseCase
 import com.homework.homeworkkuritsyn.domain.DeleteUserDataUseCaseImpl
 import com.homework.homeworkkuritsyn.domain.authorized.AuthorizedRepository
-import com.homework.homeworkkuritsyn.domain.authorized.CheckFirstStartUseCase
+import com.homework.homeworkkuritsyn.domain.authorized.CheckIsAuthorizedUseCase
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
@@ -29,29 +29,29 @@ class MainViewModelTest {
 
     @Test
     fun `WHEN checkIsFirstStart is authorized true`() {
-        val useCaseCheck: CheckFirstStartUseCase = mock()
+        val useCaseCheck: CheckIsAuthorizedUseCase = mock()
         val useCaseDelete: DeleteUserDataUseCase = mock()
         whenever(useCaseCheck.execute()).thenReturn(true)
 
         val mainViewModel = MainViewModel(useCaseCheck, useCaseDelete)
-        val actual = mainViewModel.checkIsFirstStart()
+        val actual = mainViewModel.isAuthorized()
         assertTrue(actual)
     }
 
     @Test
     fun `WHEN checkIsFirstStart is not authorized false`() {
-        val useCaseCheck: CheckFirstStartUseCase = mock()
+        val useCaseCheck: CheckIsAuthorizedUseCase = mock()
         val useCaseDelete: DeleteUserDataUseCase = mock()
         whenever(useCaseCheck.execute()).thenReturn(false)
 
         val mainViewModel = MainViewModel(useCaseCheck, useCaseDelete)
-        val actual = mainViewModel.checkIsFirstStart()
+        val actual = mainViewModel.isAuthorized()
         assertFalse(actual)
     }
 
     @Test
     fun `WHEN deleteUserData EXPECTED token and flagAuthorized is clear`() = runTest {
-        val useCaseCheck: CheckFirstStartUseCase = mock()
+        val useCaseCheck: CheckIsAuthorizedUseCase = mock()
         val repository: AuthorizedRepository = mock()
 
         repository.setAuthorized()

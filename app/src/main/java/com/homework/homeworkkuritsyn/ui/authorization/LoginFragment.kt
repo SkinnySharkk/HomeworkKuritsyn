@@ -62,6 +62,8 @@ class LoginFragment : Fragment() {
                 }
                 is LoginUiState.Success -> {
                     binding.loginProgressBar.visibility = View.GONE
+//                    findNavController().navigate(R.id.loansFragment)
+//                    findNavController().popBackStack()
                     findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToLoansFragment())
                 }
                 is LoginUiState.Loading -> {

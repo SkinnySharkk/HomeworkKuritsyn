@@ -32,7 +32,7 @@
     <string name="fragment_start">Займы онлайн</string>
     <string name="fragment_login">Авторизация</string>
     <string name="fragment_register">Регистрация</string>
-    <string name="fragment_apply">Оформить займ</string>
+    <string name="fragment_apply">Оформление</string>
     <string name="fragment_manual">Инструкция</string>
     <string name="fragment_loans">История займов</string>
     <string name="fragment_loan">Займ</string>
@@ -47,7 +47,7 @@
     <string name="first_name">Имя</string>
     <string name="apply_phone">Номер телефона</string>
     <string name="sum">Сумма</string>
-    <string name="apply">Оформить</string>
+    <string name="apply">Оформить займ</string>
     <string name="cancel">Отказаться</string>
     <string name="first_name_title">Имя:</string>
     <string name="last_name_title">Фамилия:</string>
@@ -65,13 +65,14 @@
     <string name="update_history">Обновить список</string>
     <string name="apply_help">Помощь</string>
     <string name="applyHelpInfo">Заполните ваши личные данные в соответствующие поля</string>
-    <string name="history_loans">История займов</string>
-    <string name="apply_loan">Оформить займ</string>
-    <string name="how_get">Как получить?</string>
+    <string name="history_loans">История</string>
+    <string name="apply_loan">Оформление</string>
+    <string name="how_get">Получение</string>
     <string name="logout">Выйти</string>
     <string name="item_sum_loan">Сумма займа:</string>
     <string name="item_date_loan">Дата займа:</string>
     <string name="item_status_loan">Статус займа:</string>
     <string name="apply_success">Оформление займа прошло успешно.</string>
     <string name="empty_list">У вас нет оформленных займов</string>
+    <string name="profile">Профиль</string>
 </resources>

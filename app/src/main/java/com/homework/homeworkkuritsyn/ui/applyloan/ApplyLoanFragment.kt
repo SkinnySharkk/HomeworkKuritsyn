@@ -76,7 +76,7 @@ class ApplyLoanFragment : Fragment() {
                 is ApplyLoanState.SuccessApply -> {
                     Toast.makeText(context, getString(R.string.apply_success), Toast.LENGTH_LONG)
                         .show()
-                    findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
+//                    findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
                 }
                 is ApplyLoanViewModelUiState.Error -> {
                     binding.applyGroup.visibility = View.GONE
@@ -132,7 +132,7 @@ class ApplyLoanFragment : Fragment() {
             }
         }
         binding.cancelLoanBtn.setOnClickListener {
-            findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
+//            findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
         }
     }
 

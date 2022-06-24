@@ -3,8 +3,8 @@ package com.homework.homeworkkuritsyn.di.main
 import androidx.lifecycle.ViewModel
 import com.homework.homeworkkuritsyn.domain.DeleteUserDataUseCase
 import com.homework.homeworkkuritsyn.domain.DeleteUserDataUseCaseImpl
-import com.homework.homeworkkuritsyn.domain.authorized.CheckFirstStartUseCase
-import com.homework.homeworkkuritsyn.domain.authorized.CheckFirstStartUseCaseImpl
+import com.homework.homeworkkuritsyn.domain.authorized.CheckIsAuthorizedUseCase
+import com.homework.homeworkkuritsyn.domain.authorized.CheckIsAuthorizedUseCaseImpl
 import com.homework.homeworkkuritsyn.presenters.MainViewModel
 import com.homework.homeworkkuritsyn.presenters.ViewModelKey
 import dagger.Binds
@@ -15,8 +15,8 @@ import dagger.multibindings.IntoMap
 interface MainModule {
     @Binds
     fun bindCheckFirstStartUseCase(
-        checkFirstStartUseCaseImpl: CheckFirstStartUseCaseImpl
-    ): CheckFirstStartUseCase
+        checkFirstStartUseCaseImpl: CheckIsAuthorizedUseCaseImpl
+    ): CheckIsAuthorizedUseCase
 
     @Binds
     fun bindDeleteUserDataUseCase(

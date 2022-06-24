@@ -24,14 +24,14 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.startLoginButton.setOnClickListener {
-            findNavController().navigate(
-                StartFragmentDirections.actionStartFragmentToLoginFragment()
-            )
+//            findNavController().navigate(
+//                StartFragmentDirections.actionStartFragmentToLoginFragment()
+//            )
         }
         binding.startRegisterButton.setOnClickListener {
-            findNavController().navigate(
-                StartFragmentDirections.actionStartFragmentToRegisterFragment()
-            )
+//            findNavController().navigate(
+//                StartFragmentDirections.actionStartFragmentToRegisterFragment()
+//            )
         }
     }
 

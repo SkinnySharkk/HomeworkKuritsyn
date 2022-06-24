@@ -3,38 +3,26 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/startFragment">
+    app:startDestination="@id/loansFragment">
 
-    <fragment
-        android:id="@+id/startFragment"
-        android:name="com.homework.homeworkkuritsyn.ui.authorization.StartFragment"
-        android:label="@string/fragment_start"
-        tools:layout="@layout/fragment_start">
-        <action
-            android:id="@+id/action_startFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-        <action
-            android:id="@+id/action_startFragment_to_registerFragment"
-            app:destination="@id/registerFragment" />
-    </fragment>
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.homework.homeworkkuritsyn.ui.authorization.LoginFragment"
         android:label="@string/fragment_login"
         tools:layout="@layout/fragment_login">
         <action
+            android:id="@+id/action_loginFragment_to_registerFragment"
+            app:destination="@id/registerFragment" />
+        <action
             android:id="@+id/action_loginFragment_to_loansFragment"
-            app:destination="@id/loansFragment" />
+            app:destination="@id/loansFragment"
+            />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
         android:name="com.homework.homeworkkuritsyn.ui.authorization.RegisterFragment"
         android:label="@string/fragment_register"
-        tools:layout="@layout/fragment_register" >
-        <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_register" />
     <fragment
         android:id="@+id/loansFragment"
         android:name="com.homework.homeworkkuritsyn.ui.historyloans.LoansFragment"
@@ -64,11 +52,7 @@
         android:id="@+id/applyFragment"
         android:name="com.homework.homeworkkuritsyn.ui.applyloan.ApplyLoanFragment"
         android:label="@string/fragment_apply"
-        tools:layout="@layout/fragment_apply">
-        <action
-            android:id="@+id/action_applyFragment_to_loansFragment"
-            app:destination="@id/loansFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_apply"/>
     <fragment
         android:id="@+id/manualFragment"
         android:name="com.homework.homeworkkuritsyn.ui.manualgetloan.ManualFragment"
@@ -91,4 +75,9 @@
         android:name="com.homework.homeworkkuritsyn.ui.manualgetloan.ManualCardFragment"
         android:label="@string/fragment_manual_card"
         tools:layout="@layout/fragment_manual_card" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.homework.homeworkkuritsyn.ui.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
 </navigation>

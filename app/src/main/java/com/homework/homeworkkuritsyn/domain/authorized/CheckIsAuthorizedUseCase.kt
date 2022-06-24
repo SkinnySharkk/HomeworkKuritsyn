@@ -2,12 +2,12 @@ package com.homework.homeworkkuritsyn.domain.authorized
 
 import javax.inject.Inject
 
-interface CheckFirstStartUseCase {
+interface CheckIsAuthorizedUseCase {
     fun execute(): Boolean
 }
-class CheckFirstStartUseCaseImpl @Inject constructor(
+class CheckIsAuthorizedUseCaseImpl @Inject constructor(
     private val authorizedRepository: AuthorizedRepository
-    ) : CheckFirstStartUseCase {
+    ) : CheckIsAuthorizedUseCase {
     override fun execute(): Boolean {
         return authorizedRepository.isAuthorized()
     }
