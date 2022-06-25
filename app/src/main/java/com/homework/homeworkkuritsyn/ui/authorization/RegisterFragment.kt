@@ -54,6 +54,7 @@ class RegisterFragment : Fragment() {
                     password = password
                 )
             } else {
+                registerButton.isClickable = true
                 Toast.makeText(
                     context,
                     resources.getString(R.string.warning_authorization),

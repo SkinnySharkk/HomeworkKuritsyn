@@ -47,6 +47,7 @@ class LoginFragment : Fragment() {
             if (validData(name = name, password = password)) {
                 viewModel.login(name, password)
             } else {
+                loginButton.isClickable = true
                 Toast.makeText(
                     context,
                     resources.getString(R.string.warning_authorization),
