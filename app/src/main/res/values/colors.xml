@@ -55,4 +55,5 @@
     <color name="md_theme_dark_inverseOnSurface">#303033</color>
     <color name="md_theme_dark_inversePrimary">#005AC1</color>
     <color name="seed">#4285F4</color>
+    <color name="yellow">#FFE600</color>
 </resources>
