@@ -13,7 +13,7 @@
     <item
         android:id="@id/manualFragment"
         android:enabled="true"
-        android:icon="@drawable/ic_baseline_help_outline_24"
+        android:icon="@drawable/ic_baseline_account_balance_wallet_24"
         android:title="@string/how_get" />
 
     <item

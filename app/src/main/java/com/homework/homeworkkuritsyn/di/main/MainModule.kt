@@ -19,11 +19,6 @@ interface MainModule {
     ): CheckIsAuthorizedUseCase
 
     @Binds
-    fun bindDeleteUserDataUseCase(
-        deleteUserDataUseCaseImpl: DeleteUserDataUseCaseImpl
-    ): DeleteUserDataUseCase
-
-    @Binds
     @[IntoMap ViewModelKey(MainViewModel::class)]
     fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
 }

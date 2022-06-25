@@ -40,7 +40,7 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.registerButton.setOnClickListener {
+        binding.registerButton.setOnClickListener { registerButton ->
             val login = binding.registerTextFieldLogin.editText?.text.toString()
             val password = binding.registerTextFieldUserPassword.editText?.text.toString()
             if (validData(
@@ -48,6 +48,7 @@ class RegisterFragment : Fragment() {
                     password = password
                 )
             ) {
+                registerButton.isClickable = false
                 viewModel.register(
                     login = login,
                     password = password
@@ -83,6 +84,7 @@ class RegisterFragment : Fragment() {
                     binding.registerTextFieldLogin.error = loginUiState.reason
                     binding.registerTextFieldUserPassword.isErrorEnabled = true
                     binding.registerTextFieldUserPassword.error = loginUiState.reason
+                    binding.registerButton.isClickable = true
                 }
             }
         }

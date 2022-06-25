@@ -8,17 +8,10 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 class MainViewModel @Inject constructor(
-    private val checkIsAuthorizedUseCase: CheckIsAuthorizedUseCase,
-    private val deleteUserDataUseCase: DeleteUserDataUseCase
+    private val checkIsAuthorizedUseCase: CheckIsAuthorizedUseCase
 ) : ViewModel() {
 
     fun isAuthorized(): Boolean {
         return checkIsAuthorizedUseCase.execute()
-    }
-
-    fun deleteUserData() {
-        viewModelScope.launch {
-            deleteUserDataUseCase.execute()
-        }
     }
 }

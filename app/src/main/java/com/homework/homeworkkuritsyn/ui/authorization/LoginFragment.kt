@@ -40,9 +40,10 @@ class LoginFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.loginButton.setOnClickListener {
+        binding.loginButton.setOnClickListener { loginButton ->
             val name = binding.loginTextFieldUserName.editText?.text.toString()
             val password = binding.loginTextFieldUserPassword.editText?.text.toString()
+            loginButton.isClickable = false
             if (validData(name = name, password = password)) {
                 viewModel.login(name, password)
             } else {
@@ -62,9 +63,7 @@ class LoginFragment : Fragment() {
                 }
                 is LoginUiState.Success -> {
                     binding.loginProgressBar.visibility = View.GONE
-//                    findNavController().navigate(R.id.loansFragment)
                     findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToLoansFragment())
-//                    findNavController().popBackStack()
                 }
                 is LoginUiState.Loading -> {
                     binding.loginProgressBar.visibility = View.VISIBLE
@@ -75,6 +74,7 @@ class LoginFragment : Fragment() {
                     binding.loginTextFieldUserName.error = loginUiState.reason
                     binding.loginTextFieldUserPassword.isErrorEnabled = true
                     binding.loginTextFieldUserPassword.error = loginUiState.reason
+                    binding.loginButton.isClickable = true
                 }
             }
         }

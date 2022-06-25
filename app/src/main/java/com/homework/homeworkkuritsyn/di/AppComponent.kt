@@ -4,6 +4,7 @@ import android.content.Context
 import com.homework.homeworkkuritsyn.di.authorized.AuthorizedComponent
 import com.homework.homeworkkuritsyn.di.historyloans.LoansComponent
 import com.homework.homeworkkuritsyn.di.main.MainComponent
+import com.homework.homeworkkuritsyn.di.profile.ProfileComponent
 import dagger.BindsInstance
 import dagger.Component
 import javax.inject.Singleton
@@ -23,6 +24,7 @@ interface AppComponent {
     fun authorizedComponent(): AuthorizedComponent.Factory
     fun loansComponent(): LoansComponent.Factory
     fun mainComponent(): MainComponent.Factory
+    fun profileComponent(): ProfileComponent.Factory
 
     @Component.Factory
     interface Factory {
