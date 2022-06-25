@@ -76,4 +76,6 @@
     <string name="empty_list">У вас нет оформленных займов</string>
     <string name="profile">Профиль</string>
     <string name="fragment_profile">Профиль</string>
+    <string name="loan_conditions">Условия займа</string>
+    <string name="borrower_title">Заёмщик</string>
 </resources>

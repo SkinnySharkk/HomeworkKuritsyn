@@ -12,7 +12,7 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:id="@+id/loanDataTitle"
+            android:id="@+id/loanDateTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -84,7 +84,7 @@
             android:layout_height="wrap_content"
             app:barrierDirection="right"
             app:constraint_referenced_ids="loanFirstNameTitle,
-loanLastNameTitle, loanDataTitle"
+loanLastNameTitle, loanDateTitle"
             tools:layout_editor_absoluteX="168dp" />
 
         <androidx.constraintlayout.widget.Guideline
@@ -132,7 +132,7 @@ loanLastNameTitle, loanDataTitle"
             app:layout_constraintBottom_toTopOf="@+id/lastNameLoanTextField"
             app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
             app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
-            app:layout_constraintTop_toBottomOf="@+id/loanDataTitle">
+            app:layout_constraintTop_toBottomOf="@+id/loanDateTitle">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -212,7 +212,7 @@ loanLastNameTitle, loanDataTitle"
             android:layout_height="wrap_content"
             app:constraint_referenced_ids="amountConditionsValue,applyLoanBtn,
             firstNameLoanTextField,sumLoanTextField,loanFirstNameTitle,
-            percentConditionsValue,seekBarSum,TitleConditions,loanDataTitle,
+            percentConditionsValue,seekBarSum,TitleConditions,loanDateTitle,
             loanLastNameTitle,periodConditionsValue,cancelLoanBtn,
             lastNameLoanTextField,phoneLoanTextField" />
 
