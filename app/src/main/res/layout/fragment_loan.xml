@@ -256,8 +256,10 @@ loanPeriodTitle, loanStateValue, loanSumTitle"
         android:id="@+id/errorTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:layout_editor_absoluteX="206dp"
-        tools:layout_editor_absoluteY="356dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/TOP_MARGIN"
