@@ -132,7 +132,10 @@ loanLastNameTitle, loanDateTitle"
             app:layout_constraintBottom_toTopOf="@+id/lastNameLoanTextField"
             app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
             app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
-            app:layout_constraintTop_toBottomOf="@+id/loanDateTitle">
+            app:layout_constraintTop_toBottomOf="@+id/loanDateTitle"
+            app:layout_constraintVertical_chainStyle="packed"
+            android:layout_marginBottom="8dp"
+            app:startIconDrawable="@drawable/ic_baseline_person_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -146,11 +149,12 @@ loanLastNameTitle, loanDateTitle"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:hint="@string/last_name"
-
+            android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/phoneLoanTextField"
             app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
             app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
-            app:layout_constraintTop_toBottomOf="@+id/firstNameLoanTextField">
+            app:layout_constraintTop_toBottomOf="@+id/firstNameLoanTextField"
+            app:startIconDrawable="@drawable/ic_baseline_person_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
@@ -164,15 +168,16 @@ loanLastNameTitle, loanDateTitle"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:hint="@string/apply_phone"
-
             app:layout_constraintBottom_toTopOf="@+id/sumLoanTextField"
             app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
             app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
-            app:layout_constraintTop_toBottomOf="@+id/lastNameLoanTextField">
+            app:layout_constraintTop_toBottomOf="@+id/lastNameLoanTextField"
+            app:startIconDrawable="@drawable/ic_baseline_phone_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
                 android:inputType="phone" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -182,11 +187,13 @@ loanLastNameTitle, loanDateTitle"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
             android:hint="@string/sum"
-
             app:layout_constraintBottom_toTopOf="@+id/seekBarSum"
             app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
             app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
-            app:layout_constraintTop_toBottomOf="@+id/phoneLoanTextField">
+            app:layout_constraintTop_toBottomOf="@+id/phoneLoanTextField"
+
+            android:layout_marginBottom="32dp"
+            app:startIconDrawable="@drawable/ic_baseline_currency_ruble_24">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
