@@ -7,166 +7,187 @@
     tools:context=".ui.historyloans.LoanFragment">
 
     <TextView
-        android:id="@+id/loanDataTitle"
+        android:id="@+id/loanDateTitle"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/data_title"
-        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
-        app:layout_constraintTop_toBottomOf="@id/loanPhoneTitle" />
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/loanSumTitle" />
 
     <TextView
-        android:id="@+id/loanPhoneValue"
+        android:id="@+id/loanPercentValue"
+        style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
-        app:layout_constraintTop_toBottomOf="@id/loanLastNameValue"
-        tools:text="@tools:sample/us_phones" />
+
+        app:layout_constraintBottom_toBottomOf="@+id/loanPercentTitle"
+        app:layout_constraintStart_toEndOf="@id/applyConditionsBarrier"
+        app:layout_constraintTop_toTopOf="@+id/loanPercentTitle"
+        tools:text="12.4%" />
 
     <TextView
-        android:id="@+id/loanLastNameTitle"
+        android:id="@+id/loanDateValue"
+        style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/last_name_title"
-        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
-        app:layout_constraintTop_toBottomOf="@id/loanFirstNameTitle" />
+        android:layout_marginBottom="3dp"
 
-    <TextView
-        android:id="@+id/loanLastNameValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
-        app:layout_constraintTop_toBottomOf="@id/loanFirstNameValue"
-        tools:text="@tools:sample/last_names" />
-
-    <TextView
-        android:id="@+id/loanFirstNameTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/first_name_title"
-        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/loanFirstNameValue"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="@tools:sample/first_names" />
-
-    <TextView
-        android:id="@+id/loanPercentTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/percent_title"
-        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
-        app:layout_constraintTop_toBottomOf="@id/loanDataTitle" />
+        app:layout_constraintBottom_toBottomOf="@+id/loanDateTitle"
+        app:layout_constraintStart_toEndOf="@id/applyConditionsBarrier"
+        app:layout_constraintTop_toTopOf="@+id/loanDateTitle"
+        tools:text="@tools:sample/date/ddmmyy" />
 
     <TextView
         android:id="@+id/loanPeriodTitle"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/period_title"
-        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
-        app:layout_constraintTop_toBottomOf="@id/loanPercentTitle" />
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/loanPercentTitle" />
+
+    <TextView
+        android:id="@+id/loanFirstNameTitle"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/first_name_title"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/borrowerTitle" />
+
+    <TextView
+        android:id="@+id/loanLastNameTitle"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/last_name_title"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/loanFirstNameTitle" />
 
     <TextView
         android:id="@+id/loanPhoneTitle"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="@string/phone_title"
-        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
-        app:layout_constraintTop_toBottomOf="@id/loanLastNameTitle" />
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/loanLastNameTitle" />
 
     <TextView
-        android:id="@+id/loanSumTitle"
+        android:id="@+id/borrowerTitle"
+        style="@style/TextAppearance.Material3.TitleLarge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/sum_title"
-        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
-        app:layout_constraintTop_toBottomOf="@id/loanPeriodTitle" />
+        android:layout_marginTop="16dp"
+        android:text="@string/borrower_title"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/loanStateValue" />
 
     <TextView
-        android:id="@+id/loanStateTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="@string/status_title"
-        app:layout_constraintStart_toStartOf="@id/START_MARGIN"
-        app:layout_constraintTop_toBottomOf="@id/loanSumTitle" />
-
-    <TextView
-        android:id="@+id/loanDataValue"
+        android:id="@+id/loanLastNameValue"
+        style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
-        app:layout_constraintTop_toBottomOf="@id/loanPhoneValue"
-        tools:text="@tools:sample/date/ddmmyy" />
+        app:layout_constraintBottom_toBottomOf="@+id/loanLastNameTitle"
+        app:layout_constraintStart_toEndOf="@id/borrowerBarrier"
+        app:layout_constraintTop_toTopOf="@+id/loanLastNameTitle"
+        tools:layout_editor_absoluteX="305dp"
+        tools:text="@tools:sample/last_names" />
 
     <TextView
-        android:id="@+id/loanPercentValue"
+        android:id="@+id/loanFirstNameValue"
+
+        style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/loanFirstNameTitle"
+        app:layout_constraintStart_toEndOf="@id/borrowerBarrier"
+        app:layout_constraintTop_toTopOf="@+id/loanFirstNameTitle"
+        tools:layout_editor_absoluteX="305dp"
+        tools:text="@tools:sample/first_names" />
+
+    <TextView
+        android:id="@+id/loanPhoneValue"
+        style="@style/TextAppearance.MaterialComponents.Body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/loanPhoneTitle"
+        app:layout_constraintStart_toEndOf="@id/borrowerBarrier"
+        app:layout_constraintTop_toTopOf="@+id/loanPhoneTitle"
+        tools:layout_editor_absoluteX="305dp"
+        tools:text="@tools:sample/us_phones" />
+
+    <TextView
+        android:id="@+id/loanPercentTitle"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
-        app:layout_constraintTop_toBottomOf="@id/loanDataValue"
-        tools:text="12.4%" />
+        android:text="@string/percent_title"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/loanDateTitle" />
 
     <TextView
         android:id="@+id/loanPeriodValue"
+        style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
-        app:layout_constraintTop_toBottomOf="@id/loanPercentValue"
+        app:layout_constraintBottom_toBottomOf="@+id/loanPeriodTitle"
+
+        app:layout_constraintStart_toEndOf="@id/applyConditionsBarrier"
+        app:layout_constraintTop_toTopOf="@+id/loanPeriodTitle"
         tools:text="60" />
 
     <TextView
         android:id="@+id/loanSumValue"
+        style="@style/TextAppearance.MaterialComponents.Body2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
-        app:layout_constraintTop_toBottomOf="@id/loanPeriodValue"
+        app:layout_constraintBottom_toBottomOf="@+id/loanSumTitle"
+        app:layout_constraintStart_toEndOf="@id/applyConditionsBarrier"
+        app:layout_constraintTop_toTopOf="@+id/loanSumTitle"
         tools:text="15000.00" />
 
     <TextView
-        android:id="@+id/loanStateValue"
+        android:id="@+id/loanSumTitle"
+        style="@style/TextAppearance.MaterialComponents.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintStart_toStartOf="@id/applyConditionsBarrier"
-        app:layout_constraintTop_toBottomOf="@id/loanSumValue"
-        tools:text="REGISTERED" />
+        android:text="@string/sum_title"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/conditionsTitle" />
+
+    <TextView
+        android:id="@+id/loanStateValue"
+        style="@style/TextAppearance.MaterialComponents.Body1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/loanPeriodTitle"
+        tools:text="REGISTERED"
+        app:drawableStartCompat="@drawable/loan_detail_status" />
 
     <androidx.constraintlayout.widget.Barrier
         android:id="@+id/applyConditionsBarrier"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="right"
-        app:constraint_referenced_ids="loanFirstNameTitle,
-loanLastNameTitle, loanDataTitle, loanPhoneTitle,loanPercentTitle,
-loanPeriodTitle, loanStateTitle, loanSumTitle"
-        tools:layout_editor_absoluteX="168dp" />
+        app:constraint_referenced_ids="loanDateTitle,loanPercentTitle,
+loanPeriodTitle, loanStateValue, loanSumTitle"
+        tools:layout_editor_absoluteX="134dp" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/START_MARGIN"
@@ -188,35 +209,38 @@ loanPeriodTitle, loanStateTitle, loanSumTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/manual_to_bank_btn"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toTopOf="@+id/loanToCardBtn"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loanStateTitle" />
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toBottomOf="@+id/dataBarrier"
+        app:layout_constraintVertical_chainStyle="packed" />
 
     <Button
         android:id="@+id/loanToCardBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
         android:text="@string/manual_to_card_btn"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
         app:layout_constraintTop_toBottomOf="@+id/loanToBankBtn" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/loanGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="loanDataTitle,
+        app:constraint_referenced_ids="loanDateTitle,
         loanPhoneValue,loanLastNameTitle,loanLastNameValue,
         loanFirstNameTitle,loanFirstNameValue,
         loanPercentTitle,loanPeriodTitle,loanPhoneTitle,
-        loanSumTitle,loanStateTitle,loanDataValue,
+        loanSumTitle,loanDateValue,
         loanPercentValue,loanPeriodValue,loanSumValue,
         loanStateValue,applyConditionsBarrier,loanToBankBtn,
-        loanToCardBtn" />
+        loanToCardBtn, borrowerTitle, conditionsTitle" />
 
     <ProgressBar
         android:id="@+id/loanProgressBar"
@@ -236,5 +260,36 @@ loanPeriodTitle, loanStateTitle, loanSumTitle"
         app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
         app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/TOP_MARGIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="10dp" />
+
+    <TextView
+        android:id="@+id/conditionsTitle"
+        style="@style/TextAppearance.Material3.TitleLarge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/loan_conditions"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintStart_toStartOf="@+id/START_MARGIN"
+        app:layout_constraintTop_toTopOf="@+id/TOP_MARGIN" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/borrowerBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="loanFirstNameTitle, loanLastNameTitle, loanPhoneTitle" />
+
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/dataBarrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="bottom"
+        app:constraint_referenced_ids="loanPhoneTitle, loanPhoneValue" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

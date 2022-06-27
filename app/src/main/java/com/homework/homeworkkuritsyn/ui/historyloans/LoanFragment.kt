@@ -1,6 +1,7 @@
 package com.homework.homeworkkuritsyn.ui.historyloans
 
 import android.content.Context
+import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -52,7 +53,7 @@ class LoanFragment : Fragment() {
                         loanProgressBar.visibility = View.GONE
                         loanFirstNameValue.text = state.loan.firstName
                         loanLastNameValue.text = state.loan.lastName
-                        loanDataValue.text = state.loan.date.split("T")[0]
+                        loanDateValue.text = state.loan.date.split("T")[0]
                         loanPhoneValue.text = state.loan.phoneNumber
                         loanSumValue.text =
                             String.format(Locale.getDefault(), state.loan.amount.toString())
@@ -61,13 +62,16 @@ class LoanFragment : Fragment() {
                         loanPeriodValue.text = state.loan.period.toString()
                         loanStateValue.text = when (state.loan.state) {
                             EnumStateEntity.REGISTERED -> {
+                                loanStateValue.compoundDrawables[0].setTint(Color.YELLOW)
                                 "Зарегистрирован"
                             }
                             EnumStateEntity.REJECTED -> {
-                                "Отклоненный"
+                                loanStateValue.compoundDrawables[0].setTint(Color.RED)
+                                "Отклонен"
                             }
                             EnumStateEntity.APPROVED -> {
-                                "Одобренный"
+                                loanStateValue.compoundDrawables[0].setTint(Color.GREEN)
+                                "Одобрен"
                             }
                         }
                         errorTextView.visibility = View.GONE

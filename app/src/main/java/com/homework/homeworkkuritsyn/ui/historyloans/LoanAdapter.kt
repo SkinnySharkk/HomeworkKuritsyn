@@ -1,10 +1,12 @@
 package com.homework.homeworkkuritsyn.ui.historyloans
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.databinding.ItemLoanBinding
 import com.homework.homeworkkuritsyn.domain.entity.EnumStateEntity
 import com.homework.homeworkkuritsyn.domain.entity.LoanEntity
@@ -17,6 +19,7 @@ class LoanAdapter(
         val binding = ItemLoanBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return LoanViewHolder(binding)
     }
+
     override fun onBindViewHolder(holder: LoanViewHolder, position: Int) {
         val loan = getItem(position)
         holder.bind(loan)
@@ -32,6 +35,7 @@ class LoanAdapter(
         override fun areContentsTheSame(oldItem: LoanEntity, newItem: LoanEntity) =
             oldItem == newItem
     }
+
     class LoanViewHolder(
         private val binding: ItemLoanBinding,
     ) :
@@ -44,13 +48,16 @@ class LoanAdapter(
             binding.dateItemTxt.text = loanEntity.date.split("T")[0]
             binding.statusItemTxt.text = when (loanEntity.state) {
                 EnumStateEntity.REGISTERED -> {
+                    binding.statusImageView.setColorFilter(Color.YELLOW)
                     "Зарегистрирован"
                 }
                 EnumStateEntity.REJECTED -> {
-                    "Отклоненный"
+                    binding.statusImageView.setColorFilter(Color.RED)
+                    "Отклонен"
                 }
                 EnumStateEntity.APPROVED -> {
-                    "Одобренный"
+                    binding.statusImageView.setColorFilter(Color.GREEN)
+                    "Одобрен"
                 }
             }
         }
