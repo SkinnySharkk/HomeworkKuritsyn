@@ -44,7 +44,9 @@ class MainActivity : AppCompatActivity() {
             supportFragmentManager.findFragmentById(R.id.navHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
         if (viewModel.isAuthorized()) {
-            navController.navigate(LoginFragmentDirections.actionLoginFragmentToLoansFragment())
+            if (navController.currentDestination?.id == R.id.loginFragment) {
+                navController.navigate(LoginFragmentDirections.actionLoginFragmentToLoansFragment())
+            }
         }
         navController.addOnDestinationChangedListener { _, destination, _ ->
             binding.bottomNavigation.visibility =

@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoginBinding
 import com.homework.homeworkkuritsyn.presenters.authorization.LoginUiState
 import com.homework.homeworkkuritsyn.presenters.authorization.LoginViewModel
+import timber.log.Timber
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {
@@ -41,17 +43,17 @@ class LoginFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.loginButton.setOnClickListener { loginButton ->
-            val name = binding.loginTextFieldUserName.editText?.text.toString()
-            val password = binding.loginTextFieldUserPassword.editText?.text.toString()
+            val name = binding.loginTextFieldUserName.editText?.text.toString().trim()
+            val password = binding.loginTextFieldUserPassword.editText?.text.toString().trim()
             loginButton.isClickable = false
             if (validData(name = name, password = password)) {
                 viewModel.login(name, password)
             } else {
                 loginButton.isClickable = true
-                Toast.makeText(
-                    context,
-                    resources.getString(R.string.warning_authorization),
-                    Toast.LENGTH_LONG
+                Snackbar.make(
+                    binding.loginButton,
+                    getString(R.string.warning_authorization),
+                    Snackbar.LENGTH_LONG
                 ).show()
             }
         }

@@ -61,7 +61,11 @@
         android:id="@+id/applyFragment"
         android:name="com.homework.homeworkkuritsyn.ui.applyloan.ApplyLoanFragment"
         android:label="@string/fragment_apply"
-        tools:layout="@layout/fragment_apply"/>
+        tools:layout="@layout/fragment_apply">
+        <action
+            android:id="@+id/action_applyFragment_to_loansFragment"
+            app:destination="@id/loansFragment" />
+    </fragment>
     <fragment
         android:id="@+id/manualFragment"
         android:name="com.homework.homeworkkuritsyn.ui.manualgetloan.ManualFragment"

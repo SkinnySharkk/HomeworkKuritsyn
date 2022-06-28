@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.snackbar.Snackbar
 import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentApplyBinding
@@ -54,7 +55,7 @@ class ApplyLoanFragment : Fragment() {
         }
 
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
-            when(state) {
+            when (state) {
                 is ApplyLoanViewModelUiState.Loading -> {
                     binding.applyGroup.visibility = View.GONE
                     binding.progressBar.visibility = View.VISIBLE
@@ -65,18 +66,27 @@ class ApplyLoanFragment : Fragment() {
                         applyGroup.visibility = View.VISIBLE
                         progressBar.visibility = View.GONE
                         amountConditionsValue.text =
-                            String.format(Locale.getDefault(), state.loanConditions.maxAmount.toString())
+                            String.format(
+                                Locale.getDefault(),
+                                state.loanConditions.maxAmount.toString()
+                            )
                         percentConditionsValue.text =
-                            String.format(Locale.getDefault(), state.loanConditions.percent.toString())
+                            String.format(
+                                Locale.getDefault(),
+                                state.loanConditions.percent.toString()
+                            )
                         periodConditionsValue.text = state.loanConditions.period.toString()
                         viewModel.setSum(START_PERCENT_SUM)
                         errorTextView.visibility = View.GONE
                     }
                 }
                 is ApplyLoanState.SuccessApply -> {
-                    Toast.makeText(context, getString(R.string.apply_success), Toast.LENGTH_LONG)
-                        .show()
-//                    findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
+                    Snackbar.make(
+                        binding.applyLoanBtn,
+                        getString(R.string.apply_success),
+                        Snackbar.LENGTH_LONG
+                    ).setAnchorView(binding.applyLoanBtn).show()
+                    findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
                 }
                 is ApplyLoanViewModelUiState.Error -> {
                     binding.applyGroup.visibility = View.GONE
@@ -109,8 +119,8 @@ class ApplyLoanFragment : Fragment() {
         with(binding) {
             binding.applyLoanBtn.setOnClickListener {
                 val sum = binding.sumLoanTextField.editText?.text.toString()
-                val firstName = firstNameLoanTextField.editText?.text.toString()
-                val lastName = lastNameLoanTextField.editText?.text.toString()
+                val firstName = firstNameLoanTextField.editText?.text.toString().trim()
+                val lastName = lastNameLoanTextField.editText?.text.toString().trim()
                 val phone = phoneLoanTextField.editText?.text.toString()
                 if (validData(
                         firstName = firstName,
@@ -132,7 +142,7 @@ class ApplyLoanFragment : Fragment() {
             }
         }
         binding.cancelLoanBtn.setOnClickListener {
-//            findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
+            findNavController().navigate(ApplyLoanFragmentDirections.actionApplyFragmentToLoansFragment())
         }
     }
 
@@ -156,11 +166,11 @@ class ApplyLoanFragment : Fragment() {
     }
 
     private fun showHelp() {
-        Toast.makeText(
-            context,
+        Snackbar.make(
+            binding.applyLoanBtn,
             getString(R.string.applyHelpInfo),
-            Toast.LENGTH_LONG
-        ).show()
+            Snackbar.LENGTH_LONG
+        ).setAnchorView(binding.applyLoanBtn).show()
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
