@@ -2,10 +2,10 @@ package com.homework.homeworkkuritsyn.ui.applyloan
 
 import android.content.Context
 import android.os.Bundle
+import android.telephony.PhoneNumberFormattingTextWatcher
 import android.view.*
 import android.widget.SeekBar
 import android.widget.SeekBar.OnSeekBarChangeListener
-import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -53,6 +53,7 @@ class ApplyLoanFragment : Fragment() {
         viewModel.selectSum.observe(viewLifecycleOwner) { selectSum ->
             binding.sumLoanTextField.editText?.setText(selectSum.toString())
         }
+        binding.phoneLoanTextField.editText?.addTextChangedListener(PhoneNumberFormattingTextWatcher())
 
         viewModel.uiState.observe(viewLifecycleOwner) { state ->
             when (state) {
@@ -136,8 +137,11 @@ class ApplyLoanFragment : Fragment() {
                         phone = phone
                     )
                 } else {
-                    Toast.makeText(context, getString(R.string.empty_fields), Toast.LENGTH_LONG)
-                        .show()
+                    Snackbar.make(
+                        binding.applyLoanBtn,
+                        getString(R.string.empty_fields),
+                        Snackbar.LENGTH_LONG
+                    ).setAnchorView(binding.applyLoanBtn).show()
                 }
             }
         }

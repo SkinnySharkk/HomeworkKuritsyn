@@ -56,9 +56,9 @@ class ApplyLoanViewModel @Inject constructor(
     }
 
     fun getPercentOfAmount(inputText: CharSequence): Int {
-        val sum = Integer.parseInt(inputText.toString())
+        val sum = BigInteger(inputText.toString())
         val onePercent = _loanConditions.value?.maxAmount?.div(BigInteger.valueOf(100L))!!
-        return BigInteger.valueOf(sum.toLong()).div(onePercent).toInt()
+        return sum.div(onePercent).toInt()
     }
 
     fun applyLoan(sum: BigInteger, firstName: String, lastName: String, phone: String) {

@@ -78,4 +78,6 @@
     <string name="fragment_profile">Профиль</string>
     <string name="loan_conditions">Условия займа</string>
     <string name="borrower_title">Заёмщик</string>
+    <string name="prefNumber">+7</string>
+    <string name="helpNumberText">Длина номера</string>
 </resources>
