@@ -7,10 +7,13 @@ import androidx.lifecycle.viewModelScope
 import com.homework.homeworkkuritsyn.domain.authorized.AuthResult
 import com.homework.homeworkkuritsyn.domain.authorized.SignInUseCase
 import kotlinx.coroutines.launch
+import timber.log.Timber
+import java.util.*
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
     private val signInUseCase: SignInUseCase,
+    private val inputAuthorizationValidator: InputAuthorizationValidator
 ) : ViewModel() {
     private val _loginUiState = MutableLiveData<LoginUiState>(LoginUiState.Idle)
     val loginUiState: LiveData<LoginUiState> get() = _loginUiState
@@ -33,6 +36,20 @@ class LoginViewModel @Inject constructor(
     }
 
     fun validData(name: String, password: String): Boolean {
+        Timber.v("password = ${inputAuthorizationValidator.isCorrectPassword(password = password)}")
+//        Timber.v("login = ${inputAuthorizationValidator.isCorrectLogin(login = name)}")
+        when(val result = inputAuthorizationValidator.isCorrectLogin(login = name)) {
+            is InputAuthorizationValidatorResult.IsCorrect -> {
+                Timber.v("login = IsCorrect")
+            }
+            is InputAuthorizationValidatorResult.IsNotCorrect -> {
+                Timber.v("login = IsNotCorrect, ${result.reason}")
+            }
+            is InputAuthorizationValidatorResult.IsEmpty -> {
+                Timber.v("login = IsEmpty")
+            }
+        }
+
         return name.isNotEmpty() && password.isNotEmpty()
     }
 
