@@ -5,13 +5,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentRegisterBinding
@@ -44,24 +42,11 @@ class RegisterFragment : Fragment() {
         binding.registerButton.setOnClickListener { registerButton ->
             val login = binding.registerTextFieldLogin.editText?.text.toString().trim()
             val password = binding.registerTextFieldUserPassword.editText?.text.toString().trim()
-            if (validData(
-                    login = login,
-                    password = password
-                )
-            ) {
-                registerButton.isClickable = false
-                viewModel.register(
-                    login = login,
-                    password = password
-                )
-            } else {
-                registerButton.isClickable = true
-                Snackbar.make(
-                    binding.registerButton,
-                    getString(R.string.warning_authorization),
-                    Snackbar.LENGTH_LONG
-                ).show()
-            }
+            registerButton.isClickable = false
+            viewModel.register(
+                login = login,
+                password = password
+            )
         }
 
         viewModel.loginUiState.observe(viewLifecycleOwner) { loginUiState ->
@@ -73,7 +58,9 @@ class RegisterFragment : Fragment() {
                 }
                 is LoginUiState.Success -> {
                     binding.registerProgressBar.visibility = View.GONE
-                    findNavController().navigate(RegisterFragmentDirections.actionRegisterFragmentToLoansFragment())
+                    findNavController().navigate(
+                        RegisterFragmentDirections.actionRegisterFragmentToLoansFragment()
+                    )
                 }
                 is LoginUiState.Loading -> {
                     binding.registerProgressBar.visibility = View.VISIBLE
@@ -95,21 +82,18 @@ class RegisterFragment : Fragment() {
                 is LoginUiState.ErrorPassword -> {
                     binding.registerProgressBar.visibility = View.GONE
                     binding.registerTextFieldUserPassword.isErrorEnabled = true
-                    binding.registerTextFieldUserPassword.error = getString(R.string.password_not_correct)
+                    binding.registerTextFieldUserPassword.error =
+                        getString(R.string.password_not_correct)
                     binding.registerButton.isClickable = true
                 }
             }
         }
 
-        binding.registerTextFieldLogin.editText?.doOnTextChanged { inputText, _, _, _ ->
-            if (inputText.isNullOrEmpty()) {
+        binding.registerTextFieldLogin.editText?.doOnTextChanged { _, _, _, _ ->
                 viewModel.dropError()
-            }
         }
-        binding.registerTextFieldUserPassword.editText?.doOnTextChanged { inputText, _, _, _ ->
-            if (inputText.isNullOrEmpty()) {
+        binding.registerTextFieldUserPassword.editText?.doOnTextChanged { _, _, _, _ ->
                 viewModel.dropError()
-            }
         }
 
     }
@@ -117,15 +101,5 @@ class RegisterFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    private fun validData(
-        login: String,
-        password: String
-    ): Boolean {
-        return viewModel.validData(
-            login = login,
-            password = password
-        )
     }
 }

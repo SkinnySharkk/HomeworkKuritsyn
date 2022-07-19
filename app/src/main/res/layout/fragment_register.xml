@@ -10,22 +10,26 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/registerTextFieldLogin"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="240dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:hint="@string/login_user"
+        app:counterEnabled="true"
+        app:counterMaxLength="16"
         app:errorIconDrawable="@drawable/ic_baseline_error_24"
+        app:layout_constrainedWidth="true"
         app:layout_constraintBottom_toTopOf="@+id/registerTextFieldUserPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintStart_toEndOf="@+id/START_MARGIN"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
         app:startIconDrawable="@drawable/ic_baseline_person_24">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/loginTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLength="16"
             android:inputType="textPersonName" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -33,22 +37,26 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/registerTextFieldUserPassword"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="240dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:hint="@string/password_user"
         app:endIconMode="password_toggle"
         app:errorIconDrawable="@drawable/ic_baseline_error_24"
+        app:layout_constrainedWidth="true"
+        app:counterEnabled="true"
+        app:counterMaxLength="32"
         app:layout_constraintBottom_toTopOf="@+id/registerButton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintStart_toEndOf="@+id/START_MARGIN"
         app:layout_constraintTop_toBottomOf="@+id/registerTextFieldLogin"
         app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordTextInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:maxLength="32"
             android:inputType="textPassword" />
 
     </com.google.android.material.textfield.TextInputLayout>
@@ -57,13 +65,10 @@
         android:id="@+id/registerButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
         android:text="@string/register_button"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/END_MARGIN"
+        app:layout_constraintStart_toEndOf="@+id/START_MARGIN"
         app:layout_constraintTop_toBottomOf="@+id/registerTextFieldUserPassword" />
 
     <ProgressBar
@@ -76,5 +81,19 @@
         app:layout_constraintEnd_toEndOf="@+id/registerButton"
         app:layout_constraintStart_toStartOf="@+id/registerButton"
         app:layout_constraintTop_toTopOf="@+id/registerButton" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/START_MARGIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="24dp" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/END_MARGIN"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_end="24dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
