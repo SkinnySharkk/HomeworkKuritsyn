@@ -5,19 +5,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.google.android.material.snackbar.Snackbar
 import com.homework.homeworkkuritsyn.R
 import com.homework.homeworkkuritsyn.appComponent
 import com.homework.homeworkkuritsyn.databinding.FragmentLoginBinding
 import com.homework.homeworkkuritsyn.presenters.authorization.LoginUiState
 import com.homework.homeworkkuritsyn.presenters.authorization.LoginViewModel
-import timber.log.Timber
 import javax.inject.Inject
 
 class LoginFragment : Fragment() {
@@ -46,16 +43,7 @@ class LoginFragment : Fragment() {
             val name = binding.loginTextFieldUserName.editText?.text.toString().trim()
             val password = binding.loginTextFieldUserPassword.editText?.text.toString().trim()
             loginButton.isClickable = false
-            if (validData(name = name, password = password)) {
-                viewModel.login(name, password)
-            } else {
-                loginButton.isClickable = true
-                Snackbar.make(
-                    binding.loginButton,
-                    getString(R.string.warning_authorization),
-                    Snackbar.LENGTH_LONG
-                ).show()
-            }
+            viewModel.login(name, password)
         }
         viewModel.loginUiState.observe(viewLifecycleOwner) { loginUiState ->
             when (loginUiState) {
@@ -79,25 +67,29 @@ class LoginFragment : Fragment() {
                     binding.loginTextFieldUserPassword.error = loginUiState.reason
                     binding.loginButton.isClickable = true
                 }
+                is LoginUiState.ErrorLogin -> {
+                    binding.loginProgressBar.visibility = View.GONE
+                    binding.loginTextFieldUserName.isErrorEnabled = true
+                    binding.loginTextFieldUserName.error = getString(R.string.login_not_correct)
+                    binding.loginButton.isClickable = true
+                }
+                is LoginUiState.ErrorPassword -> {
+                    binding.loginProgressBar.visibility = View.GONE
+                    binding.loginTextFieldUserPassword.isErrorEnabled = true
+                    binding.loginTextFieldUserPassword.error = getString(R.string.password_not_correct)
+                    binding.loginButton.isClickable = true
+                }
             }
         }
         binding.toRegisterButton.setOnClickListener {
             findNavController().navigate(LoginFragmentDirections.actionLoginFragmentToRegisterFragment())
         }
-        binding.loginTextFieldUserName.editText?.doOnTextChanged { inputText, _, _, _ ->
-            if (inputText.isNullOrEmpty()) {
-                viewModel.dropError()
-            }
+        binding.loginTextFieldUserName.editText?.doOnTextChanged { _, _, _, _ ->
+            viewModel.dropError()
         }
-        binding.loginTextFieldUserPassword.editText?.doOnTextChanged { inputText, _, _, _ ->
-            if (inputText.isNullOrEmpty()) {
-                viewModel.dropError()
-            }
+        binding.loginTextFieldUserPassword.editText?.doOnTextChanged { _, _, _, _ ->
+            viewModel.dropError()
         }
-    }
-
-    private fun validData(name: String, password: String): Boolean {
-        return viewModel.validData(name = name, password = password)
     }
 
     override fun onDestroyView() {

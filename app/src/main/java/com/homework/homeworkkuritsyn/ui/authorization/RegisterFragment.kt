@@ -86,6 +86,18 @@ class RegisterFragment : Fragment() {
                     binding.registerTextFieldUserPassword.error = loginUiState.reason
                     binding.registerButton.isClickable = true
                 }
+                is LoginUiState.ErrorLogin -> {
+                    binding.registerProgressBar.visibility = View.GONE
+                    binding.registerTextFieldLogin.isErrorEnabled = true
+                    binding.registerTextFieldLogin.error = getString(R.string.login_not_correct)
+                    binding.registerButton.isClickable = true
+                }
+                is LoginUiState.ErrorPassword -> {
+                    binding.registerProgressBar.visibility = View.GONE
+                    binding.registerTextFieldUserPassword.isErrorEnabled = true
+                    binding.registerTextFieldUserPassword.error = getString(R.string.password_not_correct)
+                    binding.registerButton.isClickable = true
+                }
             }
         }
 

@@ -80,4 +80,6 @@
     <string name="borrower_title">Заёмщик</string>
     <string name="prefNumber">+7</string>
     <string name="helpNumberText">Длина номера</string>
+    <string name="login_not_correct">Не корректный логин. Логин может содержать строчные, прописные буквы, цифры. Минимальная длина 2 символа.</string>
+    <string name="password_not_correct">Не корректный пароль. Пароль может содержать строчные, прописные буквы, цифры. Минимальная длина 5 символа</string>
 </resources>
